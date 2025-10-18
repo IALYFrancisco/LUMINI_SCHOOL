@@ -1,8 +1,27 @@
 function Nav(){
     return(
-        <>
-            <h1>This is a navigation bar</h1>
-        </>
+        <nav>
+            <ul>
+                <li>LUMINI School</li>
+                <li>
+                    <ul>
+                        <li>Accueil</li>
+                        <li>Formations</li>
+                        <li>Articles</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>
+                            <button>Se connecter</button>
+                        </li>
+                        <li>
+                            <button>Créer un compte</button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     )
 }
 

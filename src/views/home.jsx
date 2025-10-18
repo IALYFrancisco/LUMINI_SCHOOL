@@ -1,7 +1,10 @@
+import { Header } from "../components/header"
+import '../../public/styles/home.css'
+
 function Home(){
     return (
         <>
-            <h1>This is a home page ;)</h1>
+            <Header></Header>
         </>
     )
 }

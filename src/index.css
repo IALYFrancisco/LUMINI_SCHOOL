@@ -1,3 +1,9 @@
+:root {
+    --primary: #1b2232;
+    --secondary: #dce1e7;
+    --thirdly: #fffbfc;
+}
+
 @font-face {
     font-family: Montserrat;
     src: url('../public/fonts/Montserrat-Regular.ttf');
@@ -8,4 +14,8 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box; 
+}
+
+ul {
+    list-style-type: none;
 }
