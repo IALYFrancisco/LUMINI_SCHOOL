@@ -2,7 +2,7 @@ function Nav(){
     return(
         <nav>
             <ul>
-                <li>LUMINI School</li>
+                <li className="logo">LUMINI School</li>
                 <li>
                     <ul>
                         <li>Accueil</li>
