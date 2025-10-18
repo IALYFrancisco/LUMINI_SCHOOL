@@ -1,0 +1,30 @@
+function Nav(){
+    return(
+        <div className="nav-container">
+            <nav>
+                <ul>
+                    <li className="logo">LUMINI School</li>
+                    <li>
+                        <ul>
+                            <li>Accueil</li>
+                            <li>Formations</li>
+                            <li>Articles</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                <button>Se connecter</button>
+                            </li>
+                            <li>
+                                <button>Créer un compte</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    )
+}
+
+export default Nav
