@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 490px;
+    height: 500px;
     background-color: var(--primary);
     overflow: hidden;
 }
@@ -9,7 +9,7 @@ header > div {
     width: 100%;
     max-width: 1440px;
     margin: auto;
-    padding: 70px 100px 50px 100px;
+    padding: 100px 100px 50px 100px;
     display: flex;
     justify-content: space-between;
 }
@@ -27,6 +27,7 @@ header h1 {
 header p {
     color: var(--secondary);
     margin-bottom: 40px;
+    width: 80%;
 }
 
 button {
@@ -52,18 +53,23 @@ header .right {
 }
 
 header .right img {
-    margin-top: -110px;
-    /* margin-right: -50px; */
-    /* max-width: 500px; */
+    margin-top: -100px;
+    max-width: 400px;
 }
 
 nav {
     padding: 0 100px;
+    max-width: 1440px;
     height: 100px;
     display: flex;
     align-items: center;
     background-color: var(--primary);
     color: var(--secondary);
+    margin: auto;
+}
+
+.nav-container {
+    background-color: var(--primary);
 }
 
 nav ul {
@@ -86,4 +92,13 @@ nav .logo {
     font-size: 20px;
     display: flex;
     align-items: center;
+}
+
+.img-container {
+    border: 3px var(--secondary) dashed;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
