@@ -37,6 +37,13 @@ button {
     padding: 10px 15px;
     border: none;
     transition: .4s;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+button img {
+    width: 25px;
 }
 
 button:active {
