@@ -54,6 +54,7 @@ button:hover {
     transition: .4s;
     cursor: pointer;
     background-color: var(--thirdly);
+    column-gap: 25px;
 }
 
 header .right {
