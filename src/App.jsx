@@ -1,10 +1,11 @@
 import './App.css'
 import Home from './views/home'
+import Nav from './components/nav'
 
 function App() {
   return (
     <>
-      <h1>This title is th main code</h1>
+      <Nav></Nav>
       <Home></Home>
     </>
   )
