@@ -106,11 +106,80 @@ nav .logo {
     align-items: center;
 }
 
-.img-container {
+header .img-container {
     border: 3px var(--secondary) dashed;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.avis {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avis h2{
+    color: var(--primary);
+}
+
+.avis .img-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avis .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card {
+    width: 210px;
+    border: 1px solid var(--primary);
+    box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524),  -3px -3px 10px rgba(128, 128, 128, 0.524);
+    padding: 10px;
+    border-top-left-radius: 35px;
+}
+
+.card .info-user {
+    display: flex;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 15px;
+}
+
+.card .user-name {
+    padding: 2px 0 0 10px;
+}
+
+.user-name h4 {
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.user-name h5 {
+    color: #4a78a6;
+}
+
+.avis .comments-container {
+    margin-top: 65px;
+    max-width: 800px;
+    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avis .message {
+    margin-top: 15px;
+}
+
+.message p {
+    font-size: 14px;
 }
