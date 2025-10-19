@@ -36,7 +36,7 @@ export function Contact(){
                 <div className="cards-container">
                     <div className="card">
                         <div className="icon-container">
-                            <img src="" alt="" />
+                            <img src="images/icon.png" alt="" />
                         </div>
                         <div className="contact-info">
                             <h3>Téléphone</h3>
@@ -45,11 +45,20 @@ export function Contact(){
                     </div>
                     <div className="card">
                         <div className="icon-container">
-                            <img src="" alt="" />
+                            <img src="images/icon.png" alt="" />
                         </div>
                         <div className="contact-info">
                             <h3>Email</h3>
                             <p>ialyfrancisco7@gmail.com</p>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="icon-container">
+                            <img src="images/icon.png" alt="" />
+                        </div>
+                        <div className="contact-info">
+                            <h3>Adresse</h3>
+                            <p>Mangarivotra, Parcelle 21/72, Lot 765, Toamasina 501</p>
                         </div>
                     </div>
                 </div>

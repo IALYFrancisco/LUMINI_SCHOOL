@@ -311,10 +311,11 @@ form input:focus, form textarea:focus {
     display: flex;
     column-gap: 20px;
     align-items: start;
+    border-radius: 5px;
 }
 
 .contact .card h3 {
-    margin: 0;
+    margin-bottom: 8px;
     padding: 0;
     color: var(--fourth);
 }
@@ -330,4 +331,12 @@ form input:focus, form textarea:focus {
     width: 50px;
     height: 50px;
     background-color: var(--fourth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.contact .icon-container img {
+    width: 33px;
 }
