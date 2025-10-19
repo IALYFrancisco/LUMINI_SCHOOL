@@ -37,8 +37,8 @@ header .actions {
 
 header .actions button:nth-child(2) {
     background-color: transparent;
-    color: #4a78a6;
-    border: 1px solid #4a78a6;
+    color: var(--fourth);
+    border: 1px solid var(--fourth);
 }
 
 header .actions button:nth-child(2):hover {
@@ -157,7 +157,7 @@ header .img-container {
     object-position: center;
 }
 
-.card {
+.avis .card {
     width: 210px;
     border: 1px solid var(--primary);
     box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524),  -3px -3px 10px rgba(128, 128, 128, 0.524);
@@ -165,13 +165,13 @@ header .img-container {
     border-top-left-radius: 35px;
 }
 
-.card .info-user {
+.avis .card .info-user {
     display: flex;
     border-bottom: 1px solid var(--primary);
     padding-bottom: 15px;
 }
 
-.card .user-name {
+.avis .card .user-name {
     padding: 2px 0 0 10px;
 }
 
@@ -181,7 +181,7 @@ header .img-container {
 }
 
 .user-name h5 {
-    color: #4a78a6;
+    color: var(--fourth);
 }
 
 .avis .comments-container {
@@ -215,7 +215,7 @@ em {
 }
 
 .avis button {
-    background-color: #4a78a6;
+    background-color: var(--fourth);
     color: var(--secondary);
     font-weight: 600;
     padding: 10px 15px;
@@ -303,4 +303,31 @@ form textarea {
 
 form input:focus, form textarea:focus {
     border: 2px #0884ff solid;
+}
+
+.contact .card {
+    border: 1px solid var(--fourth);
+    padding: 20px;
+    display: flex;
+    column-gap: 20px;
+    align-items: start;
+}
+
+.contact .card h3 {
+    margin: 0;
+    padding: 0;
+    color: var(--fourth);
+}
+
+.contact .cards-container {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.contact .cards-container .icon-container {
+    width: 50px;
+    height: 50px;
+    background-color: var(--fourth);
 }

@@ -31,7 +31,28 @@ export function Contact(){
                 </form>
             </div>
             <div className="right">
-
+                <h2>Avez-vous une urgence ?</h2>
+                <p>Si vous avez une urgence, utilisez l'un des contacts suivants pour contacter directement LUMINI School.</p>
+                <div className="cards-container">
+                    <div className="card">
+                        <div className="icon-container">
+                            <img src="" alt="" />
+                        </div>
+                        <div className="contact-info">
+                            <h3>Téléphone</h3>
+                            <p>+261 34 47 635 78</p>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="icon-container">
+                            <img src="" alt="" />
+                        </div>
+                        <div className="contact-info">
+                            <h3>Email</h3>
+                            <p>ialyfrancisco7@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     )
