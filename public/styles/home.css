@@ -41,6 +41,12 @@ header .actions button:nth-child(2) {
     border: 1px solid #4a78a6;
 }
 
+header .actions button:nth-child(2):hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
 button {
     background-color: var(--secondary);
     color: var(--primary);
