@@ -236,7 +236,7 @@ em {
     margin-top: 75px;
     max-width: 1440px;
     margin: 100px auto 0 auto;
-    padding: 100px 100px 0 100px;
+    padding: 100px;
     display: flex;
     column-gap: 100px;
     background-color: var(--primary);
@@ -261,5 +261,46 @@ em {
 }
 
 .contact form {
-    margin-top: 50px;
+    margin-top: 60px;
+}
+
+form label {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+form input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: 900;
+}
+
+form input::placeholder {
+    font-weight: 900;
+}
+
+form .element {
+    margin-top: 30px;
+}
+
+form textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    font-weight: 900;
+}
+
+form input:focus, form textarea:focus {
+    border: 2px #0884ff solid;
 }
