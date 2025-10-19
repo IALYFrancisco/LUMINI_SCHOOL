@@ -183,3 +183,8 @@ header .img-container {
 .message p {
     font-size: 14px;
 }
+
+em {
+    font-weight: 900;
+    font-size: 16px;
+}
