@@ -2,6 +2,7 @@ export function Avis(){
     return(
         <section className="avis">
             <h2>Ce qu'ils disent à propos de nous 😊 :</h2>
+            <p>Tout le monde sont libre de dire ce qu'il pense de nous. S'il s'agit de critique, on améliore. Dans le cas d'encouragement, on s'épanouit de joie. Vos petits mots nous tiennent beaucoup à coeur 🌺.</p>
             <section className="comments-container">
                 <div className="card">
                     <div className="info-user">
@@ -89,6 +90,10 @@ export function Avis(){
                     </div>
                 </div>
             </section>
+            <div className="actions">
+                <button>Contacter LUMINI School</button>
+                <button>Voir toutes les formations</button>
+            </div>
         </section>
     )
 }
