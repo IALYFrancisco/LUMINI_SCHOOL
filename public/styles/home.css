@@ -305,6 +305,10 @@ form input:focus, form textarea:focus {
     border: 2px #0884ff solid;
 }
 
+.contact-container {
+    background-color: var(--primary);
+}
+
 .contact .card {
     border: 1px solid var(--fourth);
     padding: 20px;
