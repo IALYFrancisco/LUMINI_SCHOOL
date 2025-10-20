@@ -116,7 +116,7 @@ nav ul li {
     display: flex;
 }
 
-nav .logo {
+.logo {
     font-weight: 900;
     font-size: 20px;
     display: flex;
@@ -343,4 +343,92 @@ form input:focus, form textarea:focus {
 
 .contact .icon-container img {
     width: 33px;
+}
+
+footer {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px 100px 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+footer p {
+    font-size: 14px;
+    color: var(--primary);
+}
+
+footer > section:nth-child(1) {
+    width: 25%;
+}
+
+footer > section:nth-child(3) {
+    width: 25%;
+}
+
+footer > section {
+    width: max-content;
+}
+
+footer section h3 {
+    border-bottom: 2px solid var(--primary);
+    margin-bottom:20px;
+    width: max-content;
+}
+
+footer section ul li {
+    font-size: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+footer section ul li img {
+    width: 30px;
+}
+
+footer .rs {
+    display: flex;
+    column-gap: 30px;
+}
+
+footer .rs li {
+    background-color: var(--fourth);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+footer .rs img {
+    width: 28px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+    color: var(--primary);
+}
+
+footer .actions {
+    display: flex;
+    margin-top: 30px;
+    column-gap: 20px;
+}
+
+footer .actions button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+}
+
+.info-page {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    height: 70px;
+    justify-content: space-between;
+    padding: 0 100px;
 }
