@@ -441,6 +441,8 @@ footer .actions button {
     margin: auto;
     padding: 100px;
     color: var(--primary);
+    overflow: hidden;
+    position: relative;
 }
 
 .formations-container .head {
@@ -457,7 +459,6 @@ footer .actions button {
 
 .formations-container .cards-container {
     display: flex;
-    overflow: hidden;
     width: 100%;
     column-gap: 40px;
     padding: 50px 0;
@@ -466,7 +467,7 @@ footer .actions button {
 .formations-container .card {
     min-width: 200px;
     height: 300px;
-    box-shadow:  3px 3px 10px rgba(220, 220, 220, 0.524),  -3px -3px 10px rgba(128, 128, 128, 0.524);
+    box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
     border: 1px solid var(--primary);
     position: relative;
     cursor: pointer;
@@ -514,4 +515,36 @@ footer .actions button {
 .formations-container > button {
     background-color: var(--primary);
     color: var(--secondary);
+}
+
+.prev, .next {
+    position: absolute;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--fourth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 10px rgba(44, 39, 39, 0.288), -3px -3px 10px rgba(44, 39, 39, 0.288);
+    top: 50%;
+    cursor: pointer;
+}
+
+.prev {
+    right: 60px;
+}
+
+.next {
+    left: 75px;
+}
+
+.prev:active, .next:active {
+    transform: scale(.8);
+    transition: .3s;
+}
+
+.prev img, .next img {
+    width: 30px;
 }
