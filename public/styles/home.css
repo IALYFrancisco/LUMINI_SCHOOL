@@ -435,3 +435,22 @@ footer .actions button {
     margin: auto;
     color: var(--primary)
 }
+
+.formations-container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px;
+    color: var(--primary);
+}
+
+.formations-container .head {
+    width: 50%;
+}
+
+.formations-container .head h2 {
+    margin-bottom: 30px;
+}
+
+.formations-container .head p {
+    font-size: 15px;
+}
