@@ -50,7 +50,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/tandra.jfif" alt="profile"/>
+                            <img src="images/tandra.jpg" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>Tandra Mario J.</h4>
@@ -64,7 +64,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/muriella.jpg" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>Franciska Zoé</h4>
