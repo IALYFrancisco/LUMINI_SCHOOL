@@ -7,7 +7,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/ialy (5).jfif" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>IALY Francisco</h4>
@@ -21,7 +21,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/muriella (2).jpg" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>Marie Michëlla</h4>
@@ -36,7 +36,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/sedera (2).jpg" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>Sederaniaina R.</h4>
@@ -50,7 +50,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/tandra.jfif" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>Tandra Mario J.</h4>
@@ -78,7 +78,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <img src="images/profile.png" alt="profile"/>
+                            <img src="images/juliot (1).jpg" alt="profile"/>
                         </div>
                         <div className="user-name">
                             <h4>R. Juliot</h4>

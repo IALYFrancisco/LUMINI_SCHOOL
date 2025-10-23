@@ -28,7 +28,10 @@ export function Contact(){
                             <textarea name="" id="" placeholder="J'ai l'honneur de vous écrire ..."></textarea>
                         </div>
                         <div className="element">
-                            <button>Envoyer le message</button>
+                            <button>
+                                Envoyer le message
+                                <img src="images/send.png" alt="" />
+                            </button>
                         </div>
                     </form>
                 </div>
