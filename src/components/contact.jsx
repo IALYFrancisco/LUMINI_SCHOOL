@@ -28,7 +28,10 @@ export function Contact(){
                             <textarea name="" id="" placeholder="J'ai l'honneur de vous écrire ..."></textarea>
                         </div>
                         <div className="element">
-                            <button>Envoyer le message</button>
+                            <button>
+                                Envoyer le message
+                                <img src="images/send.png" alt="" />
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -38,7 +41,7 @@ export function Contact(){
                     <div className="cards-container">
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/phone.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Téléphone</h3>
@@ -47,7 +50,7 @@ export function Contact(){
                         </div>
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/envelope.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Email</h3>
@@ -56,7 +59,7 @@ export function Contact(){
                         </div>
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/gps.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Adresse</h3>

@@ -27,15 +27,15 @@ function Footer(){
                     <ul>
                         <li>Ecrire un message à LUMINI</li>
                         <li>
-                            <img src="images/icon.png" alt="" />
+                            <img src="images/phone (1).png" alt="" />
                             +261 34 47 635 78
                         </li>
                         <li>
-                            <img src="images/icon.png" alt="" />
+                            <img src="images/envelope (1).png" alt="" />
                             ialyfrancisco7@gmail.com
                         </li>
                         <li>
-                            <img src="images/icon.png" alt="" />
+                            <img src="images/gps (1).png" alt="" />
                             Mangarivotra, Parcelle 21/72, Lot 765, Toamasina 501
                         </li>
                     </ul>
@@ -48,10 +48,10 @@ function Footer(){
                     <h3>Réseaux sociaux</h3>
                     <ul className="rs">
                         <li>
-                            <img src="images/icon.png" alt="" />
+                            <img src="images/facebook.png" alt="" />
                         </li>
                         <li>
-                            <img src="images/icon.png" alt="" />
+                            <img src="images/linkedin.png" alt="" />
                         </li>
                     </ul>
                 </section>
