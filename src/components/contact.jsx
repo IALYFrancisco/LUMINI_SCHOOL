@@ -41,7 +41,7 @@ export function Contact(){
                     <div className="cards-container">
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/phone.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Téléphone</h3>
@@ -50,7 +50,7 @@ export function Contact(){
                         </div>
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/envelope.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Email</h3>
@@ -59,7 +59,7 @@ export function Contact(){
                         </div>
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/icon.png" alt="" />
+                                <img src="images/gps.png" alt="" />
                             </div>
                             <div className="contact-info">
                                 <h3>Adresse</h3>
