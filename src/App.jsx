@@ -1,17 +1,15 @@
 import './App.css'
 import Home from './views/home'
-import Nav from './components/nav'
-import Footer from './components/footer'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Login } from './views/login'
 
 function App() {
   return (
     <Router>
-      <Nav></Nav>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/authentication/login' element={<Login/>}></Route>
       </Routes>
-      <Footer></Footer>
     </Router>
   )
 }
