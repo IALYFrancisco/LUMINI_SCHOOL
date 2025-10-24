@@ -9,6 +9,8 @@ export function Login(){
                 <h2>Connexion</h2>
                 <h5>à LUMINI School</h5>
                 <form action="">
+                    <img src="/images/fleur.png" alt="" className="laptop-mouse" />
+                    <img src="/images/coffee-laptop.png" alt="" className="mouse" />
                     <div className="element">
                         <label htmlFor="">Votre adresse email :</label>
                         <input type="email" name="" placeholder="Ex: johndoe@example.com"/>
@@ -19,7 +21,6 @@ export function Login(){
                     </div>
                     <div className="element">
                         <button>Soumetttre</button>
-                        <img src="images/fleur.png" alt="" />
                     </div>
                 </form>
                 <span>
