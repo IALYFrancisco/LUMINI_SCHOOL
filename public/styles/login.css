@@ -84,7 +84,7 @@
 }
 
 .laptop-mouse {
-    animation: infinite laptop-mouse-smooth linear 4s;
+    animation: infinite laptop-mouse-smooth linear 5s;
     position: absolute;
     left: -130px;
     bottom: -50px;
