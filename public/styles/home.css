@@ -565,6 +565,17 @@ footer .actions button {
 
 .blog-container .left {
     width: 50%;
+    position: relative;
+}
+
+.blog-container .left .prev {
+    right: -25px;
+    background-color: var(--secondary);
+}
+
+.blog-container .left .next {
+    left: -25px;
+    background-color: var(--secondary);
 }
 
 .blog-container .right {

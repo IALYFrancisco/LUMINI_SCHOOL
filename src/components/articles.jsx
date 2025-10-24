@@ -3,6 +3,12 @@ export function Articles(){
         <section className="blog-container">
             <section>
                 <div className="left">
+                    <div className="prev">
+                        <img src="images/icon.png" alt="" />
+                    </div>
+                    <div className="next">
+                        <img src="images/icon.png" alt="" />
+                    </div>
                     <div className="cards-container">
                         <div className="card">
                             <div className="blog-image">
