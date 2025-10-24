@@ -1,5 +1,31 @@
+import Nav from "../components/nav"
+import '../../public/styles/login.css'
+
 export function Login(){
     return(
-        <h1>This is the login page</h1>
+        <>
+            <Nav></Nav>
+            <section className="login-form">
+                <h2>Connexion</h2>
+                <h5>à LUMINI School</h5>
+                <form action="">
+                    <div className="element">
+                        <label htmlFor="">Votre adresse email :</label>
+                        <input type="email" name="" placeholder="Ex: johndoe@example.com"/>
+                    </div>
+                    <div className="element">
+                        <label htmlFor="">Votre mot de passe :</label>
+                        <input type="password" name="" placeholder="Le mot de passe que vous avez choisi"/>
+                    </div>
+                    <div className="element">
+                        <button>Soumetttre</button>
+                        <img src="images/fleur.png" alt="" />
+                    </div>
+                </form>
+                <span>
+                    <p>Pas de compte? En créer un.</p>
+                </span>
+            </section>
+        </>
     )
 }
