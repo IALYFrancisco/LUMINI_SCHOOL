@@ -1,6 +1,6 @@
 export function Formations(){
     return(
-        <section>
+        <section id="demo-formations">
             <section className="formations-container">
                 <div className="head">
                     <h2>Jetez un coup d'oeil à nos formations</h2>

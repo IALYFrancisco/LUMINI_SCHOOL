@@ -24,3 +24,11 @@ ul {
 body {
     background-color: var(--secondary);
 }
+
+a {
+    text-decoration: none;
+}
+
+body, html {
+    scroll-behavior: smooth;
+}

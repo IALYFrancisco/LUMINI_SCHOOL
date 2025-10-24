@@ -20,7 +20,7 @@ export function Login(){
                         <input type="password" name="" placeholder="Le mot de passe que vous avez choisi"/>
                     </div>
                     <div className="element">
-                        <button>Soumetttre</button>
+                        <button>Soumettre</button>
                     </div>
                 </form>
                 <span>
