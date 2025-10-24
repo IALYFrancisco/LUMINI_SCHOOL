@@ -462,6 +462,7 @@ footer .actions button {
     width: 100%;
     column-gap: 40px;
     padding: 50px 0;
+    overflow: hidden;
 }
 
 .formations-container .card {
@@ -533,7 +534,7 @@ footer .actions button {
 }
 
 .prev {
-    right: 60px;
+    right: 75px;
 }
 
 .next {
@@ -547,4 +548,24 @@ footer .actions button {
 
 .prev img, .next img {
     width: 30px;
+}
+
+.blog-container {
+    background-color: var(--primary);
+    padding: 100px;
+    color: var(--secondary);
+}
+
+.blog-container > section {
+    display: flex;
+    max-width: 1440px;
+    margin: auto;
+}
+
+.blog-container .left {
+    width: 50%;
+}
+
+.blog-container .right {
+    width: 50%;
 }
