@@ -17,7 +17,7 @@ export function Articles(){
                             <div className="blog-infos">
                                 <h4>Histoire du numérique</h4>
                                 <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
-                                <button>S'inscrire</button>
+                                <button>Lire plus</button>
                             </div>
                         </div>
                         <div className="card">
@@ -27,7 +27,7 @@ export function Articles(){
                             <div className="blog-infos">
                                 <h4>Histoire du numérique</h4>
                                 <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
-                                <button>S'inscrire</button>
+                                <button>Lire plus</button>
                             </div>
                         </div>
                         <div className="card">
@@ -37,7 +37,7 @@ export function Articles(){
                             <div className="blog-infos">
                                 <h4>Histoire du numérique</h4>
                                 <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
-                                <button>S'inscrire</button>
+                                <button>Lire plus</button>
                             </div>
                         </div>
                         <div className="card">
@@ -47,7 +47,7 @@ export function Articles(){
                             <div className="blog-infos">
                                 <h4>Histoire du numérique</h4>
                                 <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
-                                <button>S'inscrire</button>
+                                <button>Lire plus</button>
                             </div>
                         </div>
                     </div>
