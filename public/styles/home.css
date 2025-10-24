@@ -552,7 +552,6 @@ footer .actions button {
 
 .blog-container {
     background-color: var(--primary);
-    padding: 100px;
     color: var(--secondary);
 }
 
@@ -560,6 +559,8 @@ footer .actions button {
     display: flex;
     max-width: 1440px;
     margin: auto;
+    column-gap: 100px;
+    padding: 100px;
 }
 
 .blog-container .left {
@@ -568,4 +569,59 @@ footer .actions button {
 
 .blog-container .right {
     width: 50%;
+}
+
+.blog-container .right h2 {
+    margin-bottom: 40px;
+}
+
+.blog-container .right button {
+    margin-top: 40px;
+}
+
+.blog-container .cards-container {
+    display: flex;
+    width: 100%;
+    column-gap: 40px;
+    overflow: hidden;
+}
+
+.blog-container .card {
+    width: 200px;
+    min-width: 200px;
+    height: 300px;
+    box-shadow: 3px 3px 10px rgba(77, 77, 77, 0.577), -3px -3px 10px rgba(135, 131, 131, 0.242);
+    border: 1px solid var(--fourth);
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.blog-container .card .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-container .card .blog-infos p {
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.blog-container .card .blog-infos button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: var(--primary);
+}
+
+.blog-container .card .blog-infos {
+    background-color: var(--fourth);
+    width: 100%;
+    height: 126px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid var(--fourth);
+    padding: 8px;
+    color: var(--secondary);
 }
