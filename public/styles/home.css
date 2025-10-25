@@ -516,7 +516,7 @@ footer .actions button {
     display: flex;
     width: 100%;
     column-gap: 40px;
-    padding: 50px 0;
+    padding: 25px 0;
     overflow: hidden;
 }
 
@@ -530,8 +530,8 @@ footer .actions button {
     transition: .3s;
 }
 
-.formations-container .card:active {
-    transform: scale(0.9);
+.formations-container .card:hover {
+    transform: translateY(-10px);
     transition: .3s;
 }
 
@@ -571,6 +571,11 @@ footer .actions button {
 .formations-container > button {
     background-color: var(--primary);
     color: var(--secondary);
+    margin-top: 25px;
+}
+
+.formations-container .swiper {
+    padding-top: 25px;
 }
 
 .prev, .next {

@@ -1,21 +1,27 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
+import { useRef } from "react";
+import { Autoplay, Navigation } from "swiper/modules";
 
 export function FormationsSlider() {
+    const swiperRef = useRef()
     return(
         <>
-            <div className="prev">
+            <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
                 <img src="images/icon.png" alt="" />
             </div>
-            <div className="next">
+            <div className="next" onClick={()=> swiperRef.current?.slidePrev()}>
                 <img src="images/icon.png" alt="" />
             </div>
             <Swiper
-                autoplay={{ delay: 2500 }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop={true}
                 pagination={{ clickable: true }}
                 spaceBetween={30}
                 slidesPerView={5}
+                onSwiper={(swiper)=> (swiperRef.current = swiper)}
+                modules={[Navigation, Autoplay]}
+
             >
                 <SwiperSlide>
                     <div className="card">
