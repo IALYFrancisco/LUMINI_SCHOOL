@@ -623,7 +623,7 @@ footer .actions button {
 }
 
 .blog-container .left {
-    width: 50%;
+    width: 58%;
     position: relative;
 }
 
@@ -652,13 +652,10 @@ footer .actions button {
 .blog-container .cards-container {
     display: flex;
     width: 100%;
-    column-gap: 40px;
     overflow: hidden;
 }
 
 .blog-container .card {
-    width: 200px;
-    min-width: 200px;
     height: 300px;
     box-shadow: 3px 3px 10px rgba(77, 77, 77, 0.577), -3px -3px 10px rgba(135, 131, 131, 0.242);
     border: 1px solid var(--fourth);
