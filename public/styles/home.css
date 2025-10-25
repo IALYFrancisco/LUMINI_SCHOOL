@@ -515,7 +515,6 @@ footer .actions button {
 .formations-container .cards-container {
     display: flex;
     width: 100%;
-    column-gap: 40px;
     padding: 25px 0;
     overflow: hidden;
 }
