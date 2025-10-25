@@ -1,5 +1,9 @@
+import Nav from "../components/nav"
+
 export function Register(){
     return(
-        <h1>This is register page</h1>
+        <>
+            <Nav></Nav>
+        </>
     )
 }
