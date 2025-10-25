@@ -93,6 +93,14 @@
     opacity: .3;
 }
 
+.login-form a {
+    color: var(--primary);
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
 @keyframes mouse-smooth {
     0%{
         top: -80px;

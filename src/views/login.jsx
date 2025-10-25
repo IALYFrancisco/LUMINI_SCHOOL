@@ -1,5 +1,6 @@
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
+import { Link } from "react-router-dom"
 
 export function Login(){
     return(
@@ -24,7 +25,7 @@ export function Login(){
                     </div>
                 </form>
                 <span>
-                    <p>Pas de compte? En créer un.</p>
+                    <p>Pas de compte? <Link to="/authentication/register">En créer un</Link>.</p>
                 </span>
             </section>
         </>
