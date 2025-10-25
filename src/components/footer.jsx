@@ -18,7 +18,9 @@ export function Footer(){
                             <Link to="/authentication/login">
                                 <button>Se connecter</button>
                             </Link>
-                            <button>Créer un compte</button>
+                            <Link to="/authentication/register">
+                                <button>Créer un compte</button>
+                            </Link>
                         </li>
                     </ul>
                 </section>

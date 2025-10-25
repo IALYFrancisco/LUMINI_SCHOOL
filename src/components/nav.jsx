@@ -25,7 +25,9 @@ function Nav(){
                                 </Link>
                             </li>
                             <li>
-                                <button>Créer un compte</button>
+                                <Link to="/authentication/register">
+                                    <button>Créer un compte</button>
+                                </Link>
                             </li>
                         </ul>
                     </li>
