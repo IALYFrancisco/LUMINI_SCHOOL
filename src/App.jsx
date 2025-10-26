@@ -1,15 +1,20 @@
 import './App.css'
 import Home from './views/home'
-import Nav from './components/nav'
-import Footer from './components/footer'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Login } from './views/login'
+import { Register } from './views/register'
+import Dashboard from './views/dashboard'
 
 function App() {
   return (
-    <>
-      <Nav></Nav>
-      <Home></Home>
-      <Footer></Footer>
-    </>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/authentication/login' element={<Login/>}></Route>
+        <Route path='/authentication/register' element={<Register/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+      </Routes>
+    </Router>
   )
 }
 

@@ -91,7 +91,9 @@ export function Avis(){
                 </div>
             </section>
             <div className="actions">
-                <button>Contacter LUMINI School</button>
+                <a href="#contact">
+                    <button>Contacter LUMINI School</button>
+                </a>
                 <button>Voir toutes les formations</button>
             </div>
         </section>

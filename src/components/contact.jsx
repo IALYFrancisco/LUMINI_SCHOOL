@@ -1,7 +1,6 @@
 export function Contact(){
     return(
-        <div className="contact-container">
-
+        <div className="contact-container" id="contact">
             <section className="contact">
                 <div className="left">
                     <h2>Laissez-nous un message :</h2>
@@ -48,15 +47,17 @@ export function Contact(){
                                 <p>+261 34 47 635 78</p>
                             </div>
                         </div>
-                        <div className="card">
-                            <div className="icon-container">
-                                <img src="images/envelope.png" alt="" />
+                        <a href="mailto:ialyfrancisco7@gmail.com">
+                            <div className="card">
+                                <div className="icon-container">
+                                    <img src="images/envelope.png" alt="" />
+                                </div>
+                                <div className="contact-info">
+                                    <h3>Email</h3>
+                                    <p>ialyfrancisco7@gmail.com</p>
+                                </div>
                             </div>
-                            <div className="contact-info">
-                                <h3>Email</h3>
-                                <p>ialyfrancisco7@gmail.com</p>
-                            </div>
-                        </div>
+                        </a>
                         <div className="card">
                             <div className="icon-container">
                                 <img src="images/gps.png" alt="" />
