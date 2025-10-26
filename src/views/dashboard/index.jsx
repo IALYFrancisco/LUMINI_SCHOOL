@@ -5,6 +5,9 @@ export default function Dashboard(){
     return(
         <section id="dashboard-view">
             <Sidebar></Sidebar>
+            <section>
+                
+            </section>
         </section>
     )
 }
