@@ -77,3 +77,11 @@ aside .actions p {
     padding: 0 25px;
     color: var(--secondary);
 }
+
+.sections-container {
+    padding: 40px;
+}
+
+.sections-container h2 {
+    color: var(--primary);
+}
