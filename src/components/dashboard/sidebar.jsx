@@ -20,10 +20,22 @@ export default function Sidebar(){
                 </li>
                 <li>
                     <ul>
-                        <li>Formations</li>
-                        <li>Inscriptions</li>
-                        <li>Articles</li>
-                        <li>Utilisateurs</li>
+                        <li>
+                            <img src="/images/formations.png" alt="" />
+                            Formations
+                        </li>
+                        <li>
+                            <img src="/images/inscription.png" alt="" />
+                            Inscriptions
+                        </li>
+                        <li>
+                            <img src="/images/article.png" alt="" />
+                            Articles
+                        </li>
+                        <li>
+                            <img src="/images/group.png" alt="" />
+                            Utilisateurs
+                        </li>
                         <li>
                             <img src="/images/settings.png" alt="" />
                             Paramètres
@@ -32,7 +44,10 @@ export default function Sidebar(){
                 </li>
             </ul>
             <div className="actions">
-                <p>Se déconnecter</p>
+                <p>
+                    <img src="/images/logout.png" alt="" />
+                    Se déconnecter
+                </p>
             </div>
         </aside>
     )

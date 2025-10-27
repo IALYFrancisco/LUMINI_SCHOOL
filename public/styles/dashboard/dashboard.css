@@ -86,6 +86,13 @@ aside .actions p {
     font-size: 14px;
     padding: 0 25px;
     color: var(--secondary);
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+aside .actions p img {
+    width: 20px;
 }
 
 .sections-container {

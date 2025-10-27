@@ -8,10 +8,10 @@ export function ArticlesSlider() {
     return(
         <>
             <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
-                <img src="images/icon.png" alt="" />
+                <img src="images/chevron-noir.png" alt="" />
             </div>
             <div className="next" onClick={()=> swiperRef.current?.slidePrev()}>
-                <img src="images/icon.png" alt="" />
+                <img src="images/chevron-noir.png" alt="" />
             </div>
             <Swiper
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
