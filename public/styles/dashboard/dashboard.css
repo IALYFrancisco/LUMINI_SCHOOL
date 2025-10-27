@@ -138,6 +138,11 @@ aside .actions p img {
     background-color: var(--fourth);
 }
 
+.formations {
+    height: calc(100vh - 230px);
+    overflow-y: auto;
+}
+
 .formations > li {
     position: relative;
     padding: 10px 0;
