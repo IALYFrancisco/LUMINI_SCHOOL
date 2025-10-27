@@ -68,10 +68,11 @@ aside ul ul {
     font-size: 13px;
 }
 
-aside ul ul li {
+aside ul ul li a {
     display: flex;
     align-items: center;
     column-gap: 10px;
+    color: var(--secondary);
 }
 
 aside ul ul li img {

@@ -21,24 +21,34 @@ export default function Sidebar(){
                 <li>
                     <ul>
                         <li>
-                            <img src="/images/formations.png" alt="" />
-                            Formations
+                            <Link to="/dashboard">
+                                <img src="/images/formations.png" alt="" />
+                                Formations
+                            </Link>
                         </li>
                         <li>
-                            <img src="/images/inscription.png" alt="" />
-                            Inscriptions
+                            <Link to="/dashboard/inscriptions">
+                                <img src="/images/inscription.png" alt="" />
+                                Inscriptions
+                            </Link>
                         </li>
                         <li>
-                            <img src="/images/article.png" alt="" />
-                            Articles
+                            <Link to="/dashboard/articles">
+                                <img src="/images/article.png" alt="" />
+                                Articles
+                            </Link>
                         </li>
                         <li>
-                            <img src="/images/group.png" alt="" />
-                            Utilisateurs
+                            <Link to="/dashboard/users">
+                                <img src="/images/group.png" alt="" />
+                                Utilisateurs
+                            </Link>
                         </li>
                         <li>
-                            <img src="/images/settings.png" alt="" />
-                            Paramètres
+                            <Link to="/dashboard/settings">
+                                <img src="/images/settings.png" alt="" />
+                                Paramètres
+                            </Link>
                         </li>
                     </ul>
                 </li>

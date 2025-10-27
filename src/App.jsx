@@ -18,7 +18,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}>
           <Route index element={<Formations/>}/>
           <Route path='inscriptions' element={<Inscriptions/>}/>
-          {/* <Route path='settings' element={<Settings/>}/> */}
+          <Route path='settings' element={<Settings/>}/>
         </Route>
       </Routes>
     </Router>
