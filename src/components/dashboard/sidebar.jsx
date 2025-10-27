@@ -10,7 +10,7 @@ export default function Sidebar(){
                 <li>
                     <div className="border">
                         <div className="profile-container">
-                            <img src="images/ialy (5).jfif" alt="" />
+                            <img src="/images/ialy (5).jfif" alt="" />
                         </div>
                     </div>
                     <div className="user-infos">
