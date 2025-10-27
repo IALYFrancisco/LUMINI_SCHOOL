@@ -97,8 +97,27 @@ aside .actions p img {
 
 .sections-container {
     padding: 40px;
+    width: calc(100% - 200px)
 }
 
 .sections-container h2 {
     color: var(--primary);
+}
+
+.sections-container .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.sections-container .actions button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+}
+
+.sections-container .actions input {
+    padding: 0 10px;
+    width: 30%;
+    outline: none;
 }
