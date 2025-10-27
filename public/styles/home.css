@@ -600,6 +600,16 @@ footer .actions button {
     left: 75px;
 }
 
+.prev img {
+    transform: rotateZ(90deg);
+    margin-left: 5px;
+}
+
+.next img {
+    transform: rotateZ(-90deg);
+    margin-right: 5px;
+}
+
 .prev:active, .next:active {
     transform: scale(.8);
     transition: .3s;

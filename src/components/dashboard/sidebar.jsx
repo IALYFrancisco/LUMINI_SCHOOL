@@ -24,7 +24,10 @@ export default function Sidebar(){
                         <li>Inscriptions</li>
                         <li>Articles</li>
                         <li>Utilisateurs</li>
-                        <li>Paramètres</li>
+                        <li>
+                            <img src="/images/settings.png" alt="" />
+                            Paramètres
+                        </li>
                     </ul>
                 </li>
             </ul>

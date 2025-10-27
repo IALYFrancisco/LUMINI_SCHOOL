@@ -68,6 +68,16 @@ aside ul ul {
     font-size: 13px;
 }
 
+aside ul ul li {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+aside ul ul li img {
+    width: 20px;
+}
+
 aside .actions {
     width: 100%;
 }
