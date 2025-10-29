@@ -9,12 +9,14 @@ import Formations from './components/dashboard/formations'
 import Inscriptions from './components/dashboard/inscriptions'
 import Articles from './components/dashboard/articles'
 import Users from './components/dashboard/users'
+import Blog from './views/blog'
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/blog' element={<Blog/>}></Route>
         <Route path='/authentication/login' element={<Login/>}></Route>
         <Route path='/authentication/register' element={<Register/>}></Route>
         <Route path='/dashboard' element={<Dashboard/>}>
