@@ -203,3 +203,57 @@ aside .actions p img {
     text-overflow: ellipsis;
     width: 100%;
 }
+
+.add-formation-form {
+    margin-top: 50px;
+    color: var(--primary);
+}
+
+.add-formation-form .element {
+    margin-top: 30px;
+}
+
+.add-formation-form .element label {
+    font-weight: 900;
+    display: block;
+}
+
+.add-formation-form form {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-formation-form input,
+.add-formation-form textarea,
+.add-formation-form fieldset {
+    width: 100%;
+}
+
+.add-formation-form input,
+.add-formation-form textarea {
+    margin-top: 10px;
+    outline: none;
+}
+
+.add-formation-form input[type="text"],
+.add-formation-form textarea {
+    padding: 10px;
+}
+
+.add-formation-form input {
+    height: 36px;
+}
+
+.add-formation-form textarea {
+    height: 225px;
+    resize: none;
+}
+
+.add-formation-form fieldset {
+    border: none;
+}
+
+.add-formation-form .element button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+}

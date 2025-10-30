@@ -309,7 +309,7 @@ em {
     font-weight: 900;
 }
 
-.contact form input:focus, form textarea:focus {
+.contact form input:focus, .contact form textarea:focus {
     border: 2px #0884ff solid;
 }
 

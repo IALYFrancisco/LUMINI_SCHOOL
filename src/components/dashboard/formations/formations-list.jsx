@@ -1,10 +1,15 @@
-export default function Formations(){
+import { Link } from "react-router-dom"
+
+export default function FormationsList(){
     return(
         <>
-            <h2>Formations</h2>
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche de formation"/>
-                <button>Ajouter une formation</button>
+                    <Link to="/dashboard/formation/create">
+                        <button>
+                            Ajouter une formation
+                        </button>
+                    </Link>
             </div>
             <ul className="formations">
                 <li className="titles">
@@ -35,9 +40,6 @@ export default function Formations(){
                             <div className="badge">
                                 <p>oui</p>
                             </div>
-                            {/* <div className="badge">
-                                <p>non</p>
-                            </div> */}
                         </li>
                         <li className="formation-actions">
                             <img src="/images/kebab.png" alt="" />
