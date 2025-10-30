@@ -192,3 +192,14 @@ aside .actions p img {
     background-color: var(--primary);
     color: var(--secondary);
 }
+
+.formation .description {
+    overflow: hidden;
+}
+
+.formation .description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
