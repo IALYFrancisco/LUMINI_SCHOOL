@@ -159,6 +159,7 @@ aside .actions p img {
 .titles ul {
     display: flex;
     column-gap: 50px;
+    font-size: 14px;
 }
 
 .badge {
@@ -176,9 +177,14 @@ aside .actions p img {
 .formations .title,
 .formations .description,
 .formations .addDate,
-.formations .publicationDate,
-.formations .published {
+.formations .publicationDate {
     width: 20%;
+    padding-left: 10px;
+}
+
+.formations .published,
+.formations .formation-actions {
+    width: 10%;
     padding-left: 10px;
 }
 

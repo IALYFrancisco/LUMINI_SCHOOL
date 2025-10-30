@@ -14,6 +14,7 @@ export default function Formations(){
                         <li className="addDate">Date d'ajout</li>
                         <li className="publicationDate">Date de publication</li>
                         <li className="published">Publiée</li>
+                        <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
                 <li>
@@ -38,77 +39,8 @@ export default function Formations(){
                                 <p>non</p>
                             </div> */}
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <ul className="formation">
-                        <li className="title">
-                            <h5>Bases du HTML et CSS</h5>
-                        </li>
-                        <li  className="description">
-                            <p>Cette formation apprend aux débutants les bases du HTML et CSS.</p>
-                        </li>
-                        <li  className="addDate">
-                            <p>27 Octobre 2025 à 16:49</p>
-                        </li>
-                        <li className="publicationDate">
-                            <p>29 Octobre 2025 à 8:12</p>
-                        </li>
-                        <li className="published">
-                            <div className="badge">
-                                <p>oui</p>
-                            </div>
-                            {/* <div className="badge">
-                                <p>non</p>
-                            </div> */}
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <ul className="formation">
-                        <li className="title">
-                            <h5>Bases du HTML et CSS</h5>
-                        </li>
-                        <li  className="description">
-                            <p>Cette formation apprend aux débutants les bases du HTML et CSS.</p>
-                        </li>
-                        <li  className="addDate">
-                            <p>27 Octobre 2025 à 16:49</p>
-                        </li>
-                        <li className="publicationDate">
-                            <p>29 Octobre 2025 à 8:12</p>
-                        </li>
-                        <li className="published">
-                            <div className="badge">
-                                <p>oui</p>
-                            </div>
-                            {/* <div className="badge">
-                                <p>non</p>
-                            </div> */}
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <ul className="formation">
-                        <li className="title">
-                            <h5>Bases du HTML et CSS</h5>
-                        </li>
-                        <li  className="description">
-                            <p>Cette formation apprend aux débutants les bases du HTML et CSS.</p>
-                        </li>
-                        <li  className="addDate">
-                            <p>27 Octobre 2025 à 16:49</p>
-                        </li>
-                        <li className="publicationDate">
-                            <p>29 Octobre 2025 à 8:12</p>
-                        </li>
-                        <li className="published">
-                            <div className="badge">
-                                <p>oui</p>
-                            </div>
-                            {/* <div className="badge">
-                                <p>non</p>
-                            </div> */}
+                        <li className="formation-actions">
+                            <img src="/images/kebab.png" alt="" />
                         </li>
                     </ul>
                 </li>
