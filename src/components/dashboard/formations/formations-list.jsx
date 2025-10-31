@@ -8,7 +8,7 @@ export default function FormationsList(){
 
     useEffect(()=>{
         // eslint-disable-next-line no-undef
-        axios.get(`${process.env.REACT_APP_API_BASE_URL}/formation/get`)
+        axios.get(`http://localhost:3000//formation/get`)
             .then((response)=>{
                 setFormations(response.data)
             }).catch((err)=>{

@@ -20,7 +20,7 @@ export default function AddFormation(){
             formation.append("description", data.description)
             
             // eslint-disable-next-line no-undef
-            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/formation/add`, formation,
+            await axios.post(`http://localhost:3000/formation/add`, formation,
                 { headers: {"Content-Type": "multipart/form-data"} }
             ).then((res)=>{
                 reset()
