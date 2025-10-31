@@ -163,15 +163,23 @@ aside .actions p img {
 }
 
 .badge {
-    background-color: rgb(47, 255, 0);
     width: 40px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
     font-weight: 900;
     border-radius: 30px;
+}
+
+.badge.yes {
+    color: var(--primary);
+    background-color: rgb(47, 255, 0);
+}
+
+.badge.no {
+    background-color: crimson;
+    color: var(--secondary);
 }
 
 .formations .title,
