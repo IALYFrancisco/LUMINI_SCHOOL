@@ -46,10 +46,11 @@ export default function FormationsList(){
                                         <p>{formation.description}</p>
                                     </li>
                                     <li  className="addDate">
-                                        <p>27 Octobre 2025 à 16:49</p>
+                                        <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        <p>29 Octobre 2025 à 8:12</p>
+                                        { formation.publishDate && <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p>}
+                                        { !formation.publishDate && <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { formation.published && <div className="badge yes">

@@ -212,6 +212,17 @@ aside .actions p img {
     width: 100%;
 }
 
+.formation .title {
+    overflow: hidden;
+}
+
+.formation .title h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
 .add-formation-form {
     margin-top: 50px;
     color: var(--primary);
