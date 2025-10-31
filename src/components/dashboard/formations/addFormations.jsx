@@ -19,7 +19,6 @@ export default function AddFormation(){
             formation.append("prerequisites", data.prerequisites)
             formation.append("description", data.description)
             
-            // eslint-disable-next-line no-undef
             await axios.post(`http://localhost:3000/formation/add`, formation,
                 { headers: {"Content-Type": "multipart/form-data"} }
             ).then((res)=>{

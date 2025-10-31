@@ -7,10 +7,11 @@ export default function FormationsList(){
     var [formations, setFormations] = useState([])
 
     useEffect(()=>{
-        // eslint-disable-next-line no-undef
-        axios.get(`http://localhost:3000//formation/get`)
+        axios.get(`http://localhost:3000/formation/get`)
             .then((response)=>{
+                console.log(response)
                 setFormations(response.data)
+                console.log(formations)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -37,7 +38,7 @@ export default function FormationsList(){
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
-                {/* <li>
+                { formations && <li>
                     <ul className="formation">
                         <li className="title">
                             <h5>Bases du HTML et CSS</h5>
@@ -60,7 +61,7 @@ export default function FormationsList(){
                             <img src="/images/kebab.png" alt="" />
                         </li>
                     </ul>
-                </li> */}
+                </li> }
             </ul>
         </>
     )
