@@ -1,6 +1,21 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 export default function FormationsList(){
+
+    var [formations, setFormations] = useState([])
+
+    useEffect(()=>{
+        // eslint-disable-next-line no-undef
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/formation/get`)
+            .then((response)=>{
+                setFormations(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+    }, undefined)
+
     return(
         <>
             <div className="actions">
@@ -22,7 +37,7 @@ export default function FormationsList(){
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
-                <li>
+                {/* <li>
                     <ul className="formation">
                         <li className="title">
                             <h5>Bases du HTML et CSS</h5>
@@ -45,7 +60,7 @@ export default function FormationsList(){
                             <img src="/images/kebab.png" alt="" />
                         </li>
                     </ul>
-                </li>
+                </li> */}
             </ul>
         </>
     )
