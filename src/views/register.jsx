@@ -2,29 +2,25 @@
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
 import { Link } from "react-router-dom"
-import { useForm } from "react-hook-form"
 import { useState } from "react"
 import axios from "axios"
+import { useForm } from "react-hook-form"
 
 export function Register(){
+    var { reset, register, handleSubmit } = useForm()
 
-    var [ register, handleSubmit ] = useForm()
-    var [ name, setUserFullName ] = useState()
-    var [ email, setUserEmail ] = useState()
-    var [ password, setUserPassword ] = useState()
-
-    const onSubmit = async (data) => {
+    const _handleSubmit = async (data) => {
         try{
-            const user = new FormData()
-            user.append("name", data.name)
-            user.append("email", data.email)
-            user.append("password", data.password)
-
-            console.log(user)
+            const user = {
+                name: data.name,
+                email: data.email,
+                password: data.password
+            }
 
             await axios.post(`http://localhost:3000/authentication/register`, user )
-                .then(()=>{
-                    
+                .then((res)=>{
+                    reset()
+                    console.log(res)
                 })
                 .catch((err)=> console.log(err))
         }
@@ -39,20 +35,20 @@ export function Register(){
             <section className="login-form">
                 <h2>Création de compte</h2>
                 <h5>à LUMINI School</h5>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(_handleSubmit)}>
                     <img src="/images/note.png" alt="" className="laptop-mouse" />
                     <img src="/images/clavier (2).png" alt="" className="mouse" />
                     <div className="element">
-                        <label htmlFor="">Votre nom complet :</label>
-                        <input { ...register("name", {required: true}) } type="text" name="" placeholder="Ex: John Doe"/>
+                        <label>Votre nom complet :</label>
+                        <input type="text" placeholder="Ex: John Doe" { ...register('name', { required: true }) }/>
                     </div>
                     <div className="element">
-                        <label htmlFor="">Votre adresse email :</label>
-                        <input { ...register("email", {required: true}) } type="email" name="" placeholder="Ex: johndoe@example.com"/>
+                        <label>Votre adresse email :</label>
+                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
                     </div>
                     <div className="element">
-                        <label htmlFor="">Votre mot de passe :</label>
-                        <input { ...register("password", {required: true}) } type="password" name="" placeholder="Le mot de passe que vous avez choisi"/>
+                        <label>Votre mot de passe :</label>
+                        <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) }/>
                     </div>
                     <div className="element">
                         <button>Soumettre</button>
