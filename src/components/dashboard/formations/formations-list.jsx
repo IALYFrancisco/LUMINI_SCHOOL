@@ -5,7 +5,8 @@ import { Link } from "react-router-dom"
 export default function FormationsList(){
 
     var [formations, setFormations] = useState([])
-
+    var [popUpState, setPopUpState] = useState(false)
+    
     useEffect(()=>{
         axios.get(`http://localhost:3000/formation/get`)
             .then((response)=>{
@@ -38,7 +39,7 @@ export default function FormationsList(){
                 </li>
                     { formations && <li>
                             { formations.map( formation => (
-                                <ul className="formation">
+                                <ul className="formation" key={formation._id}>
                                     <li className="title">
                                         <h5>{formation.title}</h5>
                                     </li>
@@ -60,7 +61,12 @@ export default function FormationsList(){
                                             <p>non</p>
                                         </div> }
                                     </li>
-                                    <li className="formation-actions">
+                                    <li className="formation-actions" onClick={()=>{ popUpState ? setPopUpState(false) : setPopUpState(true) }}>
+                                        <ul className={ popUpState ? 'pop-up show' : 'pop-up hide'}>
+                                            <li>Supprimer</li>
+                                            <li>Publier</li>
+                                            <li>Modifier</li>
+                                        </ul>
                                         <img src="/images/kebab.png" alt="" />
                                     </li>
                                 </ul>
