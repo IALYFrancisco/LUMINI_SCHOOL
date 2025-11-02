@@ -31,6 +31,9 @@ function Nav(){
                             </li>
                         </ul>
                     </li>
+                    <li className="menu">
+                        <img src="/images/menu.png" alt="" />
+                    </li>
                 </ul>
             </nav>
         </div>

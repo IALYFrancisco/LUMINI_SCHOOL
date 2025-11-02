@@ -120,6 +120,14 @@ nav ul li a {
     color: var(--secondary);
 }
 
+nav ul .menu {
+    display: none;
+}
+
+nav ul .menu img {
+    width: 50px;
+}
+
 .logo {
     font-weight: 900;
     font-size: 20px;
@@ -701,4 +709,25 @@ footer .actions button {
     border-top: 1px solid var(--fourth);
     padding: 8px;
     color: var(--secondary);
+}
+
+@media only screen and (max-width: 1024px) {
+
+    header > div {
+        padding: 100px 50px 50px 50px;
+    }
+
+    nav {
+        padding: 0 50px;
+    }
+
+    nav ul li:nth-child(2),
+    nav ul li:nth-child(3) {
+        display: none;
+    }
+
+    nav ul .menu {
+        display: block;
+    }
+
 }
