@@ -81,9 +81,28 @@ header .right {
     overflow: hidden;
 }
 
-header .right img {
+header .right img.femme {
     margin-top: -100px;
     max-width: 400px;
+}
+
+header .right img:not(.femme) {
+   width: 100px;
+   position: absolute;
+}
+
+header .right img.note {
+    top: 310px;
+    left: 30px;
+    transform: rotateZ(20deg);
+    opacity: 0.5;
+}
+
+header .right img.clavier {
+    opacity: 0.5;
+    top: 0;
+    left: -100px;
+    transform: rotateZ(20deg);
 }
 
 nav {
@@ -146,6 +165,7 @@ header .img-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .avis {
