@@ -734,7 +734,35 @@ footer .actions button {
 @media only screen and (max-width: 1024px) {
 
     header > div {
-        padding: 100px 50px 50px 50px;
+        padding: 50px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .left {
+        margin: auto;
+        width: 80%;
+    }
+
+    header .left p {
+        margin: 0 auto 40px auto;
+    }
+
+    header .left .actions {
+        justify-content: center;
+    }
+
+    header .right {
+        margin: 100px auto;
+        width: 100%;
+    }
+
+    header .img-container {
+        margin: auto;
+    }
+
+    header {
+        height: 850px;
     }
 
     nav {
