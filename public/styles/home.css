@@ -790,6 +790,11 @@ footer .actions button {
         right: 27px;
     }
 
+    .blog-container > section {
+        padding: 50px;
+        column-gap: 50px;
+    }
+
 }
 
 @media only screen and (max-width: 768px) {
