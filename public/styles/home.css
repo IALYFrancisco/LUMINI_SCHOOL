@@ -778,4 +778,22 @@ footer .actions button {
         display: block;
     }
 
+    .formations-container {
+        padding: 50px;
+    }
+
+    .next {
+        left: 27px;
+    }
+
+    .prev {
+        right: 27px;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    header .left {
+        width: 100%;
+    }
 }
