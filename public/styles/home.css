@@ -796,4 +796,7 @@ footer .actions button {
     header .left {
         width: 100%;
     }
+    .formations-container .head {
+        width: 100%;
+    }
 }
