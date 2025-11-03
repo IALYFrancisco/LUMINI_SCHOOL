@@ -897,3 +897,36 @@ footer .actions button {
     }
 
 }
+
+.mobile-menu {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -100%;
+    transition: .3s;
+}
+
+.mobile-menu.opened {
+    left: 0;
+    transition: .3s;
+}
+
+.mobile-menu ul {
+    display: flex;
+    row-gap: 40px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.mobile-menu ul li,
+.mobile-menu ul li a {
+    color: white;
+    font-size: 22px;
+}
