@@ -820,4 +820,14 @@ footer .actions button {
     .contact .right {
         margin-top: 100px;
     }
+
+    .blog-container > section {
+        row-gap: 50px;
+        flex-direction: column-reverse;
+    }
+
+    .blog-container > section .right,
+    .blog-container > section .left {
+        width: 100%;
+    }
 }

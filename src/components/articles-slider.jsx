@@ -23,7 +23,7 @@ export function ArticlesSlider() {
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
                     0 : { slidesPerView: 2 },
-                    768 : { slidesPerView: 3 }
+                    644 : { slidesPerView: 3 }
                 }}
             >
                 <SwiperSlide>
