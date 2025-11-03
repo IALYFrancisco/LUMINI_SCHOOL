@@ -22,7 +22,8 @@ export function ArticlesSlider() {
                 onSwiper={(swiper)=> (swiperRef.current = swiper)}
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
-                    0 : { slidesPerView: 2 }
+                    0 : { slidesPerView: 2 },
+                    768 : { slidesPerView: 3 }
                 }}
             >
                 <SwiperSlide>
