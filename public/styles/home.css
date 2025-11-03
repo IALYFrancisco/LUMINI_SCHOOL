@@ -828,11 +828,21 @@ footer .actions button {
     header .left {
         width: 100%;
     }
+    header > div {
+        padding: 50px 25px;
+    }
+    nav {
+        padding: 0 25px;
+    }
+    .formations-container {
+        padding: 50px 25px;
+    }
     .formations-container .head {
         width: 100%;
     }
     .contact {
         display: block;
+        padding: 50px 25px;
     }
     .contact .left,
     .contact .right {
@@ -846,11 +856,24 @@ footer .actions button {
     .blog-container > section {
         row-gap: 50px;
         flex-direction: column-reverse;
+        padding: 50px 25px;
     }
 
     .blog-container > section .right,
     .blog-container > section .left {
         width: 100%;
+    }
+
+    .avis {
+        padding: 25px;
+    }
+
+    footer {
+        padding: 50px 25px;
+    }
+
+    .info-page {
+        padding: 25px;
     }
 }
 
