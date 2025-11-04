@@ -1,8 +1,12 @@
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
 import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
 export function Login(){
+
+    var { reste, register, handleSubmit } = useForm()
+
     return(
         <>
             <Nav></Nav>
