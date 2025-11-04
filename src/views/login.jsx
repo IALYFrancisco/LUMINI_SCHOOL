@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 
 export function Login(){
 
-    var { reste, register, handleSubmit } = useForm()
+    var { reset, register, handleSubmit } = useForm()
 
     return(
         <>
