@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 
 export function Register(){
     var { reset, register, handleSubmit } = useForm()
+    const navigate = useNavigate()
 
     const _handleSubmit = async (data) => {
         try{
@@ -19,8 +19,8 @@ export function Register(){
 
             await axios.post(`http://localhost:3000/authentication/register`, user )
                 .then((res)=>{
+                    navigate('/authentication/login')
                     reset()
-                    console.log(res)
                 })
                 .catch((err)=> console.log(err))
         }
