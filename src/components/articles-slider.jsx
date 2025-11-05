@@ -21,6 +21,10 @@ export function ArticlesSlider() {
                 slidesPerView={3}
                 onSwiper={(swiper)=> (swiperRef.current = swiper)}
                 modules={[Navigation, Autoplay]}
+                breakpoints={{
+                    0 : { slidesPerView: 2 },
+                    644 : { slidesPerView: 3 }
+                }}
             >
                 <SwiperSlide>
                     <div className="card">

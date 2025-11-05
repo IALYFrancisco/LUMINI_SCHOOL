@@ -1,28 +1,54 @@
+/* eslint-disable no-unused-vars */
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useForm } from "react-hook-form"
 
 export function Register(){
+    var { reset, register, handleSubmit } = useForm()
+    const navigate = useNavigate()
+
+    const _handleSubmit = async (data) => {
+        try{
+            const user = {
+                name: data.name,
+                email: data.email,
+                password: data.password
+            }
+
+            await axios.post(`http://localhost:3000/authentication/register`, user )
+                .then((res)=>{
+                    navigate('/authentication/login')
+                    reset()
+                })
+                .catch((err)=> console.log(err))
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
     return(
         <>
             <Nav></Nav>
             <section className="login-form">
                 <h2>Création de compte</h2>
                 <h5>à LUMINI School</h5>
-                <form action="">
+                <form onSubmit={handleSubmit(_handleSubmit)}>
                     <img src="/images/note.png" alt="" className="laptop-mouse" />
                     <img src="/images/clavier (2).png" alt="" className="mouse" />
                     <div className="element">
-                        <label htmlFor="">Votre nom complet :</label>
-                        <input type="text" name="" placeholder="Ex: John Doe"/>
+                        <label>Votre nom complet :</label>
+                        <input type="text" placeholder="Ex: John Doe" { ...register('name', { required: true }) }/>
                     </div>
                     <div className="element">
-                        <label htmlFor="">Votre adresse email :</label>
-                        <input type="email" name="" placeholder="Ex: johndoe@example.com"/>
+                        <label>Votre adresse email :</label>
+                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
                     </div>
                     <div className="element">
-                        <label htmlFor="">Votre mot de passe :</label>
-                        <input type="password" name="" placeholder="Le mot de passe que vous avez choisi"/>
+                        <label>Votre mot de passe :</label>
+                        <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) }/>
                     </div>
                     <div className="element">
                         <button>Soumettre</button>
