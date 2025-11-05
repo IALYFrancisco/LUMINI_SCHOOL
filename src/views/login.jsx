@@ -17,7 +17,7 @@ export function Login(){
                 password: data.password
             }
 
-            await axios.post('http://localhost:3000/authentication/login',
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/login`,
                 user,
                 { withCredentials: true }
             )

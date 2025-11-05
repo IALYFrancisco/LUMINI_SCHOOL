@@ -17,7 +17,7 @@ export function Register(){
                 password: data.password
             }
 
-            await axios.post(`http://localhost:3000/authentication/register`, user )
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
                 .then((res)=>{
                     navigate('/authentication/login')
                     reset()

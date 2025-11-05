@@ -8,7 +8,7 @@ export default function FormationsList(){
     var [popUpState, setPopUpState] = useState(false)
     
     useEffect(()=>{
-        axios.get(`http://localhost:3000/formation/get`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
             .then((response)=>{
                 setFormations(response.data)
             }).catch((err)=>{
