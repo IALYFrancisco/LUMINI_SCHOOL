@@ -300,6 +300,7 @@ aside .actions p img {
     position: absolute;
     top: 30px;
     left: -50px;
+    z-index: 5;
 }
 
 .pop-up.show {
@@ -310,7 +311,7 @@ aside .actions p img {
     display: none;
 }
 
-.pop-up > li {
+.pop-up li {
     font-size: 13px;
     font-weight: 600;
     padding: 5px;
@@ -318,4 +319,8 @@ aside .actions p img {
 
 .pop-up li:hover {
     background-color: rgba(0, 0, 0, 0.163);
+}
+
+.formation-actions .custom-container {
+    width: max-content;
 }

@@ -1,11 +1,12 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Link } from "react-router-dom"
 
 export default function FormationsList(){
 
     var [formations, setFormations] = useState([])
-    var [popUpState, setPopUpState] = useState(false)
+    var [activePopUp, setActivePopUp] = useState(null)
+    const popUpRef = useRef(null)
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
@@ -15,6 +16,22 @@ export default function FormationsList(){
                 console.log(err)
             })
     }, [])
+
+    useEffect(()=>{
+        const handleClickOutside = (event) => {
+            if(popUpRef.current && !popUpRef.current.contains(event.target)) {
+                setActivePopUp(null)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return ()=>{
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
+    const togglePopUp = (formationId) => {
+        setActivePopUp((prev) => (prev === formationId ? null : formationId))
+    }
 
     return(
         <>
@@ -61,13 +78,15 @@ export default function FormationsList(){
                                             <p>non</p>
                                         </div> }
                                     </li>
-                                    <li className="formation-actions" onClick={()=>{ popUpState ? setPopUpState(false) : setPopUpState(true) }}>
-                                        <ul className={ popUpState ? 'pop-up show' : 'pop-up hide'}>
-                                            <li>Supprimer</li>
-                                            <li>Publier</li>
-                                            <li>Modifier</li>
+                                    <li className="formation-actions" ref={popUpRef}>
+                                        <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
+                                            <li onClick={ () => togglePopUp(formation._id) }>Supprimer</li>
+                                            <li onClick={ () => togglePopUp(formation._id) }>Publier</li>
+                                            <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
                                         </ul>
-                                        <img src="/images/kebab.png" alt="" />
+                                        <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
+                                            <img src="/images/kebab.png" alt=""/>
+                                        </div>
                                     </li>
                                 </ul>
                                 )
