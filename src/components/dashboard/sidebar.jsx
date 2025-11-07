@@ -1,14 +1,15 @@
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
 
 export default function Sidebar(){
 
-    const navigate = useNavigate()
+    const { setUser } = useAuth()
 
     const handleClick = () => {
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+            axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
             .then(()=>{
-                navigate('/authentication/login')
+                setUser(null)
             }).catch(()=>{
                 window.alert('Erreur de déconnexion')
             })
