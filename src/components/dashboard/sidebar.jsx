@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom"
+import axios from "axios"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Sidebar(){
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+            .then(()=>{
+                navigate('/authentication/login')
+            }).catch(()=>{
+                window.alert('Erreur de déconnexion')
+            })
+    }
+
     return(
         <aside>
             <ul>
@@ -53,7 +66,7 @@ export default function Sidebar(){
                     </ul>
                 </li>
             </ul>
-            <div className="actions">
+            <div className="actions" onClick={handleClick}>
                 <p>
                     <img src="/images/logout.png" alt="" />
                     Se déconnecter

@@ -80,12 +80,12 @@ aside ul ul li img {
 }
 
 aside .actions {
-    width: 100%;
+    width: max-content;
+    cursor: pointer;
 }
 
 aside .actions p {
     font-size: 14px;
-    padding: 0 25px;
     color: var(--secondary);
     display: flex;
     align-items: center;
