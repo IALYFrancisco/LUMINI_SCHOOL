@@ -33,6 +33,16 @@ export default function FormationsList(){
         setActivePopUp((prev) => (prev === formationId ? null : formationId))
     }
 
+    const deleteFormation = (formationId) => {
+        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { _id: formationId }, {withCredentials: true})
+            .then((response)=>{
+                console.log(response)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    }
+
     return(
         <>
             <div className="actions">
@@ -80,7 +90,10 @@ export default function FormationsList(){
                                     </li>
                                     <li className="formation-actions" ref={popUpRef}>
                                         <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Supprimer</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(formation._id);
+                                                deleteFormation(formation._id);
+                                            }} >Supprimer</li>
                                             <li onClick={ () => togglePopUp(formation._id) }>Publier</li>
                                             <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
                                         </ul>
