@@ -8,7 +8,7 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {}, {withCredentials: true})
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
             .then((response)=> setUser(response.data))
             .catch(()=>setUser(null))
             .finally(()=> setLoading(false))
@@ -22,4 +22,5 @@ export const AuthProvider = ({children}) => {
 
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext)
