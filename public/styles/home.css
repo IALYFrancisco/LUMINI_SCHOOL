@@ -875,6 +875,14 @@ footer .actions button {
     .info-page {
         padding: 25px;
     }
+    
+    .next {
+        left: 0px;
+    }
+
+    .prev {
+        right: 0px;
+    }
 }
 
 @media only screen and (max-width: 560px) {

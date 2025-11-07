@@ -22,7 +22,8 @@ export function FormationsSlider() {
                 onSwiper={(swiper)=> (swiperRef.current = swiper)}
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
-                    0 : { slidesPerView: 2 },
+                    0 : { slidesPerView: 1 },
+                    460 : { slidesPerView: 2 },
                     644 : { slidesPerView: 3 },
                     1024 : { slidesPerView: 4 },
                     1320 : { slidesPerView: 5 }
