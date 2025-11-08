@@ -8,23 +8,23 @@ export function Contact(){
                     <form action="">
                         <div className="element">
                             <label htmlFor="">Entrez votre nom complet :</label>
-                            <input type="text" name="" id="" placeholder="Ex: John Doe"/>
+                            <input type="text" name="name" id="" placeholder="Ex: John Doe"/>
                         </div>
                         <div className="element">
                             <label htmlFor="">Objet de votre contact :</label>
-                            <input type="text" name="" id="" placeholder="Ex: Demande de partenariat avec LUMINI School"/>
+                            <input type="text" name="object" id="" placeholder="Ex: Demande de partenariat avec LUMINI School"/>
                         </div>
                         <div className="element">
                             <label htmlFor="">Votre email :</label>
-                            <input type="email" name="" id="" placeholder="Ex: johndoe@example.com"/>
+                            <input type="email" name="email" id="" placeholder="Ex: johndoe@example.com"/>
                         </div>
                         <div className="element">
                             <label htmlFor="">Votre numéro téléphone :</label>
-                            <input type="tel" name="" id="" placeholder="Ex: +261 30 00 000 00"/>
+                            <input type="tel" name="telephone" id="" placeholder="Ex: +261 30 00 000 00"/>
                         </div>
                         <div className="element">
                             <label htmlFor="">Saisissez vos messages :</label>
-                            <textarea name="" id="" placeholder="J'ai l'honneur de vous écrire ..."></textarea>
+                            <textarea name="message" id="" placeholder="J'ai l'honneur de vous écrire ..."></textarea>
                         </div>
                         <div className="element">
                             <button>
