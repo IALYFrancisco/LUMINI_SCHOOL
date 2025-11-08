@@ -22,8 +22,9 @@ export function ArticlesSlider() {
                 onSwiper={(swiper)=> (swiperRef.current = swiper)}
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
-                    0 : { slidesPerView: 2 },
-                    644 : { slidesPerView: 3 }
+                    0 : { slidesPerView: 3 },
+                    644 : { slidesPerView: 2 },
+                    1320 : { slidesPerView: 3 }
                 }}
             >
                 <SwiperSlide>
@@ -33,7 +34,7 @@ export function ArticlesSlider() {
                         </div>
                         <div className="blog-infos">
                             <h4>Histoire du numérique</h4>
-                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
+                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappejfvhjfnvjenfvjnjnvjndsvnevn.</p>
                             <button>Lire plus</button>
                         </div>
                     </div>
@@ -45,7 +46,7 @@ export function ArticlesSlider() {
                         </div>
                         <div className="blog-infos">
                             <h4>Histoire du numérique</h4>
-                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
+                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappejfvhjfnvjenfvjnjnvjndsvnevn.</p>
                             <button>Lire plus</button>
                         </div>
                     </div>
@@ -57,7 +58,7 @@ export function ArticlesSlider() {
                         </div>
                         <div className="blog-infos">
                             <h4>Histoire du numérique</h4>
-                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappe.</p>
+                            <p>A l'époque où la digitalisation n'était pas encore née, les gens utilisent des machines de frappejfvhjfnvjenfvjnjnvjndsvnevn.</p>
                             <button>Lire plus</button>
                         </div>
                     </div>

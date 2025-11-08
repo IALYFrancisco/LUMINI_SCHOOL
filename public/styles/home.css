@@ -702,15 +702,31 @@ footer .actions button {
     transition: .3s;
 }
 
+.blog-container .card .blog-image {
+    width: 100%;
+    height: 100%;
+}
+
 .blog-container .card .blog-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+.blog-container .card .blog-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .blog-container .card .blog-infos p {
     font-size: 11px;
     margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .blog-container .card .blog-infos button {
