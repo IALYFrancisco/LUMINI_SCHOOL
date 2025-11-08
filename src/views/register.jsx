@@ -40,15 +40,15 @@ export function Register(){
                     <img src="/images/clavier (2).png" alt="" className="mouse" />
                     <div className="element">
                         <label>Votre nom complet :</label>
-                        <input type="text" placeholder="Ex: John Doe" { ...register('name', { required: true }) }/>
+                        <input type="text" name="name" placeholder="Ex: John Doe" { ...register('name', { required: true }) }/>
                     </div>
                     <div className="element">
                         <label>Votre adresse email :</label>
-                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
+                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
                     </div>
                     <div className="element">
                         <label>Votre mot de passe :</label>
-                        <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) }/>
+                        <input type="password" name="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) }/>
                     </div>
                     <div className="element">
                         <button>Soumettre</button>
