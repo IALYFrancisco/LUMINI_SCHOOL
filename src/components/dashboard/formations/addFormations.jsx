@@ -20,7 +20,7 @@ export default function AddFormation(){
             formation.append("description", data.description)
             
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
-                { headers: {"Content-Type": "multipart/form-data"} }
+                { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
             ).then((res)=>{
                 reset()
                 setTitle("")
