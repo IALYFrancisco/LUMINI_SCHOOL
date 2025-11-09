@@ -578,6 +578,17 @@ footer .actions button {
 .formations-container .card .formation-infos p {
     font-size: 11px;
     margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.formations-container .card .formation-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .formations-container .card .formation-infos button {
