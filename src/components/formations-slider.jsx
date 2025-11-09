@@ -8,15 +8,17 @@ export function FormationsSlider() {
     const swiperRef = useRef()
 
     var [ formations, setFormations ] = useState([])
+    var [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
-            .then((response)=>{
-                setFormations(response.data)
-            })
+            .then((response)=>setFormations(response.data))
+            .catch(()=>setFormations([]))
+            .finally(()=>setLoading(false))
     }, [])
 
-    return(
+    if(loading) return <p>Chargement ...</p>
+    if(formations) return(
         <>
             <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
                 <img src="images/chevron.png" alt="" />
