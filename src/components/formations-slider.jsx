@@ -1,10 +1,21 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
+import axios from "axios";
 
 export function FormationsSlider() {
     const swiperRef = useRef()
+
+    var [ formations, setFormations ] = useState([])
+
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            .then((response)=>{
+                setFormations(response.data)
+            })
+    }, [])
+
     return(
         <>
             <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
@@ -30,18 +41,22 @@ export function FormationsSlider() {
                 }}
 
             >
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
+            { formations && <>
+                { formations.map( formation => (
+                    <SwiperSlide>
+                        <div className="card" key={formation._id}>
+                            <div className="formation-image">
+                                <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
+                            </div>
+                            <div className="formation-infos">
+                                <h4>{formation.title}</h4>
+                                <p>{formation.description}</p>
+                                <button>S'inscrire</button>
+                            </div>
                         </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+                ))}
+            </>}
             </Swiper>
         </>
     )
