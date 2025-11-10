@@ -48,11 +48,6 @@ header .actions a:nth-child(2) button:hover {
     border: 1px solid var(--primary);
 }
 
-.formations-container > a button {
-    background-color: var(--primary);
-    color: var(--secondary);
-}
-
 button {
     background-color: var(--secondary);
     color: var(--primary);
@@ -622,6 +617,11 @@ footer .actions button {
 
 .formations-container .swiper {
     padding-top: 25px;
+}
+
+.formations-container > a button {
+    background-color: var(--primary);
+    color: var(--secondary);
 }
 
 .prev, .next {

@@ -1,8 +1,22 @@
 import Nav from "../components/nav"
 import '../../public/styles/formationsPage.css'
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export function FormationsPage(){
-    return(
+
+    var [ formations, setFormations ] = useState([])
+    var [ loading, setLoading ] = useState(true)
+
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            .then((response)=>setFormations(response.data))
+            .catch(()=>setFormations([]))
+            .finally(()=>setLoading(false))
+    }, [])
+
+    if(loading) return <p>Chargement ...</p>
+    if(formations) return(
         <>
             <Nav></Nav>
             <section className="formations-page">
@@ -12,6 +26,22 @@ export function FormationsPage(){
                     <div className="actions">
                         <input type="text" name="formation" id="" placeholder="Rehcrecher des formations"/>
                     </div>
+                </div>
+                <div className="body">
+                    { formations && <>
+                        { formations.map( formation => (
+                            <div className="card" key={formation._id}>
+                                <div className="formation-image">
+                                    <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
+                                </div>
+                                <div className="formation-infos">
+                                    <h4>{formation.title}</h4>
+                                    <p>{formation.description}</p>
+                                    <button>S'inscrire</button>
+                                </div>
+                            </div>
+                        ))}
+                    </>}
                 </div>
             </section>
         </>
