@@ -1,3 +1,10 @@
+import Nav from "../components/nav"
+
 export function FormationsPage(){
-    return(<h1>This is formation page</h1>)
+    return(
+        <>
+            <Nav></Nav>
+            <h1>All formations list page.</h1>
+        </>
+    )
 }

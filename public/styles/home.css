@@ -35,16 +35,22 @@ header .actions {
     column-gap: 30px;
 }
 
-header .actions button:nth-child(2) {
+header .actions a:nth-child(2) button {
     background-color: transparent;
     color: var(--fourth);
     border: 1px solid var(--fourth);
+    padding: 14px 15px;
 }
 
-header .actions button:nth-child(2):hover {
+header .actions a:nth-child(2) button:hover {
     background-color: var(--secondary);
     color: var(--primary);
     border: 1px solid var(--primary);
+}
+
+.formations-container > a button {
+    background-color: var(--primary);
+    color: var(--secondary);
 }
 
 button {

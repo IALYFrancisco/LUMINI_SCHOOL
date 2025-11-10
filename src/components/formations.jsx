@@ -1,4 +1,5 @@
 import { FormationsSlider } from "./formations-slider"
+import { Link } from "react-router-dom"
 
 export function Formations(){
     return(
@@ -11,7 +12,9 @@ export function Formations(){
                 <div className="cards-container">
                     <FormationsSlider></FormationsSlider>
                 </div>
-                <button>Voir toute les formations</button>
+                <Link to="/formations">
+                    <button>Voir toute les formations</button>
+                </Link>
             </section>
         </section>
     )
