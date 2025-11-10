@@ -3,6 +3,7 @@ import Home from './views/home'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Login } from './views/login'
 import { Register } from './views/register'
+import { FormationsPage } from './views/formations'
 import Dashboard from './views/dashboard'
 import Settings from './components/dashboard/settings'
 import Formations from './components/dashboard/formations/formations'
@@ -22,6 +23,7 @@ function App() {
         <Route path='/blog' element={<Blog/>}></Route>
         <Route path='/authentication/login' element={<Login/>}></Route>
         <Route path='/authentication/register' element={<Register/>}></Route>
+        <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
