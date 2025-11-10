@@ -20,7 +20,7 @@
     height: 40px;
     outline: none;
     border-radius: 5px;
-    border: 2px solid #1b223261;
+    border: 1px solid #1b223261;
     padding: 10px;
     margin-top: 30px;
     font-weight: 900;
@@ -29,13 +29,15 @@
 
 .formations-page input:focus {
     transition: .25s;
-    border: solid 2px #1b2232;
+    border-color: #1b2232;
 }
 
 .formations-page .body {
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
+    flex-wrap: wrap;
+    row-gap: 40px;
 }
 
 .formations-page .card {
