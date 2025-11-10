@@ -3,7 +3,7 @@ import Home from './views/home'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Login } from './views/login'
 import { Register } from './views/register'
-import { FormationsPage } from './views/formations'
+import { FormationsPage } from './views/formationPage'
 import Dashboard from './views/dashboard'
 import Settings from './components/dashboard/settings'
 import Formations from './components/dashboard/formations/formations'
