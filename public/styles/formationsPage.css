@@ -3,6 +3,8 @@
     width: 100%;
     padding: 100px;
     color: var(--primary);
+    max-width: 1440px;
+    margin: auto;
 }
 
 .formations-page .head h2 {
@@ -34,15 +36,19 @@
 
 .formations-page .body {
     display: flex;
-    justify-content: space-between;
     margin-top: 50px;
     flex-wrap: wrap;
-    row-gap: 40px;
+}
+
+.formations-page .body .card-container {
+    width: 20%;
+    padding: 15px;
 }
 
 .formations-page .card {
-    min-width: 200px;
-    width: 200px;
+    /* min-width: 200px; */
+    /* width: 200px; */
+    width: 100%;
     height: 300px;
     box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
     border: 1px solid var(--primary);
@@ -104,4 +110,49 @@
     background-color: var(--primary);
     color: var(--secondary);
     margin-top: 25px;
+}
+
+@media only screen and (max-width: 1210px) {
+    .formations-page .body .card-container {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .formations-page {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .formations-page .body .card-container {
+        width: 33%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .formations-page {
+        padding: 25px;
+    }
+    
+    .formations-page .head p {
+        width: 100%;
+    }
+
+    .formations-page input {
+        width: 100%;
+    }
+
+    .formations-page .body .card-container {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 460px) {
+    .formations-page .body .card-container {
+        width: 100%;
+        padding: 15px 0;
+    }
 }
