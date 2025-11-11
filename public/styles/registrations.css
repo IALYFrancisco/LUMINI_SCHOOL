@@ -1,0 +1,10 @@
+.registrations-container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px;
+    color: var(--primary);
+}
+
+.registrations-container .title {
+    color: var(--fourth);
+}

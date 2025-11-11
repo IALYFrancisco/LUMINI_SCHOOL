@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import Nav from "../components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import '../../public/styles/registrations.css'
 
 export default function Registrations(){
 
@@ -10,15 +11,23 @@ export default function Registrations(){
     var { id } = useParams()
 
     useEffect(()=>{
-        axios
-    })
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
+        .then((response)=>setFormation(response.data))
+        .catch(()=>setFormation(null))
+        .finally(()=>setLoading(false))
+    }, [])
 
-    return(
+    if(loading) return(<p>Chargement ...</p>)
+    if(!loading) return(
         <>
             <Nav></Nav>
-            <section className="registrations-container">
-                <h2>Inscription à la formation {}</h2>
-            </section>
+            { formation &&
+                <section className="registrations-container">
+                    { formation.map( f =>
+                        <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
+                    ) }
+                </section>
+            }
         </>
     )
 }
