@@ -3,6 +3,7 @@ import 'swiper/css'
 import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function FormationsSlider() {
     const swiperRef = useRef()
@@ -53,7 +54,9 @@ export function FormationsSlider() {
                             <div className="formation-infos">
                                 <h4>{formation.title}</h4>
                                 <p>{formation.description}</p>
-                                <button>S'inscrire</button>
+                                <Link to={`/registrations/formation/${formation._id}`}>
+                                    <button>S'inscrire</button>
+                                </Link>
                             </div>
                         </div>
                     </SwiperSlide>

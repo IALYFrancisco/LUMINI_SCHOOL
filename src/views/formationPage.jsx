@@ -2,6 +2,7 @@ import Nav from "../components/nav"
 import '../../public/styles/formationsPage.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 export function FormationsPage(){
 
@@ -38,7 +39,9 @@ export function FormationsPage(){
                                     <div className="formation-infos">
                                         <h4>{formation.title}</h4>
                                         <p>{formation.description}</p>
-                                        <button>S'inscrire</button>
+                                        <Link to={`/registrations/formation/${formation._id}`}>
+                                            <button>S'inscrire</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +57,9 @@ export function FormationsPage(){
                                     <div className="formation-infos">
                                         <h4>{formation.title}</h4>
                                         <p>{formation.description}</p>
-                                        <button>S'inscrire</button>
+                                        <Link to={`/registrations/formation/${formation._id}`}>
+                                            <button>S'inscrire</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
