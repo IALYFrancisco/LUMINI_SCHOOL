@@ -15,7 +15,7 @@ export default function Registrations(){
         .then((response)=>setFormation(response.data))
         .catch(()=>setFormation(null))
         .finally(()=>setLoading(false))
-    }, [])
+    }, [id])
 
     if(loading) return(<p>Chargement ...</p>)
     if(!loading) return(
