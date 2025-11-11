@@ -24,7 +24,35 @@ export default function Registrations(){
             { formation &&
                 <section className="registrations-container">
                     { formation.map( f =>
-                        <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
+                        <>
+                            <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
+                            <p>Veuillez soumettre votre inscription pour que vous soyez inscrit à cette formation 📖 .</p>
+                            <form action="">
+                                <div>
+                                    <fieldset disabled="disabled">
+                                        <legend><h3>A propos de la formation</h3></legend>
+                                        <div className="element">
+                                            <label htmlFor="">Titre de la formation :</label>
+                                            <input type="text" name="" id="" value={f.title} />
+                                        </div>
+                                        <div className="element">
+                                            <label htmlFor="">Les prérequis de la formation :</label>
+                                            <input type="text" name="" id="" value={f.prerequisites} />
+                                        </div>
+                                        <div className="element">
+                                            <label htmlFor="">Déscription de la formation :</label>
+                                            <textarea name="" id="" value={f.description}></textarea>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset disabled="disabled">
+                                        <legend><h3>Vos informations personnelles</h3></legend>
+                                    </fieldset>
+                                </div>
+                                <div className="element">
+                                    <button>Soumettre l'inscription</button>
+                                </div>
+                            </form>
+                        </>
                     ) }
                 </section>
             }
