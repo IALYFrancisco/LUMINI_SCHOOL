@@ -14,6 +14,7 @@ import Blog from './views/blog'
 import AddFormation from './components/dashboard/formations/addFormations'
 import FormationsList from './components/dashboard/formations/formations-list'
 import ProtectedRoute from './components/protected-route'
+import Registrations from './views/registrations'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/authentication/login' element={<Login/>}></Route>
         <Route path='/authentication/register' element={<Register/>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
+        <Route path='/registrations' element={<Registrations/>}></Route>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
