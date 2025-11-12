@@ -46,8 +46,20 @@ export default function Registrations(){
                                             <textarea name="" id="" value={f.description}></textarea>
                                         </div>
                                     </fieldset>
-                                    <fieldset disabled="disabled">
+                                    <fieldset>
                                         <legend><h3>Vos informations personnelles</h3></legend>
+                                        <div className="element">
+                                            <label htmlFor="">Votre nom :</label>
+                                            <input type="text" name="" id="" value={user.name} disabled />
+                                        </div>
+                                        <div className="element">
+                                            <label htmlFor="">Votre email :</label>
+                                            <input type="email" name="" id="" value={user.email} disabled />
+                                        </div>
+                                        <div className="element">
+                                            <label htmlFor="">Votre numéro téléphone :</label>
+                                            <input type="tel" name="" id="" value={user.phoneNumber} />
+                                        </div>
                                     </fieldset>
                                 </div>
                                 <div className="element">
