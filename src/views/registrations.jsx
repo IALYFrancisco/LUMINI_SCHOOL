@@ -3,9 +3,11 @@ import Nav from "../components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import '../../public/styles/registrations.css'
+import { useAuth } from "../contexts/AuthContext"
 
 export default function Registrations(){
 
+    const { user } = useAuth()
     var [formation, setFormation] = useState(null)
     var [loading, setLoading] = useState(true)
     var { id } = useParams()
