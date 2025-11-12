@@ -25,7 +25,7 @@ function App() {
         <Route path='/authentication/login' element={<Login/>}></Route>
         <Route path='/authentication/register' element={<Register/>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
-        <Route path='/registrations/formation/:id' element={<Registrations/>}></Route>
+        <Route path='/registrations/formation/:id' element={<ProtectedRoute><Registrations/></ProtectedRoute>}></Route>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
