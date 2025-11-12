@@ -53,11 +53,11 @@ export function Login(){
                     <img src="/images/coffee-laptop.png" alt="" className="mouse" />
                     <div className="element">
                         <label htmlFor="">Votre adresse email :</label>
-                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
+                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label htmlFor="">Votre mot de passe :</label>
-                        <input type="password" name="password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) }/>
+                        <input type="password" name="password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button>Soumettre</button>

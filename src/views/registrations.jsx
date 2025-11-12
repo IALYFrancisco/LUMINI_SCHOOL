@@ -97,7 +97,7 @@ export default function Registrations(){
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
-                                            <input type="tel" name="" id="" value={user.phoneNumber} placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } />
+                                            <input type="tel" name="" id="" value={user.phoneNumber} placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } required />
                                         </div>
                                     </fieldset>
                                 </div>
