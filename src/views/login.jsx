@@ -3,8 +3,11 @@ import '../../public/styles/login.css'
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import axios from "axios"
+import { useAuth } from "../contexts/AuthContext"
 
 export function Login(){
+
+    var { setUser, setLoading } = useAuth()
 
     var { reset, register, handleSubmit } = useForm()
 
@@ -21,9 +24,15 @@ export function Login(){
                 user,
                 { withCredentials: true }
             )
-            .then(()=>{
-                navigate('/')
-                reset()
+            .then( async ()=>{
+                await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                    .then((response)=> {
+                        setUser(response.data)
+                        navigate('/')
+                        reset()
+                    })
+                    .catch(()=>setUser(null))
+                    .finally(()=> setLoading(false))
             }).catch((err)=>{
                 console.log(err)
             })
