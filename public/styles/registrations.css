@@ -17,6 +17,14 @@
     font-size: 15px;
 }
 
+.registrations-container p a {
+    text-decoration: underline;
+}
+
+.registrations-container .colored {
+    color: red;
+}
+
 .registrations-container form > div {
     display: flex;
     column-gap: 100px;

@@ -28,7 +28,7 @@ export default function Registrations(){
                     { formation.map( f =>
                         <>
                             <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
-                            <p>Veuillez soumettre votre inscription pour que vous soyez inscrit à cette formation 📖 .</p>
+                            <p>Veuillez <a href="#submition" className="colored">soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
                             <form action="">
                                 <div>
                                     <fieldset disabled="disabled">
@@ -57,13 +57,13 @@ export default function Registrations(){
                                             <input type="email" name="" id="" value={user.email} disabled />
                                         </div>
                                         <div className="element">
-                                            <label htmlFor="">Votre numéro téléphone :</label>
+                                            <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
                                             <input type="tel" name="" id="" value={user.phoneNumber} placeholder="ex: 030 00 000 00"/>
                                         </div>
                                     </fieldset>
                                 </div>
                                 <div className="element">
-                                    <button>Soumettre l'inscription</button>
+                                    <button id="submition">Soumettre l'inscription</button>
                                 </div>
                             </form>
                         </>
