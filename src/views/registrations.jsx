@@ -58,7 +58,7 @@ export default function Registrations(){
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Votre numéro téléphone :</label>
-                                            <input type="tel" name="" id="" value={user.phoneNumber} />
+                                            <input type="tel" name="" id="" value={user.phoneNumber} placeholder="ex: 030 00 000 00"/>
                                         </div>
                                     </fieldset>
                                 </div>
