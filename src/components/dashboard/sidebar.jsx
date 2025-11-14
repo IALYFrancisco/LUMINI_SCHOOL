@@ -28,7 +28,7 @@ export default function Sidebar(){
                         </div>
                     </div>
                     <div className="user-infos">
-                        <h5>{user.name}</h5>
+                        <h5 title={user.name}>{user.name}</h5>
                         <p title="ialyfrancisco7@gmail.com">{user.email}</p>
                     </div>
                 </li>
