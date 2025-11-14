@@ -44,15 +44,15 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Titre de la formation :</label>
-                            <input type="text" { ...register("title", { required: true })} required />
+                            <input type="text" { ...register("title", { required: true })} required name="titre" placeholder="Ajoutez un titre pour la formation"/>
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
-                            <input type="file" name="" id="" required accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                            <input type="file" name="image" id="" required accept="image/*" onChange={(e) => setImage(e.target.files[0])}/>
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
-                            <input type="text" name="" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", { required: true }) } required />
+                            <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", { required: true }) } required />
                         </div>
                         <div className="element">
                             <button>Soumettre</button>
@@ -61,7 +61,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Descriptions de la formation :</label>
-                            <textarea cols="30" rows="10" { ...register("description", { required: true }) } required ></textarea>
+                            <textarea cols="30" rows="10" { ...register("description", { required: true }) } required name="descriptions" placeholder="Redigez ici les descriptions ..."></textarea>
                         </div>
                     </fieldset>
                 </form>
