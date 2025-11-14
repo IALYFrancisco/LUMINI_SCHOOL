@@ -44,7 +44,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Titre de la formation :</label>
-                            <input type="text" { ...register("title", { required: true })} />
+                            <input type="text" { ...register("title", { required: true })} required />
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
@@ -52,7 +52,7 @@ export default function AddFormation(){
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
-                            <input type="text" name="" id="" required placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", { required: true }) } />
+                            <input type="text" name="" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", { required: true }) } required />
                         </div>
                         <div className="element">
                             <button>Soumettre</button>
@@ -61,7 +61,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Descriptions de la formation :</label>
-                            <textarea cols="30" rows="10" required { ...register("description", { required: true }) } ></textarea>
+                            <textarea cols="30" rows="10" { ...register("description", { required: true }) } required ></textarea>
                         </div>
                     </fieldset>
                 </form>
