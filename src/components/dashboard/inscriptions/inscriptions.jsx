@@ -3,11 +3,12 @@ import { useEffect, useState } from "react"
 
 export default function Inscriptions(){
 
-    var [registrations, setRegistrations] = useState()
+    var [registrations, setRegistrations] = useState([])
 
-    // useEffect(()=>{
-    //     axios.get()
-    // }, [])
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/registration/get`, { withCredentials: true })
+        .then((response)=>setRegistrations(response.data))
+    }, [setRegistrations])
 
     return(
         <>
@@ -24,6 +25,7 @@ export default function Inscriptions(){
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
+                
             </ul>
         </>
     )
