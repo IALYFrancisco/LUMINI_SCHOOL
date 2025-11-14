@@ -35,13 +35,14 @@ header .actions {
     column-gap: 30px;
 }
 
-header .actions button:nth-child(2) {
+header .actions a:nth-child(2) button {
     background-color: transparent;
     color: var(--fourth);
     border: 1px solid var(--fourth);
+    padding: 14px 15px;
 }
 
-header .actions button:nth-child(2):hover {
+header .actions a:nth-child(2) button:hover {
     background-color: var(--secondary);
     color: var(--primary);
     border: 1px solid var(--primary);
@@ -384,6 +385,8 @@ em {
 
 .contact .cards-container .icon-container {
     width: 50px;
+    min-width: 50px;
+    max-width: 50px;
     height: 50px;
     background-color: var(--fourth);
     display: flex;
@@ -576,6 +579,17 @@ footer .actions button {
 .formations-container .card .formation-infos p {
     font-size: 11px;
     margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.formations-container .card .formation-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .formations-container .card .formation-infos button {
@@ -603,6 +617,11 @@ footer .actions button {
 
 .formations-container .swiper {
     padding-top: 25px;
+}
+
+.formations-container > a button {
+    background-color: var(--primary);
+    color: var(--secondary);
 }
 
 .prev, .next {
@@ -702,15 +721,31 @@ footer .actions button {
     transition: .3s;
 }
 
+.blog-container .card .blog-image {
+    width: 100%;
+    height: 100%;
+}
+
 .blog-container .card .blog-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+.blog-container .card .blog-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .blog-container .card .blog-infos p {
     font-size: 11px;
     margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .blog-container .card .blog-infos button {
@@ -874,6 +909,14 @@ footer .actions button {
 
     .info-page {
         padding: 25px;
+    }
+    
+    .next {
+        left: 0px;
+    }
+
+    .prev {
+        right: 0px;
     }
 }
 

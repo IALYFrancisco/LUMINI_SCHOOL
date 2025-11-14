@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export function Avis(){
     return(
         <section className="avis">
@@ -94,7 +96,9 @@ export function Avis(){
                 <a href="#contact">
                     <button>Contacter LUMINI School</button>
                 </a>
-                <button>Voir toutes les formations</button>
+                <Link to="/formations">
+                    <button>Voir toutes les formations</button>
+                </Link>
             </div>
         </section>
     )

@@ -1,6 +1,20 @@
+import axios from "axios"
 import { Link } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
 
 export default function Sidebar(){
+
+    const { user, setUser } = useAuth()
+
+    const handleClick = () => {
+            axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+            .then(()=>{
+                setUser(null)
+            }).catch(()=>{
+                window.alert('Erreur de déconnexion')
+            })
+    }
+
     return(
         <aside>
             <ul>
@@ -14,8 +28,8 @@ export default function Sidebar(){
                         </div>
                     </div>
                     <div className="user-infos">
-                        <h5>IALY Francisco</h5>
-                        <p title="ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</p>
+                        <h5 title={user.name}>{user.name}</h5>
+                        <p title="ialyfrancisco7@gmail.com">{user.email}</p>
                     </div>
                 </li>
                 <li>
@@ -53,7 +67,7 @@ export default function Sidebar(){
                     </ul>
                 </li>
             </ul>
-            <div className="actions">
+            <div className="actions" onClick={handleClick}>
                 <p>
                     <img src="/images/logout.png" alt="" />
                     Se déconnecter

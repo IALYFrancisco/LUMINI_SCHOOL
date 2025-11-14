@@ -1,4 +1,5 @@
 import Nav from "../components/nav"
+import { Link } from "react-router-dom"
 
 export function Header(){
     return(
@@ -13,13 +14,13 @@ export function Header(){
                             <a href="#demo-formations">
                                 <button>En savoir plus <img src="images/arrow.png" alt="flèche pointant  à droite" /> </button>
                             </a>
-                            <button>Voir toutes les formations</button>
+                            <Link to="/formations">
+                                <button>Voir toutes les formations</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="right">
                         <div className="img-container">
-                            {/* <img className="clavier" src="/images/header (3).png" alt="" /> */}
-                            {/* <img className="note" src="/images/header (4).png" alt="" /> */}
                             <img className="femme" src="/images/laptop3.png" alt="jeune femme tenant un laptop"/>
                         </div>
                     </div>

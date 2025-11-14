@@ -17,7 +17,7 @@ export function Register(){
                 password: data.password
             }
 
-            await axios.post(`http://localhost:3000/authentication/register`, user )
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
                 .then((res)=>{
                     navigate('/authentication/login')
                     reset()
@@ -40,15 +40,15 @@ export function Register(){
                     <img src="/images/clavier (2).png" alt="" className="mouse" />
                     <div className="element">
                         <label>Votre nom complet :</label>
-                        <input type="text" placeholder="Ex: John Doe" { ...register('name', { required: true }) }/>
+                        <input type="text" name="name" placeholder="Ex: John Doe" { ...register('name', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label>Votre adresse email :</label>
-                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
+                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label>Votre mot de passe :</label>
-                        <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) }/>
+                        <input type="password" name="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button>Soumettre</button>

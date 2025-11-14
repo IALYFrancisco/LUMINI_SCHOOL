@@ -3,8 +3,11 @@ import '../../public/styles/login.css'
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import axios from "axios"
+import { useAuth } from "../contexts/AuthContext"
 
 export function Login(){
+
+    var { setUser, setLoading } = useAuth()
 
     var { reset, register, handleSubmit } = useForm()
 
@@ -17,13 +20,19 @@ export function Login(){
                 password: data.password
             }
 
-            await axios.post('http://localhost:3000/authentication/login',
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/login`,
                 user,
                 { withCredentials: true }
             )
-            .then(()=>{
-                navigate('/')
-                reset()
+            .then( async ()=>{
+                await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                    .then((response)=> {
+                        setUser(response.data)
+                        navigate('/')
+                        reset()
+                    })
+                    .catch(()=>setUser(null))
+                    .finally(()=> setLoading(false))
             }).catch((err)=>{
                 console.log(err)
             })
@@ -44,11 +53,11 @@ export function Login(){
                     <img src="/images/coffee-laptop.png" alt="" className="mouse" />
                     <div className="element">
                         <label htmlFor="">Votre adresse email :</label>
-                        <input type="email" name="" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) }/>
+                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label htmlFor="">Votre mot de passe :</label>
-                        <input type="password" name="" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) }/>
+                        <input type="password" name="password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button>Soumettre</button>

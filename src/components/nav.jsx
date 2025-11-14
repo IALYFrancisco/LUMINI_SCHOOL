@@ -20,7 +20,9 @@ function Nav(){
                             <li>
                                 <Link to="/">Accueil</Link>
                             </li>
-                            <li>Formations</li>
+                            <li>
+                                <Link to="/formations">Formations</Link>
+                            </li>
                             <li>Articles</li>
                         </ul>
                     </li>
@@ -48,7 +50,9 @@ function Nav(){
                     <li onClick={handleClick}>
                         <Link  onClick={handleClick} to="/">Accueil</Link>
                     </li>
-                    <li>Formations</li>
+                    <li onClick={handleClick}>
+                        <Link  onClick={handleClick} to="/formations">Formations</Link>
+                    </li>
                     <li>Articles</li>
                 </ul>
             </div>

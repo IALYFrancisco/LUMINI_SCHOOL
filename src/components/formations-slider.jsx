@@ -1,11 +1,25 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function FormationsSlider() {
     const swiperRef = useRef()
-    return(
+
+    var [ formations, setFormations ] = useState([])
+    var [ loading, setLoading ] = useState(true)
+
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            .then((response)=>setFormations(response.data))
+            .catch(()=>setFormations([]))
+            .finally(()=>setLoading(false))
+    }, [])
+
+    if(loading) return <p>Chargement ...</p>
+    if(formations) return(
         <>
             <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
                 <img src="images/chevron.png" alt="" />
@@ -22,157 +36,32 @@ export function FormationsSlider() {
                 onSwiper={(swiper)=> (swiperRef.current = swiper)}
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
-                    0 : { slidesPerView: 2 },
+                    0 : { slidesPerView: 1 },
+                    460 : { slidesPerView: 2 },
                     644 : { slidesPerView: 3 },
                     1024 : { slidesPerView: 4 },
                     1320 : { slidesPerView: 5 }
                 }}
 
             >
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
+            { formations && <>
+                { formations.map( formation => (
+                    <SwiperSlide>
+                        <div className="card" key={formation._id}>
+                            <div className="formation-image">
+                                <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
+                            </div>
+                            <div className="formation-infos">
+                                <h4>{formation.title}</h4>
+                                <p>{formation.description}</p>
+                                <Link to={`/registrations/formation/${formation._id}`}>
+                                    <button>S'inscrire</button>
+                                </Link>
+                            </div>
                         </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="card">
-                        <div className="formation-image">
-                            <img src="images/dietetique.webp" alt="" />
-                        </div>
-                        <div className="formation-infos">
-                            <h4>Bases du HTML et CSS</h4>
-                            <p>Cette formation apprend les bases du HTML et CSS dans le cadre de création de siteweb.</p>
-                            <button>S'inscrire</button>
-                        </div>
-                    </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+                ))}
+            </>}
             </Swiper>
         </>
     )
