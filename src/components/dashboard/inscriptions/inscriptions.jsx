@@ -1,4 +1,14 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+
 export default function Inscriptions(){
+
+    var [registrations, setRegistrations] = useState()
+
+    // useEffect(()=>{
+    //     axios.get()
+    // }, [])
+
     return(
         <>
             <h2>Inscriptions</h2>
@@ -8,11 +18,9 @@ export default function Inscriptions(){
             <ul className="formations">
                 <li className="titles">
                     <ul>
-                        <li className="title">Titres</li>
-                        <li className="description">Descriptions</li>
-                        <li className="addDate">Date d'ajout</li>
-                        <li className="publicationDate">Date de publication</li>
-                        <li className="published">Publiée</li>
+                        <li className="title">Titres du formation</li>
+                        <li className="description">Clients inscrits</li>
+                        <li className="addDate">Date de l'inscription</li>
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
