@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext"
 
 export default function Sidebar(){
 
-    const { setUser } = useAuth()
+    const { user, setUser } = useAuth()
 
     const handleClick = () => {
             axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
@@ -28,8 +28,8 @@ export default function Sidebar(){
                         </div>
                     </div>
                     <div className="user-infos">
-                        <h5>IALY Francisco</h5>
-                        <p title="ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</p>
+                        <h5>{user.name}</h5>
+                        <p title="ialyfrancisco7@gmail.com">{user.email}</p>
                     </div>
                 </li>
                 <li>

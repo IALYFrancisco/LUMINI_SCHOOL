@@ -53,11 +53,19 @@ aside .user-infos {
 
 aside .user-infos h5 {
     margin-top: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 aside .user-infos p {
     font-size: 10px;
     margin-top: 10px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 aside ul ul {
