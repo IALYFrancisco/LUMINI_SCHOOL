@@ -44,7 +44,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Titre de la formation :</label>
-                            <input type="text" { ...register("title", { required: true })} required name="titre" placeholder="Ajoutez un titre pour la formation"/>
+                            <input type="text" required name="titre" placeholder="Ajoutez un titre pour la formation" { ...register("title", { required: true })}/>
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
@@ -61,7 +61,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Descriptions de la formation :</label>
-                            <textarea cols="30" rows="10" { ...register("description", { required: true }) } required name="descriptions" placeholder="Redigez ici les descriptions ..."></textarea>
+                            <textarea cols="30" rows="10" required name="descriptions" placeholder="Redigez ici les descriptions ..." { ...register("description", { required: true }) }></textarea>
                         </div>
                     </fieldset>
                 </form>
