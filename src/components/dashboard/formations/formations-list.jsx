@@ -34,10 +34,8 @@ export default function FormationsList(){
     }
 
     const deleteFormation = (formationId) => {
-        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { _id: formationId }, {withCredentials: true})
-            .then((response)=>{
-                console.log(response)
-            })
+        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
+            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== formationId ) ) })
             .catch((err)=>{
                 console.log(err)
             })
