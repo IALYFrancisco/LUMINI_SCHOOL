@@ -47,24 +47,6 @@ export function FormationsPage(){
                             </div>
                         ))}
                     </> }
-                    { formations && <>
-                        { formations.map( formation => (
-                            <div className="card-container">
-                                <div className="card" key={formation._id}>
-                                    <div className="formation-image">
-                                        <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
-                                    </div>
-                                    <div className="formation-infos">
-                                        <h4>{formation.title}</h4>
-                                        <p>{formation.description}</p>
-                                        <Link to={`/registrations/formation/${formation._id}`}>
-                                            <button>S'inscrire</button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </> }
                 </div>
             </section>
         </>
