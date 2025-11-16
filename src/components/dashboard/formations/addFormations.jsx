@@ -63,7 +63,7 @@ export default function AddFormation(){
                     </fieldset>
                     <fieldset>
                         <div className="element">
-                            <label>Descriptions de la formation : <p>nombre de mots : {wordCount}</p></label>
+                            <label>Descriptions de la formation : <p>nombre de mots : {wordCount} / 150</p></label>
                             <textarea cols="30" rows="10" required name="descriptions" placeholder="Redigez ici les descriptions ..." { ...register("description", { required: "La description est obligatoire.", validate: {
                                 minWords: (value) => 
                                     value.trim().split(/\s+/).length >= 100 ||
