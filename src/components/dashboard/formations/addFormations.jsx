@@ -66,8 +66,8 @@ export default function AddFormation(){
                             <label>Descriptions de la formation : <p>nombre de mots : {wordCount} / 150</p></label>
                             <textarea cols="30" rows="10" required name="descriptions" placeholder="Redigez ici les descriptions ..." { ...register("description", { required: "La description est obligatoire.", validate: {
                                 minWords: (value) => 
-                                    value.trim().split(/\s+/).length >= 100 ||
-                                "La description doit contenir au moins 100 mots.",
+                                    value.trim().split(/\s+/).length >= 50 ||
+                                "La description doit contenir au moins 50 mots.",
                                 maxWords: (value) =>
                                     value.trim().split(/\s+/).length <= 150 ||
                                 "La description ne doit pas dépasser 150 mots."
