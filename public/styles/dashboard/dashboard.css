@@ -259,6 +259,12 @@ aside .actions p img {
     color: var(--primary);
 }
 
+.add-formation-form .message {
+    color: red;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
 .add-formation-form .element {
     margin-top: 30px;
 }
@@ -266,6 +272,13 @@ aside .actions p img {
 .add-formation-form .element label {
     font-weight: 900;
     display: block;
+}
+
+.add-formation-form .element label p {
+    font-size: 13px;
+    font-weight: 400;
+    display: inline;
+    margin-left: 5px;
 }
 
 .add-formation-form form {
