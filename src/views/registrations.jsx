@@ -102,7 +102,10 @@ export default function Registrations(){
                                     </fieldset>
                                 </div>
                                 <div className="element">
-                                    <button id="submition">Soumettre l'inscription</button>
+                                    <button id="submition">
+                                        Soumettre l'inscription
+                                        <img src="/images/send (2).png" />    
+                                    </button>
                                 </div>
                             </form>
                         </>

@@ -78,3 +78,7 @@
     background-color: var(--primary);
     color: var(--secondary);
 }
+
+.registrations-container form button img {
+    width: 30px;
+}
