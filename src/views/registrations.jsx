@@ -5,6 +5,7 @@ import axios from "axios"
 import '../../public/styles/registrations.css'
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from "react-hook-form"
+import Loading from "../components/loading"
 
 export default function Registrations(){
 
@@ -58,7 +59,7 @@ export default function Registrations(){
         .catch(()=>setUser(null))
     }, [id, setUser])
 
-    if(loading) return(<p>Chargement ...</p>)
+    if(loading) return(<Loading/>)
     if(!loading) return(
         <>
             <Nav></Nav>

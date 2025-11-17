@@ -3,6 +3,7 @@ import '../../public/styles/formationsPage.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import Loading from "../components/loading"
 
 export function FormationsPage(){
 
@@ -16,7 +17,7 @@ export function FormationsPage(){
             .finally(()=>setLoading(false))
     }, [])
 
-    if(loading) return <p>Chargement ...</p>
+    if(loading) return <Loading/>
     if(formations) return(
         <>
             <Nav></Nav>
