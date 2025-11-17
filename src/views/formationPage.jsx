@@ -31,8 +31,8 @@ export function FormationsPage(){
                 <div className="body">
                     { formations && <>
                         { formations.map( formation => (
-                            <div className="card-container">
-                                <div className="card" key={formation._id}>
+                            <div className="card-container" key={formation._id}>
+                                <div className="card">
                                     <div className="formation-image">
                                         <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
                                     </div>
