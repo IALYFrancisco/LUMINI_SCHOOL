@@ -5,11 +5,14 @@ import axios from "axios"
 
 export default function AddFormation(){
 
-    var { register, handleSubmit, reset } = useForm()
+    var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
     var [ title, setTitle ] = useState('')
     var [ image, setImage ] = useState('')
     var [ prerequisites, setPrerequisites ] = useState('')
     var [ description, setDescription ] = useState('')
+
+    const descriptionValue = watch("description") || ""
+    const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
     const onSubmit = async (data) => {
         try{
@@ -44,7 +47,7 @@ export default function AddFormation(){
                     <fieldset>
                         <div className="element">
                             <label>Titre de la formation :</label>
-                            <input type="text" { ...register("title", { required: true })} required name="titre" placeholder="Ajoutez un titre pour la formation"/>
+                            <input type="text" required name="titre" placeholder="Ajoutez un titre pour la formation" { ...register("title", { required: true })}/>
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
@@ -52,7 +55,7 @@ export default function AddFormation(){
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
-                            <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", { required: true }) } required />
+                            <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true}) } required />
                         </div>
                         <div className="element">
                             <button>Soumettre</button>
@@ -60,9 +63,19 @@ export default function AddFormation(){
                     </fieldset>
                     <fieldset>
                         <div className="element">
-                            <label>Descriptions de la formation :</label>
-                            <textarea cols="30" rows="10" { ...register("description", { required: true }) } required name="descriptions" placeholder="Redigez ici les descriptions ..."></textarea>
+                            <label>Descriptions de la formation : <p>nombre de mots : {wordCount} / 150</p></label>
+                            <textarea cols="30" rows="10" required name="descriptions" placeholder="Redigez ici les descriptions ..." { ...register("description", { required: "La description est obligatoire.", validate: {
+                                minWords: (value) => 
+                                    value.trim().split(/\s+/).length >= 50 ||
+                                "La description doit contenir au moins 50 mots.",
+                                maxWords: (value) =>
+                                    value.trim().split(/\s+/).length <= 150 ||
+                                "La description ne doit pas dépasser 150 mots."
+                            } }) } ></textarea>
                         </div>
+                        { errors.description && (
+                            <p className="message">{errors.description.message}</p>
+                        ) }
                     </fieldset>
                 </form>
             </section>

@@ -5,6 +5,7 @@ import axios from "axios"
 import '../../public/styles/registrations.css'
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from "react-hook-form"
+import Loading from "../components/loading"
 
 export default function Registrations(){
 
@@ -58,7 +59,7 @@ export default function Registrations(){
         .catch(()=>setUser(null))
     }, [id, setUser])
 
-    if(loading) return(<p>Chargement ...</p>)
+    if(loading) return(<Loading/>)
     if(!loading) return(
         <>
             <Nav></Nav>
@@ -102,7 +103,10 @@ export default function Registrations(){
                                     </fieldset>
                                 </div>
                                 <div className="element">
-                                    <button id="submition">Soumettre l'inscription</button>
+                                    <button id="submition">
+                                        Soumettre l'inscription
+                                        <img src="/images/send (2).png" />    
+                                    </button>
                                 </div>
                             </form>
                         </>

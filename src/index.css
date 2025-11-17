@@ -36,3 +36,11 @@ body, html {
 .ql-document::before {
   content: "📎"; /* icône trombone pour le bouton document */
 }
+
+.loader {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

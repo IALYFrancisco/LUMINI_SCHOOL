@@ -34,10 +34,8 @@ export default function FormationsList(){
     }
 
     const deleteFormation = (formationId) => {
-        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { _id: formationId }, {withCredentials: true})
-            .then((response)=>{
-                console.log(response)
-            })
+        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
+            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== formationId ) ) })
             .catch((err)=>{
                 console.log(err)
             })
@@ -53,7 +51,7 @@ export default function FormationsList(){
                         </button>
                     </Link>
             </div>
-            <ul className="formations">
+            <ul className="formations" ref={popUpRef}>
                 <li className="titles">
                     <ul>
                         <li className="title">Titres</li>
@@ -88,7 +86,7 @@ export default function FormationsList(){
                                             <p>non</p>
                                         </div> }
                                     </li>
-                                    <li className="formation-actions" ref={popUpRef}>
+                                    <li className="formation-actions">
                                         <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(formation._id);
