@@ -46,7 +46,7 @@ export function FormationsSlider() {
             >
             { formations && <>
                 { formations.map( formation => (
-                    <SwiperSlide>
+                    <SwiperSlide key={formation._id}>
                         <div className="card" key={formation._id}>
                             <div className="formation-image">
                                 <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
