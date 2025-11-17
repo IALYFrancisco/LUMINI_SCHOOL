@@ -15,6 +15,7 @@ import AddFormation from './components/dashboard/formations/addFormations'
 import FormationsList from './components/dashboard/formations/formations-list'
 import ProtectedRoute from './components/protected-route'
 import Registrations from './views/registrations'
+import ForNotAuthenticatedOnly from './components/for-not-authenticated-only'
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/blog' element={<Blog/>}></Route>
-        <Route path='/authentication/login' element={<Login/>}></Route>
-        <Route path='/authentication/register' element={<Register/>}></Route>
+        <Route path='/authentication/login' element={<ForNotAuthenticatedOnly><Login/></ForNotAuthenticatedOnly>}></Route>
+        <Route path='/authentication/register' element={<ForNotAuthenticatedOnly><Register/></ForNotAuthenticatedOnly>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/registrations/formation/:id' element={<ProtectedRoute><Registrations/></ProtectedRoute>}></Route>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
