@@ -1,6 +1,6 @@
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useAuth } from "../contexts/AuthContext"
@@ -10,8 +10,6 @@ export function Login(){
     var { setUser, setLoading } = useAuth()
 
     var { reset, register, handleSubmit } = useForm()
-
-    const navigate = useNavigate()
 
     var _handleSubmit = async (data) => {
         try{
@@ -28,7 +26,6 @@ export function Login(){
                 await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
-                        navigate('/')
                         reset()
                     })
                     .catch(()=>setUser(null))
