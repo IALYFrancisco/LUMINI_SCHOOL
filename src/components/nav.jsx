@@ -1,13 +1,23 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
+import axios from 'axios'
 
 function Nav(){
 
-    const { user } = useAuth()
+    const { user, setUser } = useAuth()
 
     const handleClick = () => {
         const element = document.querySelector('.mobile-menu')
         element.classList.toggle('opened')
+    }
+
+    const Logout = () => {
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+        .then(()=>{
+            setUser(null)
+        }).catch(()=>{
+            window.alert('Erreur de déconnexion')
+        })
     }
 
     return(
@@ -49,6 +59,13 @@ function Nav(){
                                     <Link to="/dashboard">
                                         <button>Dashboard</button>
                                     </Link>
+                                </li> 
+                            </ul>
+                        }{
+                            (user && user.status === 'user') &&
+                            <ul>
+                                <li>
+                                    <button onClick={Logout}>Se déconnecter</button>    
                                 </li> 
                             </ul>
                         }

@@ -7,12 +7,12 @@ export default function Sidebar(){
     const { user, setUser } = useAuth()
 
     const handleClick = () => {
-            axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
-            .then(()=>{
-                setUser(null)
-            }).catch(()=>{
-                window.alert('Erreur de déconnexion')
-            })
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+        .then(()=>{
+            setUser(null)
+        }).catch(()=>{
+            window.alert('Erreur de déconnexion')
+        })
     }
 
     return(
