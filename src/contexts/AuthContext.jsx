@@ -9,7 +9,7 @@ export const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
-            .then((response)=> setUser(response.data))
+            .then((response)=>setUser(response.data))
             .catch(()=>setUser(null))
             .finally(()=> setLoading(false))
     }, [])
