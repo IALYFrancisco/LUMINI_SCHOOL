@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import { useAuth } from "../contexts/AuthContext"
 
 function Nav(){
 
-    
+    const { user } = useAuth()
+
     const handleClick = () => {
         const element = document.querySelector('.mobile-menu')
         element.classList.toggle('opened')
@@ -27,18 +29,29 @@ function Nav(){
                         </ul>
                     </li>
                     <li>
-                        <ul>
-                            <li>
-                                <Link to="/authentication/login">
-                                    <button>Se connecter</button>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/authentication/register">
-                                    <button>Créer un compte</button>
-                                </Link>
-                            </li>
-                        </ul>
+                        { !user &&
+                            <ul>
+                                <li>
+                                    <Link to="/authentication/login">
+                                        <button>Se connecter</button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/authentication/register">
+                                        <button>Créer un compte</button>
+                                    </Link>
+                                </li> 
+                            </ul>
+                        }{
+                            user && (user.status === 'superuser' || user.status === 'admin') &&
+                            <ul>
+                                <li>
+                                    <Link to="/dashboard">
+                                        <button>Dashboard</button>
+                                    </Link>
+                                </li> 
+                            </ul>
+                        }
                     </li>
                     <li className="menu" onClick={handleClick}>
                         <img src="/images/menu.png" alt="" />
