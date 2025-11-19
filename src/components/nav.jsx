@@ -54,6 +54,12 @@ function Nav(){
                         <Link  onClick={handleClick} to="/formations">Formations</Link>
                     </li>
                     <li>Articles</li>
+                    <li onClick={handleClick}>
+                        <Link  onClick={handleClick} to="/authentication/login">Se connecter</Link>
+                    </li>
+                    <li onClick={handleClick}>
+                        <Link  onClick={handleClick} to="/authentication/register">Créer un compte</Link>
+                    </li>
                 </ul>
             </div>
         </div>
