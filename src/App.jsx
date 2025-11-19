@@ -27,7 +27,7 @@ function App() {
         <Route path='/authentication/register' element={<ForNotAuthenticatedOnly><Register/></ForNotAuthenticatedOnly>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/registrations/formation/:id' element={<ProtectedRoute><Registrations/></ProtectedRoute>}></Route>
-        <Route path='/dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
+        <Route path='/dashboard' element={<ProtectedRoute><ForNotAuthenticatedOnly><Dashboard/></ForNotAuthenticatedOnly></ProtectedRoute>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
             <Route path="formation/create" element={<AddFormation/>} />
