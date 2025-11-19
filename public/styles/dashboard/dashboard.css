@@ -30,6 +30,7 @@ aside > ul {
     display: flex;
     flex-direction: column;
     row-gap: 50px;
+    width: 75%;
 }
 
 aside .border {
