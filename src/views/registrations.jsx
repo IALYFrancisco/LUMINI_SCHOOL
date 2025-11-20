@@ -68,7 +68,7 @@ export default function Registrations(){
                     { formation.map( f =>
                         <span key={f._id}>
                             <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
-                            <p>Veuillez <a href="#submition" className="colored">soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
+                            <p>Veuillez <a href="#submition" className="colored" style={{ textDecoration: "underline" }}>soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
                             <form onSubmit={handleSubmit(_handleSubmit)}>
                                 <div>
                                     <fieldset disabled="disabled">
