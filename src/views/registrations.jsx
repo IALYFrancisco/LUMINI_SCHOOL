@@ -66,7 +66,7 @@ export default function Registrations(){
             { formation &&
                 <section className="registrations-container">
                     { formation.map( f =>
-                        <>
+                        <span key={f._id}>
                             <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
                             <p>Veuillez <a href="#submition" className="colored">soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
                             <form onSubmit={handleSubmit(_handleSubmit)}>
@@ -75,30 +75,30 @@ export default function Registrations(){
                                         <legend><h3>A propos de la formation</h3></legend>
                                         <div className="element">
                                             <label htmlFor="">Titre de la formation :</label>
-                                            <input type="text" name="" id="" value={f.title} />
+                                            <input type="text" name="" id="" value={f.title} readOnly />
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Les prérequis de la formation :</label>
-                                            <input type="text" name="" id="" value={f.prerequisites} />
+                                            <input type="text" name="" id="" value={f.prerequisites} readOnly />
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Déscription de la formation :</label>
-                                            <textarea name="" id="" value={f.description}></textarea>
+                                            <textarea name="" id="" value={f.description} readOnly ></textarea>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <legend><h3>Vos informations personnelles</h3></legend>
                                         <div className="element">
                                             <label htmlFor="">Votre nom :</label>
-                                            <input type="text" name="" id="" value={user.name} disabled />
+                                            <input type="text" name="" id="" value={user.name} disabled readOnly />
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Votre email :</label>
-                                            <input type="email" name="" id="" value={user.email} disabled />
+                                            <input type="email" name="" id="" value={user.email} disabled readOnly />
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
-                                            <input type="tel" name="" id="" value={user.phoneNumber} placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } required />
+                                            <input type="tel" name="" id="" value={user.phoneNumber ? user.phoneNumber : ""} placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } required />
                                         </div>
                                     </fieldset>
                                 </div>
@@ -109,7 +109,7 @@ export default function Registrations(){
                                     </button>
                                 </div>
                             </form>
-                        </>
+                        </span>
                     ) }
                 </section>
             }
