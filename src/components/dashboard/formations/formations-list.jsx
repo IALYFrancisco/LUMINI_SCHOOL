@@ -87,8 +87,7 @@ export default function FormationsList(){
                                         <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { formation.publishDate && <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p>}
-                                        { !formation.publishDate && <p>------------</p>}
+                                        { formation.published ? <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { formation.published && <div className="badge yes">
