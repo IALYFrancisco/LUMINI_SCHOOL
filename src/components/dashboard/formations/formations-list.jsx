@@ -41,9 +41,17 @@ export default function FormationsList(){
             })
     }
 
-    // const publishFormation = (formationId) => {
-    //     axios.patch(`${VITE_API_BASE_URL}/formation/update`)
-    // }
+    const publishFormation = async (formation) => {
+        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+        .then( async ()=>{
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            .then((response)=>{
+                setFormations(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }).catch((err)=>console.log(err))
+    }
 
     return(
         <>
@@ -96,7 +104,10 @@ export default function FormationsList(){
                                                 togglePopUp(formation._id);
                                                 deleteFormation(formation._id);
                                             }} >Supprimer</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>{ formation.published ? "Dépublier" : "Publier" }</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(formation._id);
+                                                publishFormation(formation);
+                                            }}>{ formation.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
