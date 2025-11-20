@@ -192,7 +192,7 @@ aside .actions p img {
 
 .badge.yes {
     color: var(--primary);
-    background-color: rgb(47, 255, 0);
+    background-color: rgb(106, 255, 0);
 }
 
 .badge.no {
