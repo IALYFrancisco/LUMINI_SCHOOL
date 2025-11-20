@@ -41,6 +41,10 @@ export default function FormationsList(){
             })
     }
 
+    // const publishFormation = (formationId) => {
+    //     axios.patch(`${VITE_API_BASE_URL}/formation/update`)
+    // }
+
     return(
         <>
             <div className="actions">
@@ -92,7 +96,7 @@ export default function FormationsList(){
                                                 togglePopUp(formation._id);
                                                 deleteFormation(formation._id);
                                             }} >Supprimer</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Publier</li>
+                                            <li onClick={ () => togglePopUp(formation._id) }>{ formation.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
