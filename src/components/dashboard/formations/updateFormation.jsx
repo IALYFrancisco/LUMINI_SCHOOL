@@ -42,7 +42,7 @@ export default function UpdateFormation(){
     return(
         <>
             <section className="add-formation-form">
-                <h3>Ajout d'une formation :</h3>
+                <h3>Modification d'une formation :</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
                         <div className="element">
