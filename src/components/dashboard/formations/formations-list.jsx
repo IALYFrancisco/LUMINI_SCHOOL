@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function FormationsList(){
+
+    var navigate = useNavigate()
 
     var [formations, setFormations] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
@@ -107,9 +109,10 @@ export default function FormationsList(){
                                                 togglePopUp(formation._id);
                                                 publishFormation(formation);
                                             }}>{ formation.published ? "Dépublier" : "Publier" }</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>
-                                                <Link to={`/formation/update/${formation._id}`}>Modifier</Link>
-                                            </li>
+                                            <li onClick={ () => {
+                                                togglePopUp(formation._id);
+                                                navigate(`/formation/update/${formation._id}`);
+                                            } }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
                                             <img src="/images/kebab.png" alt=""/>
