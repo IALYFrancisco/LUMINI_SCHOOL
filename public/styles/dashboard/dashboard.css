@@ -362,6 +362,10 @@ aside .actions p img {
     background-color: rgba(0, 0, 0, 0.163);
 }
 
+.pop-up li a {
+    color: var(--primary);
+}
+
 .formation-actions .custom-container {
     width: max-content;
 }

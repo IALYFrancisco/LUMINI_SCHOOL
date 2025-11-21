@@ -107,7 +107,9 @@ export default function FormationsList(){
                                                 togglePopUp(formation._id);
                                                 publishFormation(formation);
                                             }}>{ formation.published ? "Dépublier" : "Publier" }</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
+                                            <li onClick={ () => togglePopUp(formation._id) }>
+                                                <Link to={`/formation/update/${formation._id}`}>Modifier</Link>
+                                            </li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
                                             <img src="/images/kebab.png" alt=""/>
