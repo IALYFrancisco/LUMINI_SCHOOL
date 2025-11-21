@@ -17,6 +17,7 @@ import IsAuthenticated from './components/isAuthenticated'
 import Registrations from './views/registrations'
 import IsNotAuthenticated from './components/isNotAuthenticated'
 import IsAdminOrSuperuser from './components/isAdminOrSuperuser'
+import UpdateFormation from './components/dashboard/formations/updateFormation'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
             <Route path="formation/create" element={<AddFormation/>} />
+            <Route path="formation/update/:id" element={<UpdateFormation/>} />
           </Route>
           <Route path='articles' element={<Articles/>}/>
           <Route path='inscriptions' element={<Inscriptions/>}/>
