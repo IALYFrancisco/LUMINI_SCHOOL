@@ -84,12 +84,24 @@ function Nav(){
                         <Link  onClick={handleClick} to="/formations">Formations</Link>
                     </li>
                     <li>Articles</li>
-                    <li onClick={handleClick}>
-                        <Link  onClick={handleClick} to="/authentication/login">Se connecter</Link>
-                    </li>
-                    <li onClick={handleClick}>
-                        <Link  onClick={handleClick} to="/authentication/register">Créer un compte</Link>
-                    </li>
+                    { !user && <>
+                        <li onClick={handleClick}>
+                            <Link  onClick={handleClick} to="/authentication/login">Se connecter</Link>
+                        </li>
+                        <li onClick={handleClick}>
+                            <Link  onClick={handleClick} to="/authentication/register">Créer un compte</Link>
+                        </li>
+                    </> }
+                    { (user && user.status === 'user') && <>
+                        <li onClick={Logout}>
+                            Se déconnecter
+                        </li>
+                    </> }
+                    { user && (user.status === 'superuser' || user.status === 'admin') && <>
+                        <li onClick={handleClick}>
+                            <Link  onClick={handleClick} to="/dashboard">Dashboard</Link>
+                        </li>
+                    </> }
                 </ul>
             </div>
         </div>
