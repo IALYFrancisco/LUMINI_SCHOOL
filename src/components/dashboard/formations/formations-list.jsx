@@ -111,7 +111,7 @@ export default function FormationsList(){
                                             }}>{ formation.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => {
                                                 togglePopUp(formation._id);
-                                                navigate(`/formation/update/${formation._id}`);
+                                                navigate(`/dashboard/formation/update/${formation._id}`);
                                             } }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
