@@ -77,8 +77,30 @@
 .registrations-container form button {
     background-color: var(--primary);
     color: var(--secondary);
+    outline: none;
 }
 
 .registrations-container form button img {
     width: 30px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .registrations-container {
+        padding: 50px;
+    }
+    .registrations-container form > div {
+        column-gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .registrations-container {
+        padding: 50px 25px;
+    }
+    .registrations-container form > div {
+        display: block;
+    }
+    .registrations-container fieldset {
+        width: 100%;
+    }
 }

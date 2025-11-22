@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function FormationsList(){
+
+    var navigate = useNavigate()
 
     var [formations, setFormations] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
@@ -41,6 +43,18 @@ export default function FormationsList(){
             })
     }
 
+    const publishFormation = async (formation) => {
+        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+        .then( async ()=>{
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            .then((response)=>{
+                setFormations(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }).catch((err)=>console.log(err))
+    }
+
     return(
         <>
             <div className="actions">
@@ -75,8 +89,7 @@ export default function FormationsList(){
                                         <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { formation.publishDate && <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p>}
-                                        { !formation.publishDate && <p>------------</p>}
+                                        { formation.published ? <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { formation.published && <div className="badge yes">
@@ -92,8 +105,14 @@ export default function FormationsList(){
                                                 togglePopUp(formation._id);
                                                 deleteFormation(formation._id);
                                             }} >Supprimer</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Publier</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(formation._id);
+                                                publishFormation(formation);
+                                            }}>{ formation.published ? "Dépublier" : "Publier" }</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(formation._id);
+                                                navigate(`/dashboard/formation/update/${formation._id}`);
+                                            } }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
                                             <img src="/images/kebab.png" alt=""/>

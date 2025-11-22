@@ -419,7 +419,7 @@ footer a {
     color: var(--primary);
     align-items: center;
     height: 100%;
-    display: flex;
+    display: contents;
 }
 
 footer p {
@@ -945,10 +945,10 @@ footer .actions button {
     width: 100%;
     height: 100vh;
     top: 0;
-    background-color: transparent;
+    background-color: #1b22329c;
     backdrop-filter: blur(10px);
-    position: absolute;
-    z-index: 2;
+    position: fixed;
+    z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;

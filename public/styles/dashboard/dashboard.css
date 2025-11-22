@@ -30,6 +30,7 @@ aside > ul {
     display: flex;
     flex-direction: column;
     row-gap: 50px;
+    width: 75%;
 }
 
 aside .border {
@@ -191,7 +192,7 @@ aside .actions p img {
 
 .badge.yes {
     color: var(--primary);
-    background-color: rgb(47, 255, 0);
+    background-color: rgb(106, 255, 0);
 }
 
 .badge.no {
@@ -359,6 +360,10 @@ aside .actions p img {
 
 .pop-up li:hover {
     background-color: rgba(0, 0, 0, 0.163);
+}
+
+.pop-up li a {
+    color: var(--primary);
 }
 
 .formation-actions .custom-container {
