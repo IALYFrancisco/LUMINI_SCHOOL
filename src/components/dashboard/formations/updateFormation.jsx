@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
@@ -6,11 +5,8 @@ import axios from "axios"
 export default function UpdateFormation(){
 
     var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
-    var [ title, setTitle ] = useState('')
     var [ image, setImage ] = useState('')
-    var [ prerequisites, setPrerequisites ] = useState('')
-    var [ description, setDescription ] = useState('')
-
+    
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
@@ -24,12 +20,8 @@ export default function UpdateFormation(){
             
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
                 { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
-            ).then((res)=>{
+            ).then(()=>{
                 reset()
-                setTitle("")
-                setPrerequisites("")
-                setDescription("")
-                setImage(null)
             })
             .catch((err)=> console.log(err))
 
