@@ -18,11 +18,11 @@ export default function UpdateFormation(){
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>{
-            setFomation(response.data)
+            setFomation(response.data[0])
             reset({
-                title: response.data.title,
-                prerequisites: response.data.prerequisites,
-                description: response.data.description
+                title: response.data[0].title,
+                prerequisites: response.data[0].prerequisites,
+                description: response.data[0].description
             })
         })
     },[id, reset])
@@ -52,7 +52,7 @@ export default function UpdateFormation(){
         }
 
         try{
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
                 { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
             ).then(()=>{
                 reset()
@@ -64,8 +64,6 @@ export default function UpdateFormation(){
             console.log(err)
         }
     }
-
-    if(!formation) return <p>Chargement...</p>
 
     return(
         <>
@@ -79,14 +77,14 @@ export default function UpdateFormation(){
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
-                            <input type="file" name="image" id="" required accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}/>
+                            <input type="file" name="image" id="" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}/>
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
                             <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
                         </div>
                         <div className="element">
-                            <button>Soumettre</button>
+                            <button disabled={isModified}>Soumettre</button>
                         </div>
                     </fieldset>
                     <fieldset>
