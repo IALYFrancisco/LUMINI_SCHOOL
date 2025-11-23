@@ -84,7 +84,7 @@ export default function UpdateFormation(){
                             <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
                         </div>
                         <div className="element">
-                            <button disabled={isModified}>Soumettre</button>
+                            <button disabled={!isModified}>Soumettre</button>
                         </div>
                     </fieldset>
                     <fieldset>
