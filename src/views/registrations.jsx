@@ -49,7 +49,10 @@ export default function Registrations(){
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
-        .then((response)=>setFormation(response.data))
+        .then((response)=>{
+            setFormation(response.data);
+            reset()
+        })
         .catch(()=>setFormation(null))
         .finally(()=>setLoading(false))
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
@@ -98,7 +101,7 @@ export default function Registrations(){
                                         </div>
                                         <div className="element">
                                             <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
-                                            <input type="tel" name="" id="" value={user.phoneNumber ? user.phoneNumber : ""} placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } required />
+                                            <input type="tel" name="" id="" placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true }) } required />
                                         </div>
                                     </fieldset>
                                 </div>
