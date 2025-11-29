@@ -77,7 +77,7 @@ export default function UpdateFormation(){
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
-                            <input type="file" name="image" id="" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}/>
+                            <input type="file" name="image" id="" accept="image/jpeg, image/png" onChange={(e) => {setImage(e.target.files[0])}}/>
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
