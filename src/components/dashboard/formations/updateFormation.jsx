@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 export default function UpdateFormation(){
 
     var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
+    var [formation, setFormation] = useState(null)
     var [ image, setImage ] = useState(null)
     const { id } = useParams()
 
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
+    var watchAll = watch()
+
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>{
+            setFormation(response.data[0])
             reset({
                 title: response.data[0].title,
-                prerequisites: response.data[0].prerequisites,
+                prerequisites: response.data[0].prerequisites[0],
                 description: response.data[0].description
             })
         })
@@ -29,18 +33,24 @@ export default function UpdateFormation(){
         
         if(!isModified) return;
 
-        const formation = new FormData()
-        formation.append("title", data.title)
-        formation.append("prerequisites", data.prerequisites)
-        formation.append("description", data.description)
-        formation.append("_id", id)
-
-        if(image){
-            formation.append("poster", image)
+        const _formation = new FormData()
+        
+        if(formation.title !== watchAll.title){
+            _formation.append("title", data.title)
         }
+        if(formation.prerequisites !== watchAll.prerequisites){
+            _formation.append("prerequisites", data.prerequisites)
+        }
+        if(formation.description !== watchAll.description){
+            _formation.append("description", data.description)
+        }
+        if(image){
+            _formation.append("poster", image)
+        }
+        _formation.append("_id", id)
 
         try{
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, formation,
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
                 { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
             ).then(()=>{
                 reset()
@@ -71,7 +81,7 @@ export default function UpdateFormation(){
                             <label>Les prérequis d'une formation :</label>
                             <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
                         </div>
-                        <div className="element">
+                        <div className="element update-actions">
                             <button disabled={!isModified}>Soumettre</button>
                         </div>
                     </fieldset>
