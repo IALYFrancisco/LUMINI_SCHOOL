@@ -42,6 +42,7 @@ export default function UpdateFormation(){
             _formation.append("prerequisites", data.prerequisites)
         }
         if(formation.description !== watchAll.description){
+            console.log(formation, watchAll)
             _formation.append("description", data.description)
         }
         if(image){
@@ -54,7 +55,6 @@ export default function UpdateFormation(){
                 { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
             ).then(()=>{
                 reset()
-                alert("Mis à jour effectué !")
             })
             .catch((err)=> console.log(err))
         }
