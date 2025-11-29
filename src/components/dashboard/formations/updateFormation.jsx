@@ -5,20 +5,16 @@ import { useParams } from "react-router-dom"
 
 export default function UpdateFormation(){
 
-    var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
+    var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
     var [ image, setImage ] = useState(null)
-    const [ formation, setFomation ] = useState(null)
-    const [ isModified, setIsModified ] = useState(false)
     const { id } = useParams()
-    
-    const watchAll = watch()
+
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>{
-            setFomation(response.data[0])
             reset({
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites,
@@ -27,32 +23,24 @@ export default function UpdateFormation(){
         })
     },[id, reset])
 
-    useEffect(()=>{
-        if(!formation) return
-        const changed = 
-            watchAll.title !== formation.title ||
-            watchAll.prerequisites !== formation.prerequisites ||
-            watchAll.description !== formation.description ||
-            image !== null;
-        setIsModified(changed)
-    }, [watchAll, image, formation])
+    const isModified = isDirty || image
 
     const onSubmit = async (data) => {
         
         if(!isModified) return;
 
-        const _formation = new FormData()
-        _formation.append("title", data.title)
-        _formation.append("prerequisites", data.prerequisites)
-        _formation.append("description", data.description)
-        _formation.append("_id", id)
+        const formation = new FormData()
+        formation.append("title", data.title)
+        formation.append("prerequisites", data.prerequisites)
+        formation.append("description", data.description)
+        formation.append("_id", id)
 
         if(image){
-            _formation.append("poster", image)
+            formation.append("poster", image)
         }
 
         try{
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, formation,
                 { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
             ).then(()=>{
                 reset()
