@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import '../../../../public/styles/dashboard/inscription.css'
 
 export default function Inscriptions(){
 
@@ -16,12 +17,13 @@ export default function Inscriptions(){
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'une inscription"/>
             </div>
-            <ul className="formations">
+            <ul className="inscriptions">
                 <li className="titles">
                     <ul>
                         <li className="title">Titres du formation</li>
                         <li className="description">Clients inscrits</li>
                         <li className="addDate">Date de l'inscription</li>
+                        <li className="addDate">Numéro mobile du client</li>
                     </ul>
                 </li>
                 { registrations && <li>
@@ -35,6 +37,9 @@ export default function Inscriptions(){
                                     </li>
                                     <li  className="addDate">
                                         <p>{ new Date(registration.registrationDate).toLocaleString("fr-FR") }</p>
+                                    </li>
+                                    <li  className="addDate">
+                                        <p>{ registration.user.phoneNumber }</p>
                                     </li>
                                 </ul>
                                 )

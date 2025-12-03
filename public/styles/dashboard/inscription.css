@@ -1,0 +1,32 @@
+.inscriptions {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.inscriptions > li {
+    position: relative;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.inscriptions .title,
+.inscriptions .description,
+.inscriptions .addDate,
+.inscriptions .publicationDate {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.inscriptions .published,
+.inscriptions .formation-actions {
+    width: 10%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.inscriptions .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
