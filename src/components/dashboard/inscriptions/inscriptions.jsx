@@ -23,7 +23,8 @@ export default function Inscriptions(){
                         <li className="title">Titres du formation</li>
                         <li className="description">Clients inscrits</li>
                         <li className="addDate">Date de l'inscription</li>
-                        <li className="addDate">Numéro mobile du client</li>
+                        <li className="addDate">Téléphone du client</li>
+                        <li className="addDate">Actions</li>
                     </ul>
                 </li>
                 { registrations && <li>
@@ -40,6 +41,11 @@ export default function Inscriptions(){
                                     </li>
                                     <li  className="addDate">
                                         <p>{ registration.user.phoneNumber }</p>
+                                    </li>
+                                    <li className="formation-actions">
+                                        <div className="custom-container">
+                                            <img src="/images/kebab.png" alt=""/>
+                                        </div>
                                     </li>
                                 </ul>
                                 )

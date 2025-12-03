@@ -14,16 +14,10 @@
 .inscriptions .title,
 .inscriptions .description,
 .inscriptions .addDate,
-.inscriptions .publicationDate {
+.inscriptions .publicationDate,
+.inscriptions .formation-actions {
     width: 20%;
     padding-left: 10px;
-}
-
-.inscriptions .published,
-.inscriptions .formation-actions {
-    width: 10%;
-    padding-left: 10px;
-    position: relative;
 }
 
 .inscriptions .titles {
