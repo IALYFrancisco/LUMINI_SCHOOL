@@ -1,5 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import "../../../../public/styles/dashboard/inscription.css"
 
 export default function Inscriptions(){
 
@@ -16,7 +18,7 @@ export default function Inscriptions(){
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'une inscription"/>
             </div>
-            <ul className="formations">
+            <ul className="inscriptions">
                 <li className="titles">
                     <ul>
                         <li className="title">Titres du formation</li>
@@ -30,7 +32,9 @@ export default function Inscriptions(){
                                         <h5>{registration.formation.title}</h5>
                                     </li>
                                     <li  className="clients-subscribed">
-                                        <p>23</p>
+                                        <Link>
+                                            <p>23</p>
+                                        </Link>
                                     </li>
                                 </ul>
                                 )
