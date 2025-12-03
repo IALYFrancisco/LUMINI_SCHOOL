@@ -37,19 +37,6 @@ export default function Inscriptions(){
                                     <li  className="addDate">
                                         <p>{ new Date(registration.registrationDate).toLocaleString("fr-FR") }</p>
                                     </li>
-                                    {/* <li className="formation-actions">
-                                        <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
-                                            <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                deleteFormation(formation._id);
-                                            }} >Supprimer</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Publier</li>
-                                            <li onClick={ () => togglePopUp(formation._id) }>Modifier</li>
-                                        </ul>
-                                        <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
-                                            <img src="/images/kebab.png" alt=""/>
-                                        </div>
-                                    </li> */}
                                 </ul>
                                 )
                             )
