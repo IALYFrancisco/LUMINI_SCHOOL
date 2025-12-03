@@ -215,6 +215,10 @@ aside .actions p img {
     position: relative;
 }
 
+.formation .clients-subscribed {
+    font-weight: 800;
+}
+
 .formation .formation-actions:hover {
     cursor: pointer;
 }
