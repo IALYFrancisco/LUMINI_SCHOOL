@@ -22,7 +22,6 @@ export default function Inscriptions(){
                         <li className="title">Titres du formation</li>
                         <li className="description">Clients inscrits</li>
                         <li className="addDate">Date de l'inscription</li>
-                        <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
                 { registrations && <li>
