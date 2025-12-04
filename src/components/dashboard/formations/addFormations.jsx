@@ -34,13 +34,14 @@ export default function AddFormation(){
                 await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
                     { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
                 ).then(()=>{
+                    setImage(null)
                     reset()
                 })
                 .catch((err)=> console.log(err))
             }else{
                 const formation = {
                     title: data.title,
-                    poster: data.url,
+                    image: data.url,
                     prerequisites: data.prerequisites,
                     description: data.description,
                 }

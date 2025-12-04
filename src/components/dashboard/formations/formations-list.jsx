@@ -46,7 +46,7 @@ export default function FormationsList(){
     const publishFormation = async (formation) => {
         await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
         .then( async ()=>{
-            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data)
             }).catch((err)=>{
