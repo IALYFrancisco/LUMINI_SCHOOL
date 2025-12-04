@@ -27,7 +27,6 @@ export default function UpdateFormation(){
                 description: response.data[0].description,
                 url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
             })
-            // setImage
         })
     },[id, reset])
 
