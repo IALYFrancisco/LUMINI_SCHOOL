@@ -3,14 +3,14 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 export default function AddFormation(){
-
+    
     var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
+    const watchAll = watch()
     var [ image, setImage ] = useState('')
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)     
-    const descriptionValue = watch("description") || ""
+    const descriptionValue = watchAll.description || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
-    const watchAll = watch()
 
     useEffect(()=>{
         if (watchAll.url) setUrlIsDefined(true)
