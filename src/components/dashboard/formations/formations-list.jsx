@@ -11,7 +11,7 @@ export default function FormationsList(){
     const popUpRef = useRef(null)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data)
             }).catch((err)=>{
