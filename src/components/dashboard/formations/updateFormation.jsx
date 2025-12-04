@@ -8,6 +8,8 @@ export default function UpdateFormation(){
     var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
     var [formation, setFormation] = useState(null)
     var [ image, setImage ] = useState(null)
+    var [ urlIsDefined, setUrlIsDefined ] = useState(false)
+    var [ imageIsDefined, setImageIsDefined ] = useState(false)
     const { id } = useParams()
 
     const descriptionValue = watch("description") || ""
@@ -22,10 +24,21 @@ export default function UpdateFormation(){
             reset({
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites[0],
-                description: response.data[0].description
+                description: response.data[0].description,
+                url: response.data[0].image,
             })
         })
     },[id, reset])
+
+    useEffect(()=>{
+        
+        if(watchAll.url) setUrlIsDefined(true)
+        else setUrlIsDefined(false)
+
+        if(image) setImageIsDefined(true)
+        else setImageIsDefined(false)
+
+    }, [image, watchAll])
 
     const isModified = isDirty || image
 
@@ -75,7 +88,8 @@ export default function UpdateFormation(){
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
-                            <input type="file" name="image" id="" accept="image/jpeg, image/png" onChange={(e) => {setImage(e.target.files[0])}}/>
+                            <input disabled={ urlIsDefined } type="file" name="image" id="" accept="image/jpeg, image/png" onChange={(e) => {setImage(e.target.files[0])}}/>
+                            <input disabled={ imageIsDefined } type="url" name="" id="" { ...register("url") } />
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
