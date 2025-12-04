@@ -25,7 +25,7 @@ export default function UpdateFormation(){
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites[0],
                 description: response.data[0].description,
-                url: response.data[0].image,
+                url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
             })
         })
     },[id, reset])
@@ -45,35 +45,47 @@ export default function UpdateFormation(){
     const onSubmit = async (data) => {
         
         if(!isModified) return;
+        else {
 
-        const _formation = new FormData()
-        
-        if(formation.title !== watchAll.title){
-            _formation.append("title", data.title)
-        }
-        if(formation.prerequisites !== watchAll.prerequisites){
-            _formation.append("prerequisites", data.prerequisites)
-        }
-        if(formation.description !== watchAll.description){
-            console.log(formation, watchAll)
-            _formation.append("description", data.description)
-        }
-        if(image){
-            _formation.append("poster", image)
-        }
-        _formation.append("_id", id)
+            try {
 
-        try{
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
-                { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
-            ).then(()=>{
-                reset()
-            })
-            .catch((err)=> console.log(err))
+                let _formation = new FormData()
+                    
+                if(formation.title !== watchAll.title && data.title !== ""){
+                    _formation.append("title", data.title)
+                }
+                if(formation.prerequisites[0] !== watchAll.prerequisites && data.prerequisites !== ""){
+                    _formation.append("prerequisites", data.prerequisites)
+                }
+                if(formation.description !== watchAll.description  && data.description !== ""){
+                    _formation.append("description", data.description)
+                }
+                if(image){
+                    _formation.append("poster", image)
+                }
+                if(`${import.meta.env.VITE_API_BASE_URL}/${formation.image}` !== data.url && data.url !== ""){
+                    _formation.append("image", data.url)
+                }
+
+                _formation.append("_id", id)
+
+                await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
+                    { 
+                        headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
+                        withCredentials: true
+                    }
+                ).then(()=>{
+                    reset()
+                    setImage(null)
+                })
+                .catch((err)=> console.log(err))
+                
+            }catch(err){
+                console.log(err)
+            }
+            
         }
-        catch(err){
-            console.log(err)
-        }
+
     }
 
     return(
