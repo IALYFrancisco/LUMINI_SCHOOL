@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 export default function UpdateFormation(){
 
