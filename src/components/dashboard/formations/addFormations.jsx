@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
@@ -6,9 +6,16 @@ export default function AddFormation(){
 
     var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
     var [ image, setImage ] = useState('')
-    
+    var [ urlIsDefined, setUrlIsDefined ] = useState(false)     
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
+
+    const watchAll = watch()
+
+    useEffect(()=>{
+        if (watchAll.url) setUrlIsDefined(true)
+        else setUrlIsDefined(false)
+    }, [watchAll])
 
     const onSubmit = async (data) => {
         try{
@@ -43,7 +50,8 @@ export default function AddFormation(){
                         </div>
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
-                            <input type="file" name="image" id="" required accept="image/jpeg, image/png" onChange={(e) => setImage(e.target.files[0])}/>
+                            <input disabled={ urlIsDefined } type="file" name="image" id="" required accept="image/jpeg, image/png" onChange={(e) => setImage(e.target.files[0])}/>
+                            <input type="url" name="image" id="" { ...register("url") } />
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>

@@ -300,7 +300,8 @@ aside .actions p img {
 }
 
 .add-formation-form input[type="text"],
-.add-formation-form textarea {
+.add-formation-form textarea,
+.add-formation-form input[type="url"] {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #1b223261;
