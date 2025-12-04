@@ -7,15 +7,21 @@ export default function AddFormation(){
     var { register, handleSubmit, reset, formState: { errors }, watch } = useForm()
     const watchAll = watch()
     var [ image, setImage ] = useState('')
-    var [ urlIsDefined, setUrlIsDefined ] = useState(false)     
+    var [ urlIsDefined, setUrlIsDefined ] = useState(false)  
+    var [ imageIsDefined, setImageIsDefined ] = useState(false)  
     const descriptionValue = watchAll.description || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
 
     useEffect(()=>{
+
         if (watchAll.url) setUrlIsDefined(true)
         else setUrlIsDefined(false)
-    }, [watchAll])
+        
+        if (image) setImageIsDefined(true)
+        else setImageIsDefined(false)
+
+    }, [image, watchAll])
 
     const onSubmit = async (data) => {
         try{
@@ -51,7 +57,7 @@ export default function AddFormation(){
                         <div className="element">
                             <label>Image de mis en avant pour la formation :</label>
                             <input disabled={ urlIsDefined } type="file" name="image" id="" required accept="image/jpeg, image/png" onChange={(e) => setImage(e.target.files[0])}/>
-                            <input type="url" name="image" id="" { ...register("url") } />
+                            <input disabled={ imageIsDefined } type="url" name="image" id="" { ...register("url") } placeholder="Utilisez cet champ pour une image en ligne" />
                         </div>
                         <div className="element">
                             <label>Les prérequis d'une formation :</label>
