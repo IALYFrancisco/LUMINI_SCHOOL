@@ -7,7 +7,7 @@ export default function UpdateFormation(){
 
     var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
     var [formation, setFormation] = useState(null)
-    var [ image, setImage ] = useState(null)
+    var [ image, setImage ] = useState('')
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     const { id } = useParams()
@@ -27,6 +27,7 @@ export default function UpdateFormation(){
                 description: response.data[0].description,
                 url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
             })
+            // setImage
         })
     },[id, reset])
 
@@ -57,7 +58,7 @@ export default function UpdateFormation(){
                 if(formation.prerequisites[0] !== watchAll.prerequisites && data.prerequisites !== ""){
                     _formation.append("prerequisites", data.prerequisites)
                 }
-                if(formation.description !== watchAll.description  && data.description !== ""){
+                if(formation.description !== watchAll.description && data.description !== ""){
                     _formation.append("description", data.description)
                 }
                 if(image){
@@ -67,15 +68,22 @@ export default function UpdateFormation(){
                     _formation.append("image", data.url)
                 }
 
-                _formation.append("_id", id)
-
-                await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update`, _formation,
+                await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update?_id=${id}`, _formation,
                     { 
                         headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
                         withCredentials: true
                     }
                 ).then(()=>{
-                    reset()
+                    axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
+                    .then((response)=>{
+                        setFormation(response.data[0])
+                        reset({
+                            title: response.data[0].title,
+                            prerequisites: response.data[0].prerequisites[0],
+                            description: response.data[0].description,
+                            url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
+                        })
+                    })
                     setImage(null)
                 })
                 .catch((err)=> console.log(err))
