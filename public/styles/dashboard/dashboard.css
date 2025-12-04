@@ -310,7 +310,8 @@ aside .actions p img {
 }
 
 .add-formation-form input[type="text"]:focus,
-.add-formation-form textarea:focus {
+.add-formation-form textarea:focus,
+.add-formation-form input[type="url"]:focus {
     transition: .25s;
     border-color: #1b2232;
 }
@@ -320,7 +321,7 @@ aside .actions p img {
 }
 
 .add-formation-form textarea {
-    height: 238px;
+    height: 288px;
     resize: none;
 }
 
