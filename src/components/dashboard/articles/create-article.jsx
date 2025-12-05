@@ -79,7 +79,7 @@ export default function CreateArticle() {
 
       try {
         setUploading(true);
-        const res = await axios.post("http://localhost:5000/upload/document", formData, {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-file`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
 
