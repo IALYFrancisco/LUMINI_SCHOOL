@@ -11,7 +11,7 @@ export default function ArticlesList(){
     const popUpRef = useRef(null)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data)
             }).catch((err)=>{
@@ -58,10 +58,10 @@ export default function ArticlesList(){
     return(
         <>
             <div className="actions">
-                <input type="text" name="" id="" placeholder="Recherche de formation"/>
+                <input type="text" name="" id="" placeholder="Recherche d'un article'"/>
                     <Link to="/dashboard/formation/create">
                         <button>
-                            Ajouter une formation
+                            Créer un article
                         </button>
                     </Link>
             </div>
