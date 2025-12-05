@@ -9,6 +9,7 @@ import Settings from './components/dashboard/settings'
 import Formations from './components/dashboard/formations/formations'
 import Inscriptions from './components/dashboard/inscriptions/inscriptions'
 import Articles from './components/dashboard/articles/index'
+import ArticlesList from './components/dashboard/articles/article-list'
 import Users from './components/dashboard/users'
 import Blog from './views/blog'
 import AddFormation from './components/dashboard/formations/addFormations'
@@ -35,7 +36,9 @@ function App() {
             <Route path="formation/create" element={<AddFormation/>} />
             <Route path="formation/update/:id" element={<UpdateFormation/>} />
           </Route>
-          <Route path='articles' element={<Articles/>}/>
+          <Route path='articles' element={<Articles/>}>
+            <Route path='' element={<ArticlesList/>}/>
+          </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
           <Route path='users' element={<Users/>}/>
           <Route path='settings' element={<Settings/>}/>
