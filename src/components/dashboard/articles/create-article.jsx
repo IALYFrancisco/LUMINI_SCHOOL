@@ -65,8 +65,7 @@ export default function CreateArticle() {
     };
   };
 
-  // --- Upload document ---
-  const handleDocumentUpload = async () => {
+const handleDocumentUpload = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg");
