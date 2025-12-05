@@ -94,13 +94,11 @@ const handleDocumentUpload = async () => {
     };
   };
 
-  // --- Publier l'article ---
-  const handleSubmit = async () => {
-    const cleanHTML = DOMPurify.sanitize(content);
-    await axios.post("http://localhost:5000/articles", { content: cleanHTML });
-    alert("✅ Article enregistré !");
-    setContent("");
-  };
+const handleSubmit = async () => {
+  const cleanHTML = DOMPurify.sanitize(content);
+  await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, { content: cleanHTML }, { withCredentials: true });
+  setContent("");
+};
 
   return (
     <div className="add-article">
