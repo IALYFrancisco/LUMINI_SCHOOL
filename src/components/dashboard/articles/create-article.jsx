@@ -121,11 +121,7 @@ export default function CreateArticle() {
             placeholder="Écrivez votre article ici..."
         />
 
-        <button
-            onClick={handleSubmit}
-        >
-            Soumettre
-        </button>
+        <button onClick={handleSubmit}>Soumettre</button>
 
         <div
             style={{
