@@ -86,7 +86,7 @@ export default function CreateArticle() {
 
         const quill = quillRef.current.getEditor();
         const range = quill.getSelection();
-        quill.insertText(range.index, file.name, "link", res.data.url);
+        quill.insertText(range.index, file.name, "link", `${import.meta.env.VITE_API_BASE_URL}${res.data.url}`);
       } catch (err) {
         console.error("Erreur upload document:", err);
       } finally {
