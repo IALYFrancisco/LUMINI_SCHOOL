@@ -46,17 +46,18 @@ export default function CreateArticle() {
     input.onchange = async () => {
       const file = input.files[0];
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("image", file);
 
       try {
         setUploading(true);
-        const res = await axios.post("http://localhost:5000/upload/image", formData, {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-illustration`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true
         });
 
         const quill = quillRef.current.getEditor();
         const range = quill.getSelection();
-        quill.insertEmbed(range.index, "image", res.data.url);
+        quill.insertEmbed(range.index, "image", `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`);
       } catch (err) {
         console.error("Erreur upload image:", err);
       } finally {
