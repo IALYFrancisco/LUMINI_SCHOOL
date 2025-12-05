@@ -130,7 +130,7 @@ const _handleSubmit = (data) => {
             </div>
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
-              <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required />
+              <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
             </div>
           </fieldset>
           <fieldset>
