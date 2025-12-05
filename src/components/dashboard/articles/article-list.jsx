@@ -6,14 +6,14 @@ export default function ArticlesList(){
 
     var navigate = useNavigate()
 
-    var [formations, setFormations] = useState([])
+    var [articles, setArticles] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
-                setFormations(response.data)
+                setArticles(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -37,10 +37,11 @@ export default function ArticlesList(){
 
     const deleteFormation = (formationId) => {
         axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
-            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== formationId ) ) })
+            .then(()=>{ setArticles( (prev) => prev.filter( f => f._id !== formationId ) ) })
             .catch((err)=>{
                 console.log(err)
-            })
+            }
+        )
     }
 
     const publishFormation = async (formation) => {
@@ -48,7 +49,7 @@ export default function ArticlesList(){
         .then( async ()=>{
             await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
-                setFormations(response.data)
+                setArticles(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -69,52 +70,52 @@ export default function ArticlesList(){
                 <li className="titles">
                     <ul>
                         <li className="title">Titres</li>
-                        <li className="description">Descriptions</li>
+                        <li className="description">Contenus de l'article</li>
                         <li className="addDate">Date d'ajout</li>
                         <li className="publicationDate">Date de publication</li>
                         <li className="published">Publiée</li>
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
-                    { formations && <li>
-                            { formations.map( formation => (
-                                <ul className="formation" key={formation._id}>
+                    { articles && <li>
+                            { articles.map( article => (
+                                <ul className="formation" key={article._id}>
                                     <li className="title">
-                                        <h5>{formation.title}</h5>
+                                        <h5>{article.title}</h5>
                                     </li>
                                     <li  className="description">
-                                        <p>{formation.description}</p>
+                                        <p>{article.contents}</p>
                                     </li>
                                     <li  className="addDate">
-                                        <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
+                                        <p>{ new Date(article.createdAt).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { formation.published ? <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
+                                        { article.published ? <p>{ new Date(article.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
-                                        { formation.published && <div className="badge yes">
+                                        { article.published && <div className="badge yes">
                                             <p>oui</p>
                                         </div> }
-                                        { !formation.published && <div className="badge no">
+                                        { !article.published && <div className="badge no">
                                             <p>non</p>
                                         </div> }
                                     </li>
                                     <li className="formation-actions">
-                                        <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
+                                        <ul className={ activePopUp === article._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                deleteFormation(formation._id);
+                                                togglePopUp(article._id);
+                                                deleteFormation(article._id);
                                             }} >Supprimer</li>
                                             <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                publishFormation(formation);
-                                            }}>{ formation.published ? "Dépublier" : "Publier" }</li>
+                                                togglePopUp(article._id);
+                                                publishFormation(article);
+                                            }}>{ article.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                navigate(`/dashboard/formation/update/${formation._id}`);
+                                                togglePopUp(article._id);
+                                                navigate(`/dashboard/formation/update/${article._id}`);
                                             } }>Modifier</li>
                                         </ul>
-                                        <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
+                                        <div className="custom-container" onClick={ () => togglePopUp(article._id) }>
                                             <img src="/images/kebab.png" alt=""/>
                                         </div>
                                     </li>
