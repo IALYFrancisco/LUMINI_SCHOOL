@@ -40,7 +40,7 @@ export default function CreateArticle() {
   const handleImageUpload = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
+    input.setAttribute("accept", "image/jpeg, image/png");
     input.click();
 
     input.onchange = async () => {
