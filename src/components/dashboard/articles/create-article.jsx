@@ -100,30 +100,47 @@ const handleSubmit = async () => {
 };
 
   return (
-    <div className="add-article">
+    <>
+      <div className="add-article">
         <h3>Création d'un article :</h3>
-        {uploading && (
-            <p className="upload-message">
-              🔄 Upload en cours...
-            </p>
-        )}
+          {uploading && (
+              <p className="upload-message">
+                🔄 Upload en cours...
+              </p>
+          )}
+        <form>
+          <fieldset>
+            <div className="element">
+              <label htmlFor="">Titre de l'article :</label>
+              <input type="text" name="" id="" placeholder="Ajouter un titre à l'article"/>
+            </div>
+            <div className="element">
+              <label htmlFor="">Image de mis en avant pour l'article :</label>
+              <input type="file" name="" id="" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="element">
+                <label htmlFor="">Contenus de l'article :</label>
+                <ReactQuill
+                    ref={quillRef}
+                    theme="snow"
+                    value={content}
+                    onChange={setContent}
+                    modules={modules}
+                    formats={formats}
+                    placeholder="Écrivez votre article ici..."
+                />
+              <button onClick={handleSubmit}>Soumettre</button>
+            </div>
+          </fieldset>
+        </form>
 
-        <ReactQuill
-            ref={quillRef}
-            theme="snow"
-            value={content}
-            onChange={setContent}
-            modules={modules}
-            formats={formats}
-            placeholder="Écrivez votre article ici..."
-        />
-
-        <button onClick={handleSubmit}>Soumettre</button>
-
-        <div className="previsualisation">
-            <h3>Prévisualisation :</h3>
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
-        </div>
-    </div>
+          <div className="previsualisation">
+              <h3>Prévisualisation :</h3>
+              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+          </div>
+      </div>
+    </>
   );
 };

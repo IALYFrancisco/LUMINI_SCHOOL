@@ -7,13 +7,17 @@
     margin-bottom: 30px;
 }
 
-.add-article > button {
+.add-article form fieldset .element > button {
     margin-top: 30px;
     font-size: 13px;
     color: var(--secondary);
     background-color: var(--fourth);
     font-weight: 600;
     padding: 10px 15px;
+    border: none;
+}
+
+.add-article form fieldset {
     border: none;
 }
 
@@ -33,4 +37,43 @@
 
 .add-article .previsualisation p {
     font-size: 14px;
+}
+
+.add-article form fieldset .element label {
+    font-weight: 900;
+    display: block;
+    color: var(--primary);
+}
+
+.quill {
+    margin-top: 10px;
+}
+
+.add-article form fieldset:nth-child(1) {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-article form fieldset:nth-child(1) .element {
+    width: 50%;
+}
+
+.add-article form fieldset:nth-child(1) .element input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.add-article form fieldset:nth-child(1) .element input[type="file"]{
+    margin-top: 10px;
+}
+
+.add-article form fieldset:nth-child(2) {
+    margin-top: 30px;
 }
