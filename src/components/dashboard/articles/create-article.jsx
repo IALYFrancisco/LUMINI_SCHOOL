@@ -105,39 +105,39 @@ export default function CreateArticle() {
   return (
     <div className="add-article">
         <h3>Création d'un article :</h3>
-      {uploading && (
-        <div style={{ marginBottom: "10px", color: "#007BFF" }}>
-          🔄 Upload en cours...
+        {uploading && (
+            <div style={{ marginBottom: "10px", color: "#007BFF" }}>
+            🔄 Upload en cours...
+            </div>
+        )}
+
+        <ReactQuill
+            ref={quillRef}
+            theme="snow"
+            value={content}
+            onChange={setContent}
+            modules={modules}
+            formats={formats}
+            placeholder="Écrivez votre article ici..."
+        />
+
+        <button
+            onClick={handleSubmit}
+        >
+            Soumettre
+        </button>
+
+        <div
+            style={{
+            marginTop: "30px",
+            background: "#f7f7f7",
+            padding: "15px",
+            borderRadius: "8px",
+            }}
+        >
+            <h3>Prévisualisation :</h3>
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
         </div>
-      )}
-
-      <ReactQuill
-        ref={quillRef}
-        theme="snow"
-        value={content}
-        onChange={setContent}
-        modules={modules}
-        formats={formats}
-        placeholder="Écrivez votre article ici..."
-      />
-
-      <button
-        onClick={handleSubmit}
-      >
-        Soumettre
-      </button>
-
-      <div
-        style={{
-          marginTop: "30px",
-          background: "#f7f7f7",
-          padding: "15px",
-          borderRadius: "8px",
-        }}
-      >
-        <h3>Prévisualisation :</h3>
-        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
-      </div>
     </div>
   );
 };
