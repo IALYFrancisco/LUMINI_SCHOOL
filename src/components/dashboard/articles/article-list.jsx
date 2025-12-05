@@ -58,8 +58,8 @@ export default function ArticlesList(){
     return(
         <>
             <div className="actions">
-                <input type="text" name="" id="" placeholder="Recherche d'un article'"/>
-                    <Link to="/dashboard/formation/create">
+                <input type="text" name="" id="" placeholder="Recherche d'un article"/>
+                    <Link to="/dashboard/articles/create">
                         <button>
                             Créer un article
                         </button>

@@ -10,6 +10,7 @@ import Formations from './components/dashboard/formations/formations'
 import Inscriptions from './components/dashboard/inscriptions/inscriptions'
 import Articles from './components/dashboard/articles/index'
 import ArticlesList from './components/dashboard/articles/article-list'
+import CreateArticle from './components/dashboard/articles/create-article'
 import Users from './components/dashboard/users'
 import Blog from './views/blog'
 import AddFormation from './components/dashboard/formations/addFormations'
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route path='articles' element={<Articles/>}>
             <Route path='' element={<ArticlesList/>}/>
+            <Route path='create' element={<CreateArticle/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
           <Route path='users' element={<Users/>}/>
