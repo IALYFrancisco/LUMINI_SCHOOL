@@ -4,11 +4,15 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
+import { useForm } from "react-hook-form";
 
 export default function CreateArticle() {
-const [content, setContent] = useState("");
-const [uploading, setUploading] = useState(false);
-const quillRef = useRef(null);
+
+  const { register, handleSubmit, reset } = useForm()
+  const [ image, setImage ] = useState("")
+  const [content, setContent] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const quillRef = useRef(null);
 
 const modules = {
   toolbar: {
@@ -93,10 +97,20 @@ const handleDocumentUpload = async () => {
     };
   };
 
-const handleSubmit = async () => {
+const _handleSubmit = (data) => {
   const cleanHTML = DOMPurify.sanitize(content);
-  await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, { content: cleanHTML }, { withCredentials: true });
-  setContent("");
+  const article = new FormData()
+  
+  article.append('title', data.title)
+  article.append('image', image)
+  article.append('contents', cleanHTML)
+  
+  axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } })
+  .then(()=>{
+    reset()
+    setImage(null)
+    setContent("")
+  })
 };
 
   return (
@@ -108,15 +122,15 @@ const handleSubmit = async () => {
                 🔄 Upload en cours...
               </p>
           )}
-        <form>
+        <form onSubmit={handleSubmit(_handleSubmit)}>
           <fieldset>
             <div className="element">
               <label htmlFor="">Titre de l'article :</label>
-              <input type="text" name="" id="" placeholder="Ajouter un titre à l'article"/>
+              <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
             </div>
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
-              <input type="file" name="" id="" />
+              <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required />
             </div>
           </fieldset>
           <fieldset>

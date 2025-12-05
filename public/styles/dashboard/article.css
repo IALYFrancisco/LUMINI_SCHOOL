@@ -70,6 +70,11 @@
     width: 100%;
 }
 
+.add-article form fieldset:nth-child(1) .element input[type="text"]:focus {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
 .add-article form fieldset:nth-child(1) .element input[type="file"]{
     margin-top: 10px;
 }
