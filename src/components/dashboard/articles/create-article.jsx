@@ -69,7 +69,7 @@ export default function CreateArticle() {
   const handleDocumentUpload = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
-    input.setAttribute("accept", ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt");
+    input.setAttribute("accept", ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg");
     input.click();
 
     input.onchange = async () => {
@@ -81,6 +81,7 @@ export default function CreateArticle() {
         setUploading(true);
         const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-file`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true
         });
 
         const quill = quillRef.current.getEditor();
