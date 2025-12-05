@@ -36,7 +36,6 @@ export default function CreateArticle() {
     "image", "color", "background", "code-block", "align",
   ];
 
-  // --- Upload image ---
   const handleImageUpload = async () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
