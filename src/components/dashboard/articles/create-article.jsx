@@ -31,7 +31,7 @@ const modules = {
 
   const formats = [
     "header", "bold", "italic", "underline", "strike",
-    "blockquote", "list", "bullet", "link",
+    "blockquote", "list", "link",
     "image", "color", "background", "code-block", "align",
   ];
 
