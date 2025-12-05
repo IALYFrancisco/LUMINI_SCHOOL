@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import ReactQuill from "react-quill-new";
 import DOMPurify from "dompurify";
 import axios from "axios";
@@ -6,9 +6,9 @@ import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 
 export default function CreateArticle() {
-  const [content, setContent] = useState("");
-  const [uploading, setUploading] = useState(false);
-  const quillRef = useRef(null);
+const [content, setContent] = useState("");
+const [uploading, setUploading] = useState(false);
+const quillRef = useRef(null);
 
 const modules = {
   toolbar: {
@@ -120,14 +120,7 @@ const handleSubmit = async () => {
 
         <button onClick={handleSubmit}>Soumettre</button>
 
-        <div
-            style={{
-            marginTop: "30px",
-            background: "#f7f7f7",
-            padding: "15px",
-            borderRadius: "8px",
-            }}
-        >
+        <div className="previsualisation">
             <h3>Prévisualisation :</h3>
             <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
         </div>
