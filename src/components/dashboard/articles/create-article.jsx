@@ -10,25 +10,24 @@ export default function CreateArticle() {
   const [uploading, setUploading] = useState(false);
   const quillRef = useRef(null);
 
-  // --- Configuration toolbar ---
-  const modules = {
-    toolbar: {
-      container: [
-        [{ header: [ 2, 3, 4, 5, 6, false] }],
-        ["bold", "italic", "underline", "strike"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["blockquote", "code-block"],
-        ["link", "image", "document"],
-        [{ align: [] }],
-        [{ color: [] }, { background: [] }],
-        ["clean"],
-      ],
-      handlers: {
-        image: () => handleImageUpload(),
-        document: () => handleDocumentUpload(),
-      },
+const modules = {
+  toolbar: {
+    container: [
+      [{ header: [ 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["blockquote", "code-block"],
+      ["link", "image", "document"],
+      [{ align: [] }],
+      [{ color: [] }, { background: [] }],
+      ["clean"],
+    ],
+    handlers: {
+      image: () => handleImageUpload(),
+      document: () => handleDocumentUpload(),
     },
-  };
+  },
+};
 
   const formats = [
     "header", "bold", "italic", "underline", "strike",
