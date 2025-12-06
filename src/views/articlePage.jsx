@@ -25,10 +25,10 @@ export function ArticlesPage(){
             <Nav></Nav>
             <section className="formations-page">
                 <div className="head">
-                    <h2>Toute nos formations :</h2>
+                    <h2>Tout nos articles :</h2>
                     <p>Ci-dessous la liste de toute nos formations. Elles sont issues des branches existantes du secteur de l'informatique et ont été éléborées par nous-même afin de garantir leurs contenus ✨.</p>
                     <div className="actions">
-                        <input type="text" name="formation" id="" placeholder="Rehcrecher des formations"/>
+                        <input type="text" name="formation" id="" placeholder="Rehcrecher d'article"/>
                     </div>
                 </div>
                 <div className="body">
@@ -41,7 +41,7 @@ export function ArticlesPage(){
                                     </div>
                                     <div className="formation-infos">
                                         <h4>{article.title}</h4>
-                                        <p>{article.description}</p>
+                                        <p>{article.contents}</p>
                                         {/* <Link to={`/registrations/formation/${formation._id}`}> */}
                                             <button>Lire plus</button>
                                         {/* </Link> */}
