@@ -34,9 +34,7 @@ export default function UpdateArticle() {
     })
   }, [id, reset])
 
-  const isModified = isDirty || image
-
-  console.log(article)
+  const isModified = isDirty || image || (article !== null && content !== article.contents)
 
   const modules = {
     toolbar: {
@@ -121,7 +119,7 @@ const handleDocumentUpload = async () => {
     };
   };
 
-const _handleSubmit = async (data) => {
+const _handleSubmit = (data) => {
 
     if(!isModified) return;
     else {
@@ -135,16 +133,16 @@ const _handleSubmit = async (data) => {
                 _article.append("title", data.title)
             }
             if(article.contents !== content && content !== ""){
-                article.append('contents', cleanHTML)
+                _article.append('contents', cleanHTML)
             }
-            if(imageIsDefined){
-                article.append('image', image)
+            if(image){
+                _article.append('image', image)
             }
             if(`${import.meta.env.VITE_API_BASE_URL}/${article.image}` !== data.url && data.url !== ""){
-                article.append('image', data.url)
+                _article.append('image', data.url)
             }
 
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/article/update?_id=${id}`, _article,
+            axios.put(`${import.meta.env.VITE_API_BASE_URL}/article/update?_id=${id}`, _article,
                 { 
                     headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
                     withCredentials: true
@@ -167,13 +165,7 @@ const _handleSubmit = async (data) => {
             console.log(err)
         }
     }
-  
-  axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: imageIsDefined ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" } })
-  .then(()=>{
-    reset()
-    setImage(null)
-    setContent("")
-  })
+
 };
 
   useEffect(()=>{
@@ -206,8 +198,8 @@ const _handleSubmit = async (data) => {
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
               <div className="inputs-container">
-                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } />
-                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" />
+                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required/>
+                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required/>
               </div>
             </div>
           </fieldset>
