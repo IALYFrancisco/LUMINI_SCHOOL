@@ -90,7 +90,7 @@ export default function ArticlesList(){
                                         <p>{ new Date(article.createdAt).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { article.published ? <p>{ new Date(article.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
+                                        { article.published ? <p>{ new Date(article.publishedAt).toLocaleString("fr-FR") }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { article.published && <div className="badge yes">
