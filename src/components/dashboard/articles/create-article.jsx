@@ -106,10 +106,15 @@ const _handleSubmit = (data) => {
   const article = new FormData()
   
   article.append('title', data.title)
-  article.append('image', image)
+  if(imageIsDefined){
+    article.append('image', image)
+  }
+  if(urlIsDefined){
+    article.append('image', data.url)
+  }
   article.append('contents', cleanHTML)
   
-  axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } })
+  axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: imageIsDefined ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" } })
   .then(()=>{
     reset()
     setImage(null)
@@ -147,8 +152,8 @@ const _handleSubmit = (data) => {
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
               <div className="inputs-container">
-                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url", { required: true }) } required />
-                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
+                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } />
+                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" />
               </div>
             </div>
           </fieldset>
@@ -164,7 +169,7 @@ const _handleSubmit = (data) => {
                     formats={formats}
                     placeholder="Écrivez votre article ici..."
                 />
-              <button onClick={handleSubmit}>Soumettre</button>
+              <button>Soumettre</button>
             </div>
           </fieldset>
         </form>
