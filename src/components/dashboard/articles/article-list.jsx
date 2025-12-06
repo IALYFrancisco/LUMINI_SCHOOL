@@ -35,9 +35,9 @@ export default function ArticlesList(){
         setActivePopUp((prev) => (prev === articleId ? null : articleId))
     }
 
-    const deleteFormation = (formationId) => {
-        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
-            .then(()=>{ setArticles( (prev) => prev.filter( f => f._id !== formationId ) ) })
+    const deleteArticle = (articleId) => {
+        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/article/delete`, { data: { _id: articleId }, withCredentials: true })
+            .then(()=>{ setArticles( (prev) => prev.filter( article => article._id !== articleId ) ) })
             .catch((err)=>{
                 console.log(err)
             }
@@ -104,7 +104,7 @@ export default function ArticlesList(){
                                         <ul className={ activePopUp === article._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(article._id);
-                                                deleteFormation(article._id);
+                                                deleteArticle(article._id);
                                             }} >Supprimer</li>
                                             <li onClick={ () => {
                                                 togglePopUp(article._id);
