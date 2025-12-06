@@ -44,10 +44,10 @@ export default function ArticlesList(){
         )
     }
 
-    const publishFormation = async (formation) => {
-        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+    const publishArticle = async (article) => {
+        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/article/publication`, { articleId: article._id , update: { published: !article.published }}, { withCredentials: true })
         .then( async ()=>{
-            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
                 setArticles(response.data)
             }).catch((err)=>{
@@ -108,7 +108,7 @@ export default function ArticlesList(){
                                             }} >Supprimer</li>
                                             <li onClick={ () => {
                                                 togglePopUp(article._id);
-                                                publishFormation(article);
+                                                publishArticle(article);
                                             }}>{ article.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => {
                                                 togglePopUp(article._id);
