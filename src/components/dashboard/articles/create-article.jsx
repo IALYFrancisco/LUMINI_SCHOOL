@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill-new";
 import DOMPurify from "dompurify";
 import axios from "axios";
@@ -8,30 +8,34 @@ import { useForm } from "react-hook-form";
 
 export default function CreateArticle() {
 
-  const { register, handleSubmit, reset } = useForm()
+  const { register, handleSubmit, reset, watch } = useForm()
+  var [ imageIsDefined, setImageIsDefined ] = useState(false)
+  var [ urlIsDefined, setUrlIsDefined ] = useState(false)
   const [ image, setImage ] = useState("")
   const [content, setContent] = useState("");
   const [uploading, setUploading] = useState(false);
   const quillRef = useRef(null);
 
-const modules = {
-  toolbar: {
-    container: [
-      [{ header: [ 2, 3, 4, 5, 6, false] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["blockquote", "code-block"],
-      ["link", "image", "document"],
-      [{ align: [] }],
-      [{ color: [] }, { background: [] }],
-      ["clean"],
-    ],
-    handlers: {
-      image: () => handleImageUpload(),
-      document: () => handleDocumentUpload(),
+  var watchAll = watch()
+
+  const modules = {
+    toolbar: {
+      container: [
+        [{ header: [ 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["blockquote", "code-block"],
+        ["link", "image", "document"],
+        [{ align: [] }],
+        [{ color: [] }, { background: [] }],
+        ["clean"],
+      ],
+      handlers: {
+        image: () => handleImageUpload(),
+        document: () => handleDocumentUpload(),
+      },
     },
-  },
-};
+  };
 
   const formats = [
     "header", "bold", "italic", "underline", "strike",
@@ -113,6 +117,16 @@ const _handleSubmit = (data) => {
   })
 };
 
+  useEffect(()=>{
+  
+    if(watchAll.url) setUrlIsDefined(true)
+    else setUrlIsDefined(false)
+
+    if(image) setImageIsDefined(true)
+    else setImageIsDefined(false)
+
+  }, [image, watchAll.url])
+
   return (
     <>
       <div className="add-article">
@@ -133,8 +147,8 @@ const _handleSubmit = (data) => {
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
               <div className="inputs-container">
-                <input type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("title", { required: true }) } required />
-                <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
+                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url", { required: true }) } required />
+                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
               </div>
             </div>
           </fieldset>

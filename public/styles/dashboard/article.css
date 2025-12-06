@@ -2,15 +2,10 @@
     margin-top: 50px;
     height: calc(100vh - 160px);
     overflow-y: scroll;
-    padding: 20px;
 }
 
 .add-article::-webkit-scrollbar {
     width: 2px;
-}
-
-.add-article::-webkit-scrollbar-thumb {
-    background-color: rgba(128, 128, 128, 0.207);
 }
 
 .add-article h3 {
