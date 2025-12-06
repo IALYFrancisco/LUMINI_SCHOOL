@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import DOMPurify from "dompurify"
 
 export default function ArticlesList(){
 
@@ -84,7 +85,7 @@ export default function ArticlesList(){
                                         <h5>{article.title}</h5>
                                     </li>
                                     <li  className="description">
-                                        <p>{article.contents}</p>
+                                        <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
                                     </li>
                                     <li  className="addDate">
                                         <p>{ new Date(article.createdAt).toLocaleString("fr-FR") }</p>

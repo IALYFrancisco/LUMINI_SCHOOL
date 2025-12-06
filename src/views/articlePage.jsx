@@ -2,8 +2,8 @@ import Nav from "../components/nav"
 import '../../public/styles/formationsPage.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
 import Loading from "../components/loading"
+import DOMPurify from "dompurify"
 
 export function ArticlesPage(){
 
@@ -41,10 +41,8 @@ export function ArticlesPage(){
                                     </div>
                                     <div className="formation-infos">
                                         <h4>{article.title}</h4>
-                                        <p>{article.contents}</p>
-                                        {/* <Link to={`/registrations/formation/${formation._id}`}> */}
-                                            <button>Lire plus</button>
-                                        {/* </Link> */}
+                                        <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
+                                        <button>Lire plus</button>
                                     </div>
                                 </div>
                             </div>

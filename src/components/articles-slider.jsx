@@ -3,6 +3,7 @@ import 'swiper/css'
 import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import axios from "axios";
+import DOMPurify from "dompurify"
 
 export function ArticlesSlider() {
 
@@ -47,7 +48,7 @@ export function ArticlesSlider() {
                         </div>
                         <div className="blog-infos">
                             <h4>{article.title}</h4>
-                            <p>{ article.contents }</p>
+                            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
                             <button>Lire plus</button>
                         </div>
                     </div>
