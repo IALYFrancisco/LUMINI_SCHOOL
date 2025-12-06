@@ -35,7 +35,9 @@ function Nav(){
                             <li>
                                 <Link to="/formations">Formations</Link>
                             </li>
-                            <li>Articles</li>
+                            <li>
+                                <Link to="/articles">Articles</Link>
+                            </li>
                         </ul>
                     </li>
                     <li>
