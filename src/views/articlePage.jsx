@@ -28,7 +28,7 @@ export function ArticlesPage(){
                     <h2>Tout nos articles :</h2>
                     <p>Ci-dessous la liste de toute nos formations. Elles sont issues des branches existantes du secteur de l'informatique et ont été éléborées par nous-même afin de garantir leurs contenus ✨.</p>
                     <div className="actions">
-                        <input type="text" name="formation" id="" placeholder="Rehcrecher d'article"/>
+                        <input type="text" name="formation" id="" placeholder="Rehcreche d'article"/>
                     </div>
                 </div>
                 <div className="body">
