@@ -21,17 +21,19 @@ import IsNotAuthenticated from './components/isNotAuthenticated'
 import IsAdminOrSuperuser from './components/isAdminOrSuperuser'
 import UpdateFormation from './components/dashboard/formations/updateFormation'
 import UpdateArticle from './components/dashboard/articles/update-article'
+import { ArticlesPage } from './views/articlePage'
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/blog' element={<Blog/>}></Route>
+        {/* <Route path='/blog' element={<Blog/>}></Route> */}
         <Route path='/authentication/login' element={<IsNotAuthenticated><Login/></IsNotAuthenticated>}></Route>
         <Route path='/authentication/register' element={<IsNotAuthenticated><Register/></IsNotAuthenticated>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/registrations/formation/:id' element={<IsAuthenticated><Registrations/></IsAuthenticated>}></Route>
+        <Route path='/articles' element={ <ArticlesPage/> }></Route>
         <Route path='/dashboard' element={<IsAuthenticated><IsAdminOrSuperuser><Dashboard/></IsAdminOrSuperuser></IsAuthenticated>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
