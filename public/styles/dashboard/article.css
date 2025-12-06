@@ -23,6 +23,11 @@
     border: none;
 }
 
+.add-article form fieldset .element > button:disabled {
+    background-color: grey;
+    transform: none;
+}
+
 .add-article form fieldset {
     border: none;
 }

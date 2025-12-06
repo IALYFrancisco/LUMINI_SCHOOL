@@ -34,6 +34,10 @@ export default function UpdateArticle() {
     })
   }, [id, reset])
 
+  const isModified = isDirty || image
+
+  console.log(article)
+
   const modules = {
     toolbar: {
       container: [
@@ -117,18 +121,52 @@ const handleDocumentUpload = async () => {
     };
   };
 
-const _handleSubmit = (data) => {
-  const cleanHTML = DOMPurify.sanitize(content);
-  const article = new FormData()
-  
-  article.append('title', data.title)
-  if(imageIsDefined){
-    article.append('image', image)
-  }
-  if(urlIsDefined){
-    article.append('image', data.url)
-  }
-  article.append('contents', cleanHTML)
+const _handleSubmit = async (data) => {
+
+    if(!isModified) return;
+    else {
+
+        try{
+
+            const cleanHTML = DOMPurify.sanitize(content);
+            const _article = new FormData()
+    
+            if(article.title !== watchAll.title && data.title !== ""){
+                _article.append("title", data.title)
+            }
+            if(article.contents !== content && content !== ""){
+                article.append('contents', cleanHTML)
+            }
+            if(imageIsDefined){
+                article.append('image', image)
+            }
+            if(`${import.meta.env.VITE_API_BASE_URL}/${article.image}` !== data.url && data.url !== ""){
+                article.append('image', data.url)
+            }
+
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/article/update?_id=${id}`, _article,
+                { 
+                    headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
+                    withCredentials: true
+                }
+            ).then(()=>{
+                axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
+                    .then((response)=>{
+                        setArticle(response.data)
+                        reset({
+                            title: response.data.title,
+                            url : (response.data.image.includes("https") || response.data.image.includes("http")) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                        })
+                        setContent(response.data.contents)
+                    })
+                    setImage(null)
+                })
+            .catch((err)=> console.log(err))
+
+        }catch(err){
+            console.log(err)
+        }
+    }
   
   axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: imageIsDefined ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" } })
   .then(()=>{
@@ -185,7 +223,7 @@ const _handleSubmit = (data) => {
                     formats={formats}
                     placeholder="Écrivez votre article ici..."
                 />
-              <button>Soumettre</button>
+              <button disabled={!isModified}>Soumettre</button>
             </div>
           </fieldset>
         </form>
