@@ -85,7 +85,9 @@ function Nav(){
                     <li onClick={handleClick}>
                         <Link  onClick={handleClick} to="/formations">Formations</Link>
                     </li>
-                    <li>Articles</li>
+                    <li onClick={handleClick}>
+                        <Link to="/articles">Articles</Link>
+                    </li>
                     { !user && <>
                         <li onClick={handleClick}>
                             <Link  onClick={handleClick} to="/authentication/login">Se connecter</Link>
