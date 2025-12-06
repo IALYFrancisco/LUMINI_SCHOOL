@@ -20,6 +20,7 @@ import Registrations from './views/registrations'
 import IsNotAuthenticated from './components/isNotAuthenticated'
 import IsAdminOrSuperuser from './components/isAdminOrSuperuser'
 import UpdateFormation from './components/dashboard/formations/updateFormation'
+import UpdateArticle from './components/dashboard/articles/update-article'
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path='articles' element={<Articles/>}>
             <Route path='' element={<ArticlesList/>}/>
             <Route path='create' element={<CreateArticle/>}/>
+            <Route path='update/:id' element={<UpdateArticle/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
           <Route path='users' element={<Users/>}/>

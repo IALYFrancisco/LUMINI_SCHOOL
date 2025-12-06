@@ -112,7 +112,7 @@ export default function ArticlesList(){
                                             }}>{ article.published ? "Dépublier" : "Publier" }</li>
                                             <li onClick={ () => {
                                                 togglePopUp(article._id);
-                                                navigate(`/dashboard/formation/update/${article._id}`);
+                                                navigate(`/dashboard/articles/update/${article._id}`);
                                             } }>Modifier</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(article._id) }>

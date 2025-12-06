@@ -6,7 +6,7 @@ import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
 
-export default function CreateArticle() {
+export default function UpdateArticle() {
 
   const { register, handleSubmit, reset, watch } = useForm()
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
