@@ -49,16 +49,12 @@
     margin-top: 10px;
 }
 
-.add-article form fieldset:nth-child(1) {
-    display: flex;
-    column-gap: 50px;
+.add-article form fieldset:nth-child(2) {
+    margin-top: 30px;
 }
 
-.add-article form fieldset:nth-child(1) .element {
-    width: 50%;
-}
-
-.add-article form fieldset:nth-child(1) .element input[type="text"] {
+.add-article form fieldset:nth-child(1) .element input[type="text"],
+.add-article form fieldset:nth-child(2) .element input[type="url"] {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #1b223261;
@@ -70,15 +66,27 @@
     width: 100%;
 }
 
-.add-article form fieldset:nth-child(1) .element input[type="text"]:focus {
+.add-article form fieldset:nth-child(2) .element input[type="text"]:focus,
+.add-article form fieldset:nth-child(1) .element input[type="text"]:focus,
+.add-article form fieldset:nth-child(2) .element input[type="url"]:focus {
     transition: .25s;
     border-color: #1b2232;
 }
 
-.add-article form fieldset:nth-child(1) .element input[type="file"]{
+.add-article form fieldset:nth-child(2) .element input[type="file"]{
     margin-top: 10px;
 }
 
-.add-article form fieldset:nth-child(2) {
+.add-article form fieldset:nth-child(3) {
     margin-top: 30px;
+}
+
+.add-article form fieldset:nth-child(2) .inputs-container {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-article form fieldset:nth-child(2) .inputs-container input[type="url"],
+.add-article form fieldset:nth-child(2) .inputs-container input[type="file"] {
+    width: 50%;
 }

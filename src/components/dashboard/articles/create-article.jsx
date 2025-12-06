@@ -128,9 +128,14 @@ const _handleSubmit = (data) => {
               <label htmlFor="">Titre de l'article :</label>
               <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
             </div>
+          </fieldset>
+          <fieldset>
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
-              <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
+              <div className="inputs-container">
+                <input type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("title", { required: true }) } required />
+                <input type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} required accept="image/jpeg, image/png" />
+              </div>
             </div>
           </fieldset>
           <fieldset>
