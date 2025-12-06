@@ -5,10 +5,12 @@ import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 export default function UpdateArticle() {
 
-  const { register, handleSubmit, reset, watch } = useForm()
+  const { register, handleSubmit, reset, watch, formState: { isDirty } } = useForm()
+  var [ article, setArticle ] = useState(null)
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
   var [ urlIsDefined, setUrlIsDefined ] = useState(false)
   const [ image, setImage ] = useState("")
@@ -16,7 +18,13 @@ export default function UpdateArticle() {
   const [uploading, setUploading] = useState(false);
   const quillRef = useRef(null);
 
+  const { id } = useParams()
+
   var watchAll = watch()
+
+  useEffect(()=>{
+    axios.get
+  }, [])
 
   const modules = {
     toolbar: {
@@ -135,7 +143,7 @@ const _handleSubmit = (data) => {
   return (
     <>
       <div className="add-article">
-        <h3>Création d'un article :</h3>
+        <h3>Modification d'un article :</h3>
           {uploading && (
               <p className="upload-message">
                 🔄 Upload en cours...
