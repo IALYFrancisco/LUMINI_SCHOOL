@@ -31,8 +31,8 @@ export default function ArticlesList(){
         }
     }, [])
 
-    const togglePopUp = (formationId) => {
-        setActivePopUp((prev) => (prev === formationId ? null : formationId))
+    const togglePopUp = (articleId) => {
+        setActivePopUp((prev) => (prev === articleId ? null : articleId))
     }
 
     const deleteFormation = (formationId) => {
