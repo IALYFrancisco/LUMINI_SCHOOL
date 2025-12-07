@@ -28,7 +28,6 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        {/* <Route path='/blog' element={<Blog/>}></Route> */}
         <Route path='/authentication/login' element={<IsNotAuthenticated><Login/></IsNotAuthenticated>}></Route>
         <Route path='/authentication/register' element={<IsNotAuthenticated><Register/></IsNotAuthenticated>}></Route>
         <Route path='/formations' element={<FormationsPage/>}></Route>
