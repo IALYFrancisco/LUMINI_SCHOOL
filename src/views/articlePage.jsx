@@ -26,7 +26,7 @@ export function ArticlesPage(){
             <section className="formations-page">
                 <div className="head">
                     <h2>Tout nos articles :</h2>
-                    <p>Ci-dessous la liste de toute nos formations. Elles sont issues des branches existantes du secteur de l'informatique et ont été éléborées par nous-même afin de garantir leurs contenus ✨.</p>
+                    <p>Former et informer les gens est une occupation de haut niveau. Non seulement un dévoir sacré mais aussi une manière d'éduquer. Ceci dit, nos pensées sont à la portée de tous à travers nos articles  📜.</p>
                     <div className="actions">
                         <input type="text" name="formation" id="" placeholder="Rehcreche d'article"/>
                     </div>
