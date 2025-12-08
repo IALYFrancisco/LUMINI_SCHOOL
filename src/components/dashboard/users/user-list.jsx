@@ -1,19 +1,19 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function UsersList(){
 
     var navigate = useNavigate()
 
-    var [formations, setFormations] = useState([])
+    var [users, setUsers] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
-                setFormations(response.data)
+                setUsers(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -31,29 +31,21 @@ export default function UsersList(){
         }
     }, [])
 
-    const togglePopUp = (formationId) => {
-        setActivePopUp((prev) => (prev === formationId ? null : formationId))
+    const togglePopUp = (userId) => {
+        setActivePopUp((prev) => (prev === userId ? null : userId))
     }
 
-    const deleteFormation = (formationId) => {
-        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
-            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== formationId ) ) })
-            .catch((err)=>{
-                console.log(err)
-            })
-    }
-
-    const publishFormation = async (formation) => {
-        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
-        .then( async ()=>{
-            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
-            .then((response)=>{
-                setFormations(response.data)
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }).catch((err)=>console.log(err))
-    }
+    // const publishFormation = async (formation) => {
+    //     await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+    //     .then( async ()=>{
+    //         await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+    //         .then((response)=>{
+    //             setFormations(response.data)
+    //         }).catch((err)=>{
+    //             console.log(err)
+    //         })
+    //     }).catch((err)=>console.log(err))
+    // }
 
     return(
         <>
@@ -71,11 +63,11 @@ export default function UsersList(){
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
-                    { formations && <li>
-                            { formations.map( formation => (
-                                <ul className="formation" key={formation._id}>
+                    { users && <li>
+                            { users.map( u => (
+                                <ul className="formation" key={u._id}>
                                     <li className="title">
-                                        <h5>{formation.title}</h5>
+                                        <h5>{u.name}</h5>
                                     </li>
                                     <li  className="description">
                                         <p>{formation.description}</p>
