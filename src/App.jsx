@@ -5,7 +5,6 @@ import { Login } from './views/login'
 import { Register } from './views/register'
 import { FormationsPage } from './views/formationPage'
 import Dashboard from './views/dashboard'
-import Settings from './components/dashboard/settings'
 import Formations from './components/dashboard/formations/formations'
 import Inscriptions from './components/dashboard/inscriptions/inscriptions'
 import Articles from './components/dashboard/articles/index'
@@ -23,6 +22,7 @@ import { ArticlesPage } from './views/articlePage'
 import UsersList from './components/dashboard/users/user-list'
 import Users from './components/dashboard/users'
 import IsSuperuser from './components/isSuperuser'
+import Settings from './components/dashboard/settings'
 
 function App() {
   return (
