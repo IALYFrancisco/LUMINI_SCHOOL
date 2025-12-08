@@ -24,7 +24,7 @@ export default function Sidebar(){
                 <li>
                     <div className="border">
                         <div className="profile-container">
-                            <img src="/images/default-profile.webp" alt="" />
+                            <img src={ (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}` } alt="" />
                         </div>
                     </div>
                     <div className="user-infos">
