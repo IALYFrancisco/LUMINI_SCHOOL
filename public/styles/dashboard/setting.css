@@ -29,6 +29,10 @@
     margin-top: 10px;
 }
 
+.info-perso-container .forms-container .left form button:disabled {
+    background-color: gray;
+}
+
 .info-perso-container .forms-container form fieldset {
     border: none;
 }
