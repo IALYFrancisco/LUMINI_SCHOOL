@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
+import '../../../../public/styles/dashboard/user.css'
 // import { useNavigate } from "react-router-dom"
 
 export default function UsersList(){
@@ -52,7 +53,7 @@ export default function UsersList(){
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'utilisateur"/>
             </div>
-            <ul className="formations" ref={popUpRef}>
+            <ul className="users" ref={popUpRef}>
                 <li className="titles">
                     <ul>
                         <li className="title">Nom de l'utilisateur</li>
@@ -65,7 +66,7 @@ export default function UsersList(){
                 </li>
                     { users && <li>
                             { users.map( u => (
-                                <ul className="formation" key={u._id}>
+                                <ul className="user" key={u._id}>
                                     <li className="title">
                                         <h5>{u.name}</h5>
                                     </li>
