@@ -151,6 +151,7 @@ const _handleSubmit = (data) => {
                 axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
                     .then((response)=>{
                         setArticle(response.data)
+                        reset()
                         reset({
                             title: response.data.title,
                             url : (response.data.image.includes("https") || response.data.image.includes("http")) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
