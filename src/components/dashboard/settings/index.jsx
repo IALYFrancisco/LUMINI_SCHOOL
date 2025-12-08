@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form'
 
 export default function Settings(){
 
-    const { user } = useAuth()
+    var { user } = useAuth()
     
-    const { reset, register, watch } = useForm()
+    var { reset, register, watch } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
@@ -15,7 +15,7 @@ export default function Settings(){
 
     var watchAll = watch()
 
-    const toogleInfoForm = ()=>{
+    var toogleInfoForm = ()=>{
         infoFormActive ? setInfoFormActive(false) : setInfoFormActive(true)
         if(infoFormActive){
             reset({
@@ -38,13 +38,13 @@ export default function Settings(){
 
     useEffect(()=>{
 
-        if(image) setImageIsDefined(true)
-        else setImageIsDefined(false)
-
         if(watchAll.profile) setUrlIsDefined(true)
         else setImageIsDefined(false)
+
+        if(image) setImageIsDefined(true)
+        else setImageIsDefined(false)
         
-    }, [image, watchAll.profile])
+    }, [image, watchAll])
 
     return(
         <>
