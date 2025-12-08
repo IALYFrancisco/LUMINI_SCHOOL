@@ -11,7 +11,6 @@ import Inscriptions from './components/dashboard/inscriptions/inscriptions'
 import Articles from './components/dashboard/articles/index'
 import ArticlesList from './components/dashboard/articles/article-list'
 import CreateArticle from './components/dashboard/articles/create-article'
-import Users from './components/dashboard/users'
 import AddFormation from './components/dashboard/formations/addFormations'
 import FormationsList from './components/dashboard/formations/formations-list'
 import IsAuthenticated from './components/isAuthenticated'
@@ -21,6 +20,7 @@ import IsAdminOrSuperuser from './components/isAdminOrSuperuser'
 import UpdateFormation from './components/dashboard/formations/updateFormation'
 import UpdateArticle from './components/dashboard/articles/update-article'
 import { ArticlesPage } from './views/articlePage'
+import UsersList from './components/dashboard/users/user-list'
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
             <Route path='update/:id' element={<UpdateArticle/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
-          <Route path='users' element={<Users/>}/>
+          <Route path='users' element={<UsersList/>}/>
           <Route path='settings' element={<Settings/>}/>
         </Route>
       </Routes>

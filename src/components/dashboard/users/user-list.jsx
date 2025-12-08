@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
-export default function FormationsList(){
+export default function UsersList(){
 
     var navigate = useNavigate()
 
