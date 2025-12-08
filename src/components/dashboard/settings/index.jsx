@@ -12,6 +12,7 @@ export default function Settings(){
         reset({
             name: user.name,
             email: user.email,
+            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
             phoneNumber: user.phoneNumber
         })
     }, [reset, user])
@@ -38,7 +39,7 @@ export default function Settings(){
                                 </div>
                                 <div className="element">
                                     <label>Votre image de profile :</label>
-                                    <input type="url" name="" id="" placeholder="Utilisez cet champ pour une image déjà en ligne"/>
+                                    <input type="url" name="" id="" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register('profile') }/>
                                     <input type="file" name="" id="" accept="image/jpeg, image/png"/>
                                 </div>
                                 <div className="element">
