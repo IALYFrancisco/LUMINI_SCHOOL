@@ -8,7 +8,7 @@ export default function UsersList(){
     // var navigate = useNavigate()
 
     var [users, setUsers] = useState([])
-    // var [activePopUp, setActivePopUp] = useState(null)
+    var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
     
     useEffect(()=>{
@@ -20,33 +20,33 @@ export default function UsersList(){
             })
     }, [])
 
-    // useEffect(()=>{
-    //     const handleClickOutside = (event) => {
-    //         if(popUpRef.current && !popUpRef.current.contains(event.target)) {
-    //             setActivePopUp(null)
-    //         }
-    //     }
-    //     document.addEventListener("mousedown", handleClickOutside)
-    //     return ()=>{
-    //         document.removeEventListener("mousedown", handleClickOutside)
-    //     }
-    // }, [])
+    useEffect(()=>{
+        const handleClickOutside = (event) => {
+            if(popUpRef.current && !popUpRef.current.contains(event.target)) {
+                setActivePopUp(null)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return ()=>{
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
 
-    // const togglePopUp = (userId) => {
-    //     setActivePopUp((prev) => (prev === userId ? null : userId))
-    // }
+    const togglePopUp = (userId) => {
+        setActivePopUp((prev) => (prev === userId ? null : userId))
+    }
 
-    // const publishFormation = async (formation) => {
-    //     await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
-    //     .then( async ()=>{
-    //         await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
-    //         .then((response)=>{
-    //             setFormations(response.data)
-    //         }).catch((err)=>{
-    //             console.log(err)
-    //         })
-    //     }).catch((err)=>console.log(err))
-    // }
+    const changeUserStatus = async (formation) => {
+        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+        .then( async ()=>{
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+            .then((response)=>{
+                // setFormations(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }).catch((err)=>console.log(err))
+    }
 
     return(
         <>
@@ -91,22 +91,14 @@ export default function UsersList(){
                                         </div> }
                                     </li>
                                     <li className="formation-actions">
-                                        {/* <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
+                                        <ul className={ activePopUp === u._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                deleteFormation(formation._id);
-                                            }} >Supprimer</li>
-                                            <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                publishFormation(formation);
-                                            }}>{ formation.published ? "Dépublier" : "Publier" }</li>
-                                            <li onClick={ () => {
-                                                togglePopUp(formation._id);
-                                                navigate(`/dashboard/formation/update/${formation._id}`);
-                                            } }>Modifier</li>
-                                        </ul> */}
+                                                togglePopUp(u._id);
+                                                changeUserStatus();
+                                            }}>{ u.status === "user" ? "Administrateur" : "Utilisateur simple" }</li>
+                                        </ul>
                                         <div className="custom-container" 
-                                        // onClick={ () => togglePopUp(u._id) }
+                                        onClick={ () => togglePopUp(u._id) }
                                         >
                                             <img src="/images/kebab.png" alt=""/>
                                         </div>
