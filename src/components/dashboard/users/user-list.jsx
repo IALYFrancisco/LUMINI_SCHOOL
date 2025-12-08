@@ -95,7 +95,7 @@ export default function UsersList(){
                                             <li onClick={ () => {
                                                 togglePopUp(u._id);
                                                 changeUserStatus(u);
-                                            }}>{ u.status === "user" ? "Admin" : "User" }</li>
+                                            }}>{ u.status === "user" ? "Rendre 'Admin'" : "Rendre 'User'" }</li>
                                         </ul>
                                         <div className="custom-container" 
                                         onClick={ () => togglePopUp(u._id) }
