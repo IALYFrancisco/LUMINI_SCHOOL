@@ -28,7 +28,7 @@ export default function Settings(){
                     <div className="left">
                         <form>
                             <h3>Informations personnelles :</h3>
-                            <fieldset>
+                            <fieldset disabled>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
                                     <input type="text" name="" id="" placeholder="Votre nom complet" { ...register('name') }/>
