@@ -87,7 +87,7 @@
 }
 
 .users .badge {
-    width: 40px;
+    min-width: 40px;
     height: 20px;
     display: flex;
     align-items: center;
@@ -99,6 +99,12 @@
 .users .badge.superuser {
     background-color: crimson;
     color: var(--secondary);
+}
+
+.users .badge.admin {
+    color: var(--primary);
+    background-color: orange;
+    width: 60px;
 }
 
 .users .badge._user {
