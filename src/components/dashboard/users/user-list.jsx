@@ -1,11 +1,8 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import '../../../../public/styles/dashboard/user.css'
-// import { useNavigate } from "react-router-dom"
 
 export default function UsersList(){
-
-    // var navigate = useNavigate()
 
     var [users, setUsers] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
