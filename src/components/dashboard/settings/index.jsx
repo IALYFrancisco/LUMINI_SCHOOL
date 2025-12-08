@@ -1,6 +1,12 @@
+import { useEffect } from 'react'
 import '../../../../public/styles/dashboard/setting.css'
+import { useAuth } from '../../../contexts/AuthContext'
+import axios from 'axios'
 
 export default function Settings(){
+
+    const { user } = useAuth()
+
     return(
         <>
             <h2>Paramètres</h2>
@@ -24,7 +30,7 @@ export default function Settings(){
                                 <div className="element">
                                     <label>Votre image de profile :</label>
                                     <input type="url" name="" id="" placeholder="Utilisez cet champ pour une image déjà en ligne"/>
-                                    <input type="file" name="" id="" />
+                                    <input type="file" name="" id="" accept="image/jpeg, image/png"/>
                                 </div>
                                 <div className="element">
                                     <label>Votre numéro téléphone :</label>
