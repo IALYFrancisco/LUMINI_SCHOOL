@@ -1,13 +1,13 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 export default function UsersList(){
 
-    var navigate = useNavigate()
+    // var navigate = useNavigate()
 
     var [users, setUsers] = useState([])
-    var [activePopUp, setActivePopUp] = useState(null)
+    // var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
     
     useEffect(()=>{
@@ -19,21 +19,21 @@ export default function UsersList(){
             })
     }, [])
 
-    useEffect(()=>{
-        const handleClickOutside = (event) => {
-            if(popUpRef.current && !popUpRef.current.contains(event.target)) {
-                setActivePopUp(null)
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside)
-        return ()=>{
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [])
+    // useEffect(()=>{
+    //     const handleClickOutside = (event) => {
+    //         if(popUpRef.current && !popUpRef.current.contains(event.target)) {
+    //             setActivePopUp(null)
+    //         }
+    //     }
+    //     document.addEventListener("mousedown", handleClickOutside)
+    //     return ()=>{
+    //         document.removeEventListener("mousedown", handleClickOutside)
+    //     }
+    // }, [])
 
-    const togglePopUp = (userId) => {
-        setActivePopUp((prev) => (prev === userId ? null : userId))
-    }
+    // const togglePopUp = (userId) => {
+    //     setActivePopUp((prev) => (prev === userId ? null : userId))
+    // }
 
     // const publishFormation = async (formation) => {
     //     await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
@@ -55,7 +55,7 @@ export default function UsersList(){
             <ul className="formations" ref={popUpRef}>
                 <li className="titles">
                     <ul>
-                        <li className="title">Titres</li>
+                        <li className="title">Nom de l'utilisateur</li>
                         <li className="description">Descriptions</li>
                         <li className="addDate">Date d'ajout</li>
                         <li className="publicationDate">Date de publication</li>
@@ -69,25 +69,20 @@ export default function UsersList(){
                                     <li className="title">
                                         <h5>{u.name}</h5>
                                     </li>
+                                    <li className="description">
+                                        <p>{u.email}</p>
+                                    </li>
+                                    <li className="description">
+                                        <p>{u.phoneNumber}</p>
+                                    </li>
                                     <li  className="description">
-                                        <p>{formation.description}</p>
-                                    </li>
-                                    <li  className="addDate">
-                                        <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
-                                    </li>
-                                    <li className="publicationDate">
-                                        { formation.published ? <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
-                                    </li>
-                                    <li className="published">
-                                        { formation.published && <div className="badge yes">
-                                            <p>oui</p>
-                                        </div> }
-                                        { !formation.published && <div className="badge no">
-                                            <p>non</p>
-                                        </div> }
+                                        <p>{ new Date(u.registerDate).toLocaleString("fr-FR") }</p>
                                     </li>
                                     <li className="formation-actions">
-                                        <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
+                                        <p>{u.status}</p>
+                                    </li>
+                                    <li className="formation-actions">
+                                        {/* <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(formation._id);
                                                 deleteFormation(formation._id);
@@ -100,8 +95,10 @@ export default function UsersList(){
                                                 togglePopUp(formation._id);
                                                 navigate(`/dashboard/formation/update/${formation._id}`);
                                             } }>Modifier</li>
-                                        </ul>
-                                        <div className="custom-container" onClick={ () => togglePopUp(formation._id) }>
+                                        </ul> */}
+                                        <div className="custom-container" 
+                                        // onClick={ () => togglePopUp(u._id) }
+                                        >
                                             <img src="/images/kebab.png" alt=""/>
                                         </div>
                                     </li>
