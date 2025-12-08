@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.user::before {
+.users .user::before {
     position: absolute;
     content: '';
     width: 2px;
@@ -84,4 +84,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+}
+
+.users .badge {
+    width: 40px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    border-radius: 30px;
+}
+
+.users .badge.superuser {
+    background-color: crimson;
+    color: var(--secondary);
+}
+
+.users .badge._user {
+    color: var(--primary);
+    background-color: rgb(106, 255, 0);
 }

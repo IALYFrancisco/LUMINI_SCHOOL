@@ -57,10 +57,10 @@ export default function UsersList(){
                 <li className="titles">
                     <ul>
                         <li className="title">Nom de l'utilisateur</li>
-                        <li className="description">Descriptions</li>
-                        <li className="addDate">Date d'ajout</li>
-                        <li className="publicationDate">Date de publication</li>
-                        <li className="published">Publiée</li>
+                        <li className="description">Email</li>
+                        <li className="addDate">Numéro téléphone</li>
+                        <li className="publicationDate">Compte créé le</li>
+                        <li className="published">Statut</li>
                         <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
@@ -79,8 +79,16 @@ export default function UsersList(){
                                     <li  className="description">
                                         <p>{ new Date(u.registerDate).toLocaleString("fr-FR") }</p>
                                     </li>
-                                    <li className="formation-actions">
-                                        <p>{u.status}</p>
+                                    <li className="published">
+                                        { u.status === "superuser" && <div className="badge superuser">
+                                            <p>{u.status}</p>
+                                        </div> }
+                                        { u.status === "admin" && <div className="badge admin">
+                                            <p>{u.status}</p>
+                                        </div> }
+                                        { u.status === "user" && <div className="badge _user">
+                                            <p>{u.status}</p>
+                                        </div> }
                                     </li>
                                     <li className="formation-actions">
                                         {/* <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
