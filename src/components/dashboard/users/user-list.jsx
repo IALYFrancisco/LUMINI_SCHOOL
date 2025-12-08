@@ -71,7 +71,7 @@ export default function UsersList(){
                                         <p>{u.email}</p>
                                     </li>
                                     <li className="description">
-                                        <p>{u.phoneNumber}</p>
+                                        <p>{u.phoneNumber ? u.phoneNumber : "----------------------------"}</p>
                                     </li>
                                     <li  className="description">
                                         <p>{ new Date(u.registerDate).toLocaleString("fr-FR") }</p>
