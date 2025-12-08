@@ -21,6 +21,7 @@ import UpdateFormation from './components/dashboard/formations/updateFormation'
 import UpdateArticle from './components/dashboard/articles/update-article'
 import { ArticlesPage } from './views/articlePage'
 import UsersList from './components/dashboard/users/user-list'
+import Users from './components/dashboard/users'
 
 function App() {
   return (
@@ -44,7 +45,9 @@ function App() {
             <Route path='update/:id' element={<UpdateArticle/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
-          <Route path='users' element={<UsersList/>}/>
+          <Route path='users' element={<Users/>}>
+            <Route path='' element={<UsersList/>} />
+          </Route>
           <Route path='settings' element={<Settings/>}/>
         </Route>
       </Routes>

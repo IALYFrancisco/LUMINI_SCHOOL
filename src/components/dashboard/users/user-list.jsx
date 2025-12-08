@@ -58,12 +58,7 @@ export default function UsersList(){
     return(
         <>
             <div className="actions">
-                <input type="text" name="" id="" placeholder="Recherche de formation"/>
-                    <Link to="/dashboard/formation/create">
-                        <button>
-                            Ajouter une formation
-                        </button>
-                    </Link>
+                <input type="text" name="" id="" placeholder="Recherche d'utilisateur"/>
             </div>
             <ul className="formations" ref={popUpRef}>
                 <li className="titles">
