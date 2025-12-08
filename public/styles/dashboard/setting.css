@@ -7,14 +7,26 @@
     margin-top: 20px;
 }
 
+.info-perso-container .forms-container::-webkit-scrollbar {
+    width: 0;
+}
+
 .info-perso-container .forms-container {
     margin-top: 30px;
     display: flex;
     column-gap: 50px;
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
 }
 
 .info-perso-container .forms-container .left {
     width: 50%;
+}
+
+.info-perso-container .forms-container .left form button {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+    margin-top: 10px;
 }
 
 .info-perso-container .forms-container form fieldset {
@@ -55,6 +67,12 @@
     width: 50%;
 }
 
+.info-perso-container .forms-container .right form:nth-child(1) button {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+    margin-top: 20px;
+}
+
 .info-perso-container .forms-container .right form:nth-child(2) {
     margin-top: 30px;
 }
@@ -67,4 +85,29 @@
     background-color: red;
     color: var(--thirdly);
     margin-top: 10px;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-badge {
+    font-size: 13px;
+    background-color: gray;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--thirdly);
+    transition: .5s;
+}
+
+.action-badge.active {
+    background-color: var(--fourth);
+}
+
+.action-badge:active {
+    transform: scale(0.95);
+    transition: .5s;
 }
