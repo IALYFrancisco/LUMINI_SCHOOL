@@ -27,8 +27,8 @@ export default function Settings(){
                 <div className="forms-container">
                     <div className="left">
                         <form>
-                            <h3>Informations personnelles :</h3>
                             <fieldset disabled>
+                                <h3>Informations personnelles :</h3>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
                                     <input type="text" name="" id="" placeholder="Votre nom complet" { ...register('name') }/>
@@ -46,6 +46,23 @@ export default function Settings(){
                                     <label>Votre numéro téléphone :</label>
                                     <input type="tel" name="" id="" placeholder='Ex: 030 00 000 00' { ...register('phoneNumber') }/>
                                 </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div className="right">
+                        <form>
+                            <fieldset disabled>
+                                <h3>Mot de passe :</h3>
+                                <div className="element">
+                                    <label>Votre mot de passe :</label>
+                                    <input placeholder='********************************' type="password" />
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form>
+                            <fieldset disabled>
+                                <h3>Zone dangereuse :</h3>
+                                <button>Supprimer mon compte</button>
                             </fieldset>
                         </form>
                     </div>
