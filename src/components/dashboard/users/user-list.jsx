@@ -36,12 +36,12 @@ export default function UsersList(){
         setActivePopUp((prev) => (prev === userId ? null : userId))
     }
 
-    const changeUserStatus = async (formation) => {
-        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/formation/publication`, { formationId: formation._id , update: { published: !formation.published }}, { withCredentials: true })
+    const changeUserStatus = async (user) => {
+        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-status`, { userId: user._id , update: { status: user.status === "user" ? "admin" : "user" }}, { withCredentials: true })
         .then( async ()=>{
-            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
-                // setFormations(response.data)
+                setUsers(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -94,8 +94,8 @@ export default function UsersList(){
                                         <ul className={ activePopUp === u._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(u._id);
-                                                changeUserStatus();
-                                            }}>{ u.status === "user" ? "Administrateur" : "Utilisateur simple" }</li>
+                                                changeUserStatus(u);
+                                            }}>{ u.status === "user" ? "Admin" : "User" }</li>
                                         </ul>
                                         <div className="custom-container" 
                                         onClick={ () => togglePopUp(u._id) }
