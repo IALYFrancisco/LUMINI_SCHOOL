@@ -9,6 +9,12 @@
 
 .info-perso-container .forms-container {
     margin-top: 30px;
+    display: flex;
+    column-gap: 50px;
+}
+
+.info-perso-container .forms-container .left {
+    width: 50%;
 }
 
 .info-perso-container .forms-container form fieldset {
@@ -24,7 +30,7 @@
     margin-top: 30px;
 }
 
-.info-perso-container .forms-container form .element input {
+.info-perso-container .forms-container form .element input:not([type="file"]) {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #1b223261;
@@ -36,7 +42,11 @@
     outline: none;
 }
 
-.info-perso-container .forms-container form .element input:focus {
+.info-perso-container .forms-container form .element input:focus:not([type="file"]) {
     transition: .25s;
     border-color: #1b2232;
+}
+
+.info-perso-container .forms-container form .element input[type="file"] {
+    margin-top: 15px;
 }
