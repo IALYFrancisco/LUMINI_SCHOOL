@@ -52,12 +52,12 @@ export default function Sidebar(){
                                 Articles
                             </Link>
                         </li>
-                        <li>
+                        { user && user.status === "superuser" && <li>
                             <Link to="/dashboard/users">
                                 <img src="/images/group.png" alt="" />
                                 Utilisateurs
                             </Link>
-                        </li>
+                        </li> }
                         <li>
                             <Link to="/dashboard/settings">
                                 <img src="/images/settings.png" alt="" />

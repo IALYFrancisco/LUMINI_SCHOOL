@@ -22,6 +22,7 @@ import UpdateArticle from './components/dashboard/articles/update-article'
 import { ArticlesPage } from './views/articlePage'
 import UsersList from './components/dashboard/users/user-list'
 import Users from './components/dashboard/users'
+import IsSuperuser from './components/isSuperuser'
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
             <Route path='update/:id' element={<UpdateArticle/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
-          <Route path='users' element={<Users/>}>
+          <Route path='users' element={ <IsSuperuser><Users/></IsSuperuser>}>
             <Route path='' element={<UsersList/>} />
           </Route>
           <Route path='settings' element={<Settings/>}/>
