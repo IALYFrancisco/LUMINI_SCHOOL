@@ -1,0 +1,42 @@
+.info-perso-container {
+    color: var(--primary);
+}
+
+.info-perso-container .head p {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.info-perso-container .forms-container {
+    margin-top: 30px;
+}
+
+.info-perso-container .forms-container form fieldset {
+    border: none;
+}
+
+.info-perso-container .forms-container form label {
+    font-weight: 900;
+    display: block;
+}
+
+.info-perso-container .forms-container form .element {
+    margin-top: 30px;
+}
+
+.info-perso-container .forms-container form .element input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.info-perso-container .forms-container form .element input:focus {
+    transition: .25s;
+    border-color: #1b2232;
+}
