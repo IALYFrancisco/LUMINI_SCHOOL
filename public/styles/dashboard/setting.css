@@ -110,7 +110,7 @@
     transition: .5s;
 }
 
-.overlay{
+.infos-overlay{
     background: #1b22329c;
     backdrop-filter: blur(1px);
     width: 100%;
@@ -123,12 +123,12 @@
     top: 0;
 }
 
-.overlay.active {
+.infos-overlay.active {
     opacity: 1;
     pointer-events: auto;
 }
 
-.modal {
+.infos-modal {
     max-width: 400px;
     background-color: white;
     color: var(--primary);
@@ -146,13 +146,13 @@
     right: -50%;
 }
 
-.modal.active {
+.infos-modal.active {
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
 }
 
-.modal p {
+.infos-modal p {
     margin-top: 15px;
     font-size: 14px;
 }
@@ -162,30 +162,30 @@
     font-weight: 900;
 }
 
-.modal-actions {
+.infos-modal-actions {
     margin-top: 20px;
     display: flex;
     column-gap: 30px;
     align-items: center;
 }
 
-.modal-actions button:nth-child(1) {
+.infos-modal-actions button:nth-child(1) {
     background-color: var(--fourth);
     color: var(--thirdly);
     height: 35px;
 }
 
-.modal-actions button:nth-child(2) {
+.infos-modal-actions button:nth-child(2) {
     background-color: red;
     color: var(--thirdly);
     height: 35px;
 }
 
-.modal .element {
+.infos-modal .element {
     margin-top: 20px;
 }
 
-.modal .element input:not([type="file"]) {
+.infos-modal .element input:not([type="file"]) {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #1b223261;
@@ -197,12 +197,12 @@
     outline: none;
 }
 
-.modal .element input:focus:not([type="file"]) {
+.infos-modal .element input:focus:not([type="file"]) {
     transition: .25s;
     border-color: #1b2232;
 }
 
-.modal label {
+.infos-modal label {
     font-weight: 900;
     display: block;
 }

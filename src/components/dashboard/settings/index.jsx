@@ -124,9 +124,9 @@ export default function Settings(){
                     </div>
                 </div>
             </section>
-            <div onClick={ () => { toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true); reset(); setUserIsSure(false)} } className={ toogleOverlay ? "overlay active" : "overlay" }>
+            <div onClick={ () => { toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true); reset(); setUserIsSure(false)} } className={ toogleOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
-            <form className={ toogleOverlay ? "modal active" : "modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ toogleOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
                 <span className='close-overlay'>
                     
                 </span>
@@ -138,7 +138,7 @@ export default function Settings(){
                     <label>Votre mot de passe :</label>
                     <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
                 </div> }
-                <div className="modal-actions">
+                <div className="infos-modal-actions">
                     <button type='button' onClick={()=> {setToggleOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
                     <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
