@@ -46,6 +46,19 @@ export default function Settings(){
         }
     }
 
+    const changePassword = (_data) => {
+        if( watchAll.newChangePassword !== watchAll.confirmNewChangePassword ){
+            return
+        }else{
+            let data = {
+                currentPassword: _data.currentChangePassword,
+                newChangePassword: _data.newChangePassword,
+                confirmNewChangePassword: _data.confirmNewChangePassword
+            }
+            axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
+        }
+    }
+
     useEffect(()=>{
         reset({
             name: user.name,
@@ -150,7 +163,7 @@ export default function Settings(){
             {/* overlay et modal pour le formulaire de changement de mot de passe */}
             <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); reset(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
-            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(changePassword)}>
                 <span className='close-password-overlay'>
                     
                 </span>
