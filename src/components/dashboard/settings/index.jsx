@@ -51,6 +51,7 @@ export default function Settings(){
             return
         }else{
             let data = {
+                _id: user._id,
                 currentPassword: _data.currentChangePassword,
                 newChangePassword: _data.newChangePassword
             }
