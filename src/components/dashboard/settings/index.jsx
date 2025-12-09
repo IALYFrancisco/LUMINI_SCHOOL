@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react'
 import '../../../../public/styles/dashboard/setting.css'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
+import axios from 'axios'
 
 export default function Settings(){
 
     var { user } = useAuth()
     
-    var { reset, register, watch } = useForm()
+    var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(true)
     var [ image, setImage ] = useState('')
+    var [ toogleOverlay, setToggleOverlay ] = useState(false)
+    var [ userIsSure, setUserIsSure ] = useState(false) 
 
     var watchAll = watch()
 
@@ -24,6 +27,12 @@ export default function Settings(){
                 profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
                 phoneNumber: user.phoneNumber
             })
+        }
+    }
+
+    const deleteAccount = (data)=>{
+        if(watchAll.password){
+            axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, )
         }
     }
 
@@ -98,12 +107,31 @@ export default function Settings(){
                         <form>
                             <fieldset>
                                 <h3>Zone dangereuse :</h3>
-                                <button type='button'>Supprimer mon compte</button>
+                                <button type='button' onClick={() => toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true)}>Supprimer mon compte</button>
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </section>
+            <div onClick={ () => toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true) } className={ toogleOverlay ? "overlay active" : "overlay" }>
+            </div>
+            <form className={ toogleOverlay ? "modal active" : "modal" } onSubmit={handleSubmit(deleteAccount)}>
+                <span className='close-overlay'>
+                    
+                </span>
+                <h3>Suppression de compte</h3>
+                <div className="message">
+                    <p>Attention ! Cette action est irréversible. <br/> <span className="red">Etes-vous sûr de vouloir supprimer votre compte ?</span> Cela entraînera la suppression totale de vos données sur LUMINI School, y compris votre compte, vos inscriptions, etc</p>
+                </div>
+                { userIsSure && <div className="element">
+                    <label>Votre mot de passe :</label>
+                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
+                </div> }
+                <div className="modal-actions">
+                    <button type='button' onClick={()=> {setToggleOverlay(false); setUserIsSure(false)}}>Non, annuler</button>
+                    <button onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                </div>
+            </form>
         </>
     )
 }

@@ -115,3 +115,101 @@
     transform: scale(0.95);
     transition: .5s;
 }
+
+.overlay{
+    background: #1b22329c;
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    transition: 250ms;
+    left: 0;
+    top: 0;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    max-width: 400px;
+    background-color: white;
+    color: var(--primary);
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    transition: 300ms;
+    transform: scale(1.1);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.429);
+    border-radius: 5px;
+    padding: 20px;
+    top: 100px;
+    margin: 100px auto;
+    left: -50%;
+    right: -50%;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.modal p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.red {
+    color: red;
+    font-weight: 900;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    /* justify-content: end; */
+    column-gap: 30px;
+    align-items: center;
+}
+
+.modal-actions button:nth-child(1) {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+    height: 35px;
+}
+
+.modal-actions button:nth-child(2) {
+    background-color: red;
+    color: var(--thirdly);
+    height: 35px;
+}
+
+.modal .element {
+    margin-top: 20px;
+}
+
+.modal .element input:not([type="file"]) {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.modal .element input:focus:not([type="file"]) {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.modal label {
+    font-weight: 900;
+    display: block;
+}
