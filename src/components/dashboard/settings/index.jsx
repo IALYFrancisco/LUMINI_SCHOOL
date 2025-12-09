@@ -105,7 +105,10 @@ export default function Settings(){
                     <div className="right">
                         <form>
                             <fieldset disabled>
-                                <h3>Mot de passe :</h3>
+                                <div className="form-title">
+                                    <h3>Mot de passe :</h3>
+                                    <span className="action-badge">Changer de mot de passe</span>
+                                </div>
                                 <div className="element">
                                     <label>Votre mot de passe :</label>
                                     <input placeholder='********************************' type="password" />
