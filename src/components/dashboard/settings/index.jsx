@@ -10,7 +10,7 @@ export default function Settings(){
     var { reset, register, watch } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
-    var [ urlIsDefined, setUrlIsDefined ] = useState(false)
+    var [ urlIsDefined, setUrlIsDefined ] = useState(true)
     var [ image, setImage ] = useState('')
 
     var watchAll = watch()
@@ -39,12 +39,12 @@ export default function Settings(){
     useEffect(()=>{
 
         if(watchAll.profile) setUrlIsDefined(true)
-        else setImageIsDefined(false)
+        else setUrlIsDefined(false)
 
         if(image) setImageIsDefined(true)
         else setImageIsDefined(false)
         
-    }, [image, watchAll])
+    }, [image, watchAll.profile])
 
     return(
         <>
@@ -98,7 +98,7 @@ export default function Settings(){
                         <form>
                             <fieldset>
                                 <h3>Zone dangereuse :</h3>
-                                <button>Supprimer mon compte</button>
+                                <button type='button'>Supprimer mon compte</button>
                             </fieldset>
                         </form>
                     </div>
