@@ -160,18 +160,18 @@ export default function Settings(){
                 </div>
                 <div className="element">
                     <label>Votre mot de passe actuel :</label>
-                    <input type="password" id="" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
+                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Votre nouveau mot de passe :</label>
-                    <input type="password" id="" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Confirmer le nouveau mot de passe :</label>
-                    <input type="password" id="" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
                 </div>
                 <div className="password-modal-actions">
-                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); setUserIsSure(false); reset()}}>Annuler</button>
+                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
                     <button>Soumettre</button>
                 </div>
             </form>
