@@ -142,7 +142,7 @@ export default function Settings(){
                     <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('deleteAccountPassword') } required/>
                 </div> }
                 <div className="infos-modal-actions">
-                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
+                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset({ password: null })}}>Non, annuler</button>
                     <button type={ watchAll.deleteAccountPassword ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
