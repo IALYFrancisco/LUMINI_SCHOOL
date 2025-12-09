@@ -157,7 +157,7 @@ export default function Settings(){
                 </div> }
                 <div className="infos-modal-actions">
                     <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset({ password: null })}}>Non, annuler</button>
-                    <button type={ watchAll.deleteAccountPassword ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                    <button type={ userIsSure ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
             
