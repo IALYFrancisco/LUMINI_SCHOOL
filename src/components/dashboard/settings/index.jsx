@@ -14,7 +14,7 @@ export default function Settings(){
     var [ urlIsDefined, setUrlIsDefined ] = useState(true)
     var [ image, setImage ] = useState('')
     var [ toggleInfosOverlay, setToggleInfosOverlay ] = useState(false)
-    // var []
+    var [ togglePasswordOverlay, setTogglePasswordOverlay ] = useState(false)
     var [ userIsSure, setUserIsSure ] = useState(false) 
 
     var watchAll = watch()
@@ -35,10 +35,10 @@ export default function Settings(){
 
         let _user = {
             _id: user._id,
-            password: data.password
+            password: data.deleteAccountPassword
         }
 
-        if(watchAll.password){
+        if(watchAll.deleteAccountPassword){
             axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
@@ -108,7 +108,7 @@ export default function Settings(){
                             <fieldset disabled>
                                 <div className="form-title">
                                     <h3>Mot de passe :</h3>
-                                    <span className="action-badge">Changer de mot de passe</span>
+                                    <span className="action-badge" onClick={()=>setTogglePasswordOverlay(true)}>Changer de mot de passe</span>
                                 </div>
                                 <div className="element">
                                     <label>Votre mot de passe :</label>
@@ -139,34 +139,42 @@ export default function Settings(){
                 </div>
                 { userIsSure && <div className="element">
                     <label>Votre mot de passe :</label>
-                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
+                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('deleteAccountPassword') } required/>
                 </div> }
                 <div className="infos-modal-actions">
                     <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
-                    <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                    <button type={ watchAll.deleteAccountPassword ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
             
             {/* overlay et modal pour le formulaire de changement de mot de passe */}
-            {/* <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "password-overlay active" : "password-overlay" }>
+            <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); reset(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
-            <form className={ toggleInfosOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
                 <span className='close-password-overlay'>
                     
                 </span>
                 <h3>Changement de mot de passe :</h3>
                 <div className="message">
-                    <p>Attention ! Cette action est irréversible. <br/> <span className="red">Etes-vous sûr de vouloir supprimer votre compte ?</span> Cela entraînera la suppression totale de vos données sur LUMINI School, y compris votre compte, vos inscriptions, etc</p>
+                    <p>Choisissez un <span className="red">mot de passe fort (combiné de majuscule, miniscule, caractères spéciaux et nombres).</span> <br /> Vous seriez déconnecté quand votre mot de passe sera changé.</p>
                 </div>
-                { userIsSure && <div className="element">
-                    <label>Votre mot de passe :</label>
-                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
-                </div> }
-                <div className="infos-modal-actions">
-                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
-                    <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                <div className="element">
+                    <label>Votre mot de passe actuel :</label>
+                    <input type="password" id="" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
                 </div>
-            </form> */}
+                <div className="element">
+                    <label>Votre nouveau mot de passe :</label>
+                    <input type="password" id="" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                </div>
+                <div className="element">
+                    <label>Confirmer le nouveau mot de passe :</label>
+                    <input type="password" id="" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                </div>
+                <div className="password-modal-actions">
+                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); setUserIsSure(false); reset()}}>Annuler</button>
+                    <button>Soumettre</button>
+                </div>
+            </form>
         </>
     )
 }
