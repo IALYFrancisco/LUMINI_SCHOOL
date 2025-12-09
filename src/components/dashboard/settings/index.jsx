@@ -11,7 +11,7 @@ export default function Settings(){
     var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
-    var [ urlIsDefined, setUrlIsDefined ] = useState(true)
+    var [ urlIsDefined, setUrlIsDefined ] = useState(false)
     var [ image, setImage ] = useState('')
     var [ toggleInfosOverlay, setToggleInfosOverlay ] = useState(false)
     var [ togglePasswordOverlay, setTogglePasswordOverlay ] = useState(false)
@@ -71,11 +71,11 @@ export default function Settings(){
 
     useEffect(()=>{
 
-        if(watchAll.profile) setUrlIsDefined(true)
-        else setUrlIsDefined(false)
+        if(watchAll.profile){setUrlIsDefined(true)}
+        else{setUrlIsDefined(false)}
 
-        if(image) setImageIsDefined(true)
-        else setImageIsDefined(false)
+        if(image){setImageIsDefined(true)}
+        else{setImageIsDefined(false)}
         
     }, [image, watchAll.profile])
 
@@ -104,7 +104,7 @@ export default function Settings(){
                                 </div>
                                 <div className="element">
                                     <label>Votre image de profile :</label>
-                                    <input disabled={imageIsDefined} type="url" name="" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register('profile') } onChange={()=>{console.log(urlIsDefined), console.log(watchAll.profile)}}/>
+                                    <input disabled={imageIsDefined} type="url" name="" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register('profile') }/>
                                     <input disabled={urlIsDefined} type="file" name="" id="profile_file" accept="image/jpeg, image/png" onChange={ (e)=>setImage(e.target.files[0]) }/>
                                 </div>
                                 <div className="element">
