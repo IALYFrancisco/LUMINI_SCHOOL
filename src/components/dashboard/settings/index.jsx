@@ -110,7 +110,6 @@ export default function Settings(){
                                     <label>Votre mot de passe :</label>
                                     <input placeholder='********************************' type="password" />
                                 </div>
-                                <button>Soumettre</button>
                             </fieldset>
                         </form>
                         <form>

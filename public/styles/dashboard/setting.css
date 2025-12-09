@@ -71,12 +71,6 @@
     width: 50%;
 }
 
-.info-perso-container .forms-container .right form:nth-child(1) button {
-    background-color: var(--fourth);
-    color: var(--thirdly);
-    margin-top: 20px;
-}
-
 .info-perso-container .forms-container .right form:nth-child(2) {
     margin-top: 30px;
 }
@@ -171,7 +165,6 @@
 .modal-actions {
     margin-top: 20px;
     display: flex;
-    /* justify-content: end; */
     column-gap: 30px;
     align-items: center;
 }
