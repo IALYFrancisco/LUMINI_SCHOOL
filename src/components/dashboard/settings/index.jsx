@@ -13,7 +13,8 @@ export default function Settings(){
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(true)
     var [ image, setImage ] = useState('')
-    var [ toogleInfosOverlay, setToggleInfosOverlay ] = useState(false)
+    var [ toggleInfosOverlay, setToggleInfosOverlay ] = useState(false)
+    // var []
     var [ userIsSure, setUserIsSure ] = useState(false) 
 
     var watchAll = watch()
@@ -118,7 +119,7 @@ export default function Settings(){
                         <form>
                             <fieldset>
                                 <h3>Zone dangereuse :</h3>
-                                <button type='button' onClick={() => toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true)}>Supprimer mon compte</button>
+                                <button type='button' onClick={() => toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true)}>Supprimer mon compte</button>
                             </fieldset>
                         </form>
                     </div>
@@ -126,9 +127,9 @@ export default function Settings(){
             </section>
             
             {/* overlay et modal pour le formulaire des infos personnelles */}
-            <div onClick={ () => { toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toogleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
+            <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
-            <form className={ toogleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
                 <span className='close-infos-overlay'>
                     
                 </span>
@@ -147,9 +148,9 @@ export default function Settings(){
             </form>
             
             {/* overlay et modal pour le formulaire de changement de mot de passe */}
-            {/* <div onClick={ () => { toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toogleInfosOverlay ? "password-overlay active" : "password-overlay" }>
+            {/* <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
-            <form className={ toogleInfosOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ toggleInfosOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
                 <span className='close-password-overlay'>
                     
                 </span>
