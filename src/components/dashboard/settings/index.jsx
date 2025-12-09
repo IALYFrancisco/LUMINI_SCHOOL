@@ -53,7 +53,6 @@ export default function Settings(){
             let data = {
                 currentPassword: _data.currentChangePassword,
                 newChangePassword: _data.newChangePassword,
-                confirmNewChangePassword: _data.confirmNewChangePassword
             }
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
             .then(()=>setUser(null))
