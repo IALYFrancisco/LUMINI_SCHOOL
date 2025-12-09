@@ -8,11 +8,11 @@ export default function Settings(){
 
     var { user, setUser } = useAuth()
     
-    var { reset, register, watch, handleSubmit } = useForm()
+    var { reset, register, watch, handleSubmit, formState: { isDirty } } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
-    var [ image, setImage ] = useState('')
+    var [ image, setImage ] = useState(null)
     var [ toggleInfosOverlay, setToggleInfosOverlay ] = useState(false)
     var [ togglePasswordOverlay, setTogglePasswordOverlay ] = useState(false)
     var [ userIsSure, setUserIsSure ] = useState(false) 
@@ -79,6 +79,8 @@ export default function Settings(){
         
     }, [image, watchAll.profile])
 
+    const isModified = isDirty || image
+
     return(
         <>
             <h2>Paramètres</h2>
@@ -96,23 +98,23 @@ export default function Settings(){
                                 </div>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
-                                    <input type="text" name="" id="name" placeholder="Votre nom complet" { ...register('name') }/>
+                                    <input type="text" id="name" placeholder="Votre nom complet" { ...register("name") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre email :</label>
-                                    <input type="email" name="" id="email" placeholder="Ex: johndoe@example.com" { ...register('email') }/>
+                                    <input type="email" id="email" placeholder="Ex: johndoe@example.com" { ...register("email") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre image de profile :</label>
-                                    <input disabled={imageIsDefined} type="url" name="" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register('profile') }/>
-                                    <input disabled={urlIsDefined} type="file" name="" id="profile_file" accept="image/jpeg, image/png" onChange={ (e)=>setImage(e.target.files[0]) }/>
+                                    <input disabled={imageIsDefined} type="url" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register("profile") }/>
+                                    <input disabled={urlIsDefined} type="file" id="profile_file" accept="image/jpeg, image/png" onChange={ (e)=>setImage(e.target.files[0]) }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre numéro téléphone :</label>
-                                    <input type="tel" name="" id="telephone" placeholder='Ex: 030 00 000 00' { ...register('phoneNumber') }/>
+                                    <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button>Soumettre</button>
+                                    <button type='button' disabled={!isModified} onClick={()=>{console.log(watchAll)}}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -172,18 +174,21 @@ export default function Settings(){
                 <div className="message">
                     <p>Choisissez un <span className="red">mot de passe fort (combiné de majuscule, miniscule, caractères spéciaux et nombres).</span> <br /> Vous seriez déconnecté quand votre mot de passe sera changé.</p>
                 </div>
-                <div className="element">
-                    <label>Votre mot de passe actuel :</label>
-                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
-                </div>
-                <div className="element">
-                    <label>Votre nouveau mot de passe :</label>
-                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
-                </div>
-                <div className="element">
-                    <label>Confirmer le nouveau mot de passe :</label>
-                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
-                </div>
+                { togglePasswordOverlay && <>
+                    <div className="element">
+                        <label>Votre mot de passe actuel :</label>
+                        <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
+                    </div>
+                    <div className="element">
+                        <label>Votre nouveau mot de passe :</label>
+                        <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                    </div>
+                    <div className="element">
+                        <label>Confirmer le nouveau mot de passe :</label>
+                        <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                    </div>
+                </> 
+                }
                 <div className="password-modal-actions">
                     <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
                     <button>Soumettre</button>
