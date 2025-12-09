@@ -13,7 +13,7 @@ export default function Settings(){
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(true)
     var [ image, setImage ] = useState('')
-    var [ toogleOverlay, setToggleOverlay ] = useState(false)
+    var [ toogleInfosOverlay, setToggleInfosOverlay ] = useState(false)
     var [ userIsSure, setUserIsSure ] = useState(false) 
 
     var watchAll = watch()
@@ -118,16 +118,18 @@ export default function Settings(){
                         <form>
                             <fieldset>
                                 <h3>Zone dangereuse :</h3>
-                                <button type='button' onClick={() => toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true)}>Supprimer mon compte</button>
+                                <button type='button' onClick={() => toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true)}>Supprimer mon compte</button>
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </section>
-            <div onClick={ () => { toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true); reset(); setUserIsSure(false)} } className={ toogleOverlay ? "infos-overlay active" : "infos-overlay" }>
+            
+            {/* overlay et modal pour le formulaire des infos personnelles */}
+            <div onClick={ () => { toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toogleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
-            <form className={ toogleOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
-                <span className='close-overlay'>
+            <form className={ toogleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
+                <span className='close-infos-overlay'>
                     
                 </span>
                 <h3>Suppression de compte</h3>
@@ -139,10 +141,31 @@ export default function Settings(){
                     <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
                 </div> }
                 <div className="infos-modal-actions">
-                    <button type='button' onClick={()=> {setToggleOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
+                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
                     <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
+            
+            {/* overlay et modal pour le formulaire de changement de mot de passe */}
+            {/* <div onClick={ () => { toogleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toogleInfosOverlay ? "password-overlay active" : "password-overlay" }>
+            </div>
+            <form className={ toogleInfosOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(deleteAccount)}>
+                <span className='close-password-overlay'>
+                    
+                </span>
+                <h3>Changement de mot de passe :</h3>
+                <div className="message">
+                    <p>Attention ! Cette action est irréversible. <br/> <span className="red">Etes-vous sûr de vouloir supprimer votre compte ?</span> Cela entraînera la suppression totale de vos données sur LUMINI School, y compris votre compte, vos inscriptions, etc</p>
+                </div>
+                { userIsSure && <div className="element">
+                    <label>Votre mot de passe :</label>
+                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
+                </div> }
+                <div className="infos-modal-actions">
+                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
+                    <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                </div>
+            </form> */}
         </>
     )
 }
