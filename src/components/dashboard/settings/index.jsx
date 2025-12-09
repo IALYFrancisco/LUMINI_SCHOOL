@@ -8,7 +8,7 @@ export default function Settings(){
 
     var { user, setUser } = useAuth()
     
-    var { reset, register, watch, handleSubmit, formState: { isDirty } } = useForm()
+    var { reset, register, watch, handleSubmit, formState: { dirtyFields } } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
@@ -60,6 +60,10 @@ export default function Settings(){
         }
     }
 
+    const updateUser = (data) => {
+
+    }
+
     useEffect(()=>{
         reset({
             name: user.name,
@@ -79,7 +83,7 @@ export default function Settings(){
         
     }, [image, watchAll.profile])
 
-    const isModified = isDirty || image
+    var isModified = dirtyFields.name || dirtyFields.email || dirtyFields.profile || dirtyFields.phoneNumber || image
 
     return(
         <>
@@ -90,7 +94,7 @@ export default function Settings(){
                 </div>
                 <div className="forms-container">
                     <div className="left">
-                        <form>
+                        <form onSubmit={handleSubmit(updateUser)}>
                             <fieldset disabled={!infoFormActive}>
                                 <div className="form-title">
                                     <h3>Informations personnelles :</h3>
@@ -114,7 +118,7 @@ export default function Settings(){
                                     <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button type='button' disabled={!isModified} onClick={()=>{console.log(watchAll)}}>Soumettre</button>
+                                    <button type='button' disabled={!isModified} onClick={()=>{console.log(watchAll); console.log(dirtyFields)}}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -174,21 +178,18 @@ export default function Settings(){
                 <div className="message">
                     <p>Choisissez un <span className="red">mot de passe fort (combiné de majuscule, miniscule, caractères spéciaux et nombres).</span> <br /> Vous seriez déconnecté quand votre mot de passe sera changé.</p>
                 </div>
-                { togglePasswordOverlay && <>
-                    <div className="element">
-                        <label>Votre mot de passe actuel :</label>
-                        <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
-                    </div>
-                    <div className="element">
-                        <label>Votre nouveau mot de passe :</label>
-                        <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
-                    </div>
-                    <div className="element">
-                        <label>Confirmer le nouveau mot de passe :</label>
-                        <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
-                    </div>
-                </> 
-                }
+                <div className="element">
+                    <label>Votre mot de passe actuel :</label>
+                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
+                </div>
+                <div className="element">
+                    <label>Votre nouveau mot de passe :</label>
+                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                </div>
+                <div className="element">
+                    <label>Confirmer le nouveau mot de passe :</label>
+                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                </div>
                 <div className="password-modal-actions">
                     <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
                     <button>Soumettre</button>
