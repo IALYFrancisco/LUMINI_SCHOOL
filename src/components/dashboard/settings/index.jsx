@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export default function Settings(){
 
-    var { user } = useAuth()
+    var { user, setUser } = useAuth()
     
     var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
@@ -31,8 +31,17 @@ export default function Settings(){
     }
 
     const deleteAccount = (data)=>{
+
+        let _user = {
+            _id: user._id,
+            password: data.password
+        }
+
         if(watchAll.password){
-            axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, )
+            axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
+            .then(()=>{
+                setUser(null)
+            })
         }
     }
 
@@ -113,7 +122,7 @@ export default function Settings(){
                     </div>
                 </div>
             </section>
-            <div onClick={ () => toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true) } className={ toogleOverlay ? "overlay active" : "overlay" }>
+            <div onClick={ () => { toogleOverlay ? setToggleOverlay(false) : setToggleOverlay(true); reset(); setUserIsSure(false)} } className={ toogleOverlay ? "overlay active" : "overlay" }>
             </div>
             <form className={ toogleOverlay ? "modal active" : "modal" } onSubmit={handleSubmit(deleteAccount)}>
                 <span className='close-overlay'>
@@ -128,8 +137,8 @@ export default function Settings(){
                     <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('password') } required/>
                 </div> }
                 <div className="modal-actions">
-                    <button type='button' onClick={()=> {setToggleOverlay(false); setUserIsSure(false)}}>Non, annuler</button>
-                    <button onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
+                    <button type='button' onClick={()=> {setToggleOverlay(false); setUserIsSure(false); reset()}}>Non, annuler</button>
+                    <button type={ watchAll.password ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
         </>
