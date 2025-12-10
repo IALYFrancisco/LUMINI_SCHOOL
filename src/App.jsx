@@ -23,6 +23,7 @@ import UsersList from './components/dashboard/users/user-list'
 import Users from './components/dashboard/users'
 import IsSuperuser from './components/isSuperuser'
 import Settings from './components/dashboard/settings'
+import ArticleView from './views/articleView'
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/registrations/formation/:id' element={<IsAuthenticated><Registrations/></IsAuthenticated>}></Route>
         <Route path='/articles' element={ <ArticlesPage/> }></Route>
+        <Route path='/article/:id' element={<ArticleView/>}></Route>
         <Route path='/dashboard' element={<IsAuthenticated><IsAdminOrSuperuser><Dashboard/></IsAdminOrSuperuser></IsAuthenticated>}>
           <Route path='' element={<Formations/>}>
             <Route path='' element={<FormationsList/>} />
