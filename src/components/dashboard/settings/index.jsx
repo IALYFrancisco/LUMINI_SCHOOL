@@ -61,7 +61,29 @@ export default function Settings(){
     }
 
     const updateUser = (data) => {
+        if(!isModified){ return; }
+        else{
+            let __user = new FormData()
 
+            if(watchAll.name !== user.name && watchAll.name !== ""){
+                __user.append("name", data.name)
+            }
+            if(watchAll.email !== user.email && watchAll.email !== ""){
+                __user.append("email", data.email)
+            }
+            if(watchAll.profile !== `${import.meta.env.VITE_API_BASE_URL}${user.profile}` && watchAll.profile !== ""){
+                __user.append("profile", data.profile)
+            }
+            if(image){
+                __user.append("profile", image)
+            }
+            if(watchAll.phoneNumber !== user.phoneNumber && watchAll.phoneNumber !== ""){
+                __user.append("phoneNumber", data.phoneNumber)
+            }
+
+            axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
+
+        }
     }
 
     useEffect(()=>{
@@ -118,7 +140,7 @@ export default function Settings(){
                                     <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button type='button' disabled={!isModified}>Soumettre</button>
+                                    <button disabled={!isModified}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
