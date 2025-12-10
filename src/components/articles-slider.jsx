@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import axios from "axios";
 import DOMPurify from "dompurify"
+import { Link } from "react-router-dom"
 
 export function ArticlesSlider() {
 
@@ -49,7 +50,9 @@ export function ArticlesSlider() {
                         <div className="blog-infos">
                             <h4>{article.title}</h4>
                             <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
-                            <button>Lire plus</button>
+                            <Link to={`/article/${article._id}`}>
+                                <button>Lire plus</button>
+                            </Link>
                         </div>
                     </div>
                 </SwiperSlide>) }
