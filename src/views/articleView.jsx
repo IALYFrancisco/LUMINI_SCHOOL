@@ -1,3 +1,8 @@
+import { useParams } from "react-router-dom"
+
 export default function ArticleView(){
-    return <h1>This is an article view page</h1>
+
+    const { id } = useParams()
+
+    return <h1>This is an article view page: {id}</h1>
 }
