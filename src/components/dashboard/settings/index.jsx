@@ -118,7 +118,7 @@ export default function Settings(){
                                     <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button type='button' disabled={!isModified} onClick={()=>{console.log(watchAll); console.log(dirtyFields)}}>Soumettre</button>
+                                    <button type='button' disabled={!isModified}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
