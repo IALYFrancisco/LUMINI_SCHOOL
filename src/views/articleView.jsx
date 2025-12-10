@@ -3,6 +3,8 @@ import Nav from "../components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Loading from "../components/loading"
+import '../../public/styles/articleView.css'
+import DOMPurify from 'dompurify'
 
 export default function ArticleView(){
 
@@ -21,12 +23,25 @@ export default function ArticleView(){
     return (
         <>
             <Nav></Nav>
-            {
-                article && <div className="image-container">
-                <img src={(article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt={article.title} />
-            </div>
-            }
-            
+            <div className="article-container">
+                {/* {
+                    article && <div className="image-container">
+                        <img src={(article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt={article.title} />
+                    </div>
+                } */}
+                <article>
+                {
+                    <>
+                        <h1>{article.title}</h1>
+                        <div className="article-contents">
+                            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents)}} className="contents">
+
+                            </div>
+                        </div>
+                    </>
+                }
+                </article>
+            </div>            
         </>
     )
 }
