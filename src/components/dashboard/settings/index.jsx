@@ -82,6 +82,10 @@ export default function Settings(){
             }
 
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
+            .then(()=>{
+                axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                .then((response)=>setUser(response.data))
+            })
 
         }
     }
