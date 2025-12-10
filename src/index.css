@@ -34,7 +34,7 @@ body, html {
 }
 
 .ql-document::before {
-  content: "📎"; /* icône trombone pour le bouton document */
+  content: "📎";
 }
 
 .loader {
