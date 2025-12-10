@@ -30,7 +30,6 @@ export default function ArticleView(){
                         <h1>{article.title}</h1>
                         <div className="article-contents">
                             <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents)}} className="contents">
-
                             </div>
                         </div>
                     </>
