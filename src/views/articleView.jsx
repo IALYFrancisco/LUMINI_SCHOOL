@@ -24,11 +24,6 @@ export default function ArticleView(){
         <>
             <Nav></Nav>
             <div className="article-container">
-                {/* {
-                    article && <div className="image-container">
-                        <img src={(article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt={article.title} />
-                    </div>
-                } */}
                 <article>
                 {
                     <>
