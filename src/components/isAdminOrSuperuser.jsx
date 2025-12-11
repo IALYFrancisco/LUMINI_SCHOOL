@@ -7,6 +7,6 @@ export default function IsAdminOrSuperuser({children}) {
 
     if(loading) return <Loading/>
     if(user && (user.status === "admin" || user.status === "superuser")) return children
-    return <Navigate to="/" replace/>
+    return <Navigate to="/dashboard/inscriptions" replace/>
 
 }

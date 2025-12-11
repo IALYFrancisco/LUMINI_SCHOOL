@@ -34,24 +34,24 @@ export default function Sidebar(){
                 </li>
                 <li>
                     <ul>
-                        <li>
+                        { user && (user.status === "superuser" || user.status === "admin") && <li>
                             <Link to="/dashboard">
                                 <img src="/images/formations.png" alt="" />
                                 Formations
                             </Link>
-                        </li>
+                        </li> }
                         <li>
                             <Link to="/dashboard/inscriptions">
                                 <img src="/images/inscription.png" alt="" />
                                 Inscriptions
                             </Link>
                         </li>
-                        <li>
+                        { user && (user.status === "superuser" || user.status === "admin") && <li>
                             <Link to="/dashboard/articles">
                                 <img src="/images/article.png" alt="" />
                                 Articles
                             </Link>
-                        </li>
+                        </li> }
                         { user && user.status === "superuser" && <li>
                             <Link to="/dashboard/users">
                                 <img src="/images/group.png" alt="" />

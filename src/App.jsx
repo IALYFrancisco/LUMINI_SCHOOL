@@ -37,12 +37,12 @@ function App() {
         <Route path='/articles' element={ <ArticlesPage/> }></Route>
         <Route path='/article/:id' element={<ArticleView/>}></Route>
         <Route path='/dashboard' element={<IsAuthenticated><Dashboard/></IsAuthenticated>}>
-          <Route path='' element={<Formations/>}>
+          <Route path='' element={ <IsAdminOrSuperuser><Formations/></IsAdminOrSuperuser>}>
             <Route path='' element={<FormationsList/>} />
             <Route path="formation/create" element={<AddFormation/>} />
             <Route path="formation/update/:id" element={<UpdateFormation/>} />
           </Route>
-          <Route path='articles' element={<Articles/>}>
+          <Route path='articles' element={ <IsAdminOrSuperuser><Articles/></IsAdminOrSuperuser> }>
             <Route path='' element={<ArticlesList/>}/>
             <Route path='create' element={<CreateArticle/>}/>
             <Route path='update/:id' element={<UpdateArticle/>}/>
