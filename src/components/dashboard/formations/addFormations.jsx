@@ -71,7 +71,7 @@ export default function AddFormation(){
                             <input disabled={ imageIsDefined } type="url" name="image" id="" { ...register("url") } placeholder="Utilisez cet champ pour une image en ligne" />
                         </div>
                         <div className="element">
-                            <label>Les prérequis d'une formation :</label>
+                            <label>Les prérequis du formation :</label>
                             <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true}) } required />
                         </div>
                         <div className="element">

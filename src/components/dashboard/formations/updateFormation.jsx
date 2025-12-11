@@ -111,7 +111,7 @@ export default function UpdateFormation(){
                             <input disabled={ imageIsDefined } type="url" name="" id="" { ...register("url") } />
                         </div>
                         <div className="element">
-                            <label>Les prérequis d'une formation :</label>
+                            <label>Les prérequis du formation :</label>
                             <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
                         </div>
                         <div className="element update-actions">
