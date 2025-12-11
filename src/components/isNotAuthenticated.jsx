@@ -6,7 +6,7 @@ export default function IsNotAuthenticated({children}) {
     const { user, loading } = useAuth()
 
     if(loading) return <Loading/>
-    if(user && (user.status === 'superuser' || user.status === 'admin' || user.status === 'user')) return <Navigate to="/dashboard" replace/>
-    if(!user) return children
+    if(user) return <Navigate to="/dashboard" replace/>
+    return children
 
 }
