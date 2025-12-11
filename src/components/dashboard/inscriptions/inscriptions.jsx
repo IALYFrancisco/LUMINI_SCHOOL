@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import '../../../../public/styles/dashboard/inscription.css'
+import { useAuth } from "../../../contexts/AuthContext"
 
 export default function Inscriptions(){
 
     var [registrations, setRegistrations] = useState([])
+    const { user } = useAuth()
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/registration/get`, { withCredentials: true })
@@ -17,7 +19,7 @@ export default function Inscriptions(){
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'une inscription"/>
             </div>
-            <ul className="inscriptions">
+            { (user.status === "superuser"||user.status === "admin") && <ul className="inscriptions">
                 <li className="titles">
                     <ul>
                         <li className="title">Titres du formation</li>
@@ -52,7 +54,7 @@ export default function Inscriptions(){
                             )
                         }
                 </li>}
-            </ul>
+            </ul> }
         </>
     )
 }
