@@ -18,6 +18,7 @@ export function ArticlesSlider() {
     }, [])
 
     const swiperRef = useRef()
+
     return(
         <>
             <div className="prev" onClick={()=> swiperRef.current?.slideNext()}>
@@ -26,6 +27,10 @@ export function ArticlesSlider() {
             <div className="next" onClick={()=> swiperRef.current?.slidePrev()}>
                 <img src="images/chevron-noir.png" alt="" />
             </div>
+            { articles.length == 0 && <div className="article-slider-loader">
+                <p>Chargement ...</p>
+            </div>
+            }
             <Swiper
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop={true}
