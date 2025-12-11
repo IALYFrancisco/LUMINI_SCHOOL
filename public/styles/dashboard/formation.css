@@ -87,9 +87,19 @@
     width: 100%;
 }
 
+.formation-actions .custom-container {
+    width: max-content;
+}
+
 .add-formation-form {
     margin-top: 50px;
     color: var(--primary);
+    height: calc(100vh - 160px);
+    overflow-y: scroll;
+}
+
+.add-formation-form::-webkit-scrollbar {
+    width: 1px;
 }
 
 .add-formation-form .message {
@@ -114,7 +124,7 @@
     margin-left: 5px;
 }
 
-.add-formation-form form {
+.add-formation-form form .fieldsets-top {
     display: flex;
     column-gap: 50px;
 }
@@ -133,6 +143,8 @@
 
 .add-formation-form input[type="text"],
 .add-formation-form textarea,
+.add-formation-form input[type="datetime-local"],
+.add-formation-form input[type="number"],
 .add-formation-form input[type="url"] {
     padding: 10px;
     border-radius: 5px;
@@ -143,6 +155,8 @@
 
 .add-formation-form input[type="text"]:focus,
 .add-formation-form textarea:focus,
+.add-formation-form input[type="datetime-local"]:focus,
+.add-formation-form input[type="number"]:focus,
 .add-formation-form input[type="url"]:focus {
     transition: .25s;
     border-color: #1b2232;
@@ -166,6 +180,11 @@
     color: var(--secondary);
 }
 
-.formation-actions .custom-container {
-    width: max-content;
+.add-formation-form .fieldsets-bottom fieldset {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-formation-form .fieldsets-bottom .element{
+    width: 100%;
 }
