@@ -1,23 +1,13 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
-import axios from 'axios'
 
 function Nav(){
 
-    const { user, setUser } = useAuth()
+    const { user } = useAuth()
 
     const handleClick = () => {
         const element = document.querySelector('.mobile-menu')
         element.classList.toggle('opened')
-    }
-
-    const Logout = () => {
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
-        .then(()=>{
-            setUser(null)
-        }).catch(()=>{
-            window.alert('Erreur de déconnexion')
-        })
     }
 
     return(
