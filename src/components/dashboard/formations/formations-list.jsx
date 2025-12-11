@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import '../../../../public/styles/dashboard/formation.css'
 
 export default function FormationsList(){
 
