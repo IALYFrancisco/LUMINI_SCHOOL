@@ -19,7 +19,7 @@ export default function Inscriptions(){
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'une inscription"/>
             </div>
-            {/* List form admin or superuser */}
+            {/* List for admin or superuser */}
             { (user.status === "superuser"||user.status === "admin") && <ul className="inscriptions">
                 <li className="titles">
                     <ul>
@@ -56,7 +56,7 @@ export default function Inscriptions(){
                         }
                 </li>}
             </ul> }
-            {/* List form user, simple user */}
+            {/* List for user, simple user */}
             { user.status === "user" && <ul className="inscriptions">
                 <li className="titles">
                     <ul>
