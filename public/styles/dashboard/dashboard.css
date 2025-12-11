@@ -235,6 +235,7 @@ aside .actions p img {
 
 .formation .description {
     overflow: hidden;
+    height: 18px;
 }
 
 .formation .description p {
