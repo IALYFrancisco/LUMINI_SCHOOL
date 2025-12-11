@@ -133,7 +133,7 @@
 .infos-modal,
 .password-modal {
     max-width: 400px;
-    background-color: white;
+    background-color: var(--thirdly);
     color: var(--primary);
     position: fixed;
     opacity: 0;
