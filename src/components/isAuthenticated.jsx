@@ -1,3 +1,5 @@
+// This component allows to protect routes by no authenticated users
+
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Loading from "./loading";
