@@ -202,8 +202,3 @@ aside .actions p img {
 .pop-up li a {
     color: var(--primary);
 }
-
-#dashboard-view > section > section > form > fieldset:nth-child(1) > div:nth-child(4) > button:disabled {
-    background-color: grey;
-    transform: none;
-}

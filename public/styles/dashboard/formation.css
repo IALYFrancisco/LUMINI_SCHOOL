@@ -188,3 +188,8 @@
 .add-formation-form .fieldsets-bottom .element{
     width: 100%;
 }
+
+.add-formation-form .fieldsets-bottom button:disabled {
+    background-color: grey;
+    transform: none;
+}
