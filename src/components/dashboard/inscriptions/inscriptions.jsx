@@ -61,9 +61,10 @@ export default function Inscriptions(){
                 <li className="titles">
                     <ul>
                         <li className="title">Formations</li>
-                        <li className="description">Clients inscrits</li>
-                        <li className="addDate">Date de l'inscription</li>
-                        <li className="addDate">Téléphone du client</li>
+                        <li className="description">Lieu du formation</li>
+                        <li className="formation-actions">Droit déjà payé ?</li>
+                        <li className="addDate">Date de début</li>
+                        <li className="addDate">Date de fin</li>
                         <li className="addDate">Actions</li>
                     </ul>
                 </li>
@@ -73,11 +74,22 @@ export default function Inscriptions(){
                                     <li className="title">
                                         <h5>{registration.formation.title}</h5>
                                     </li>
-                                    {/* <li  className="description">
-                                        <p>{registration.user.name}</p>
-                                    </li> */}
+                                    <li  className="description">
+                                        <p>{registration.formation.coursePlace}</p>
+                                    </li>
+                                    <li  className="formation-actions">
+                                        { registration.coursePricePayed && <div className="badge yes">
+                                            <p>oui</p>
+                                        </div> }
+                                        { !registration.coursePricePayed && <div className="badge no">
+                                            <p>non</p>
+                                        </div> }
+                                    </li>
+                                    <li  className="description">
+                                        <p>{ new Date(registration.formation.beginDate).toLocaleString("fr-FR") }</p>
+                                    </li>
                                     <li  className="addDate">
-                                        <p>{ new Date(registration.registrationDate).toLocaleString("fr-FR") }</p>
+                                        <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
                                     </li>
                                     {/* <li  className="addDate">
                                         <p>{ registration.user.phoneNumber }</p>
