@@ -84,7 +84,7 @@ export default function Inscriptions(){
                         <li className="begin-date">Date de début</li>
                         <li className="end-date">Date de fin</li>
                         <li className="course-price">Droit à payer</li>
-                        <li className="formation-actions">Actions</li>
+                        <li className="registration-actions">Actions</li>
                     </ul>
                 </li>
                 { registrations && <li ref={popUpRef}>
@@ -113,7 +113,7 @@ export default function Inscriptions(){
                                     <li  className="course-price">
                                         <p>{ registration.formation.coursePrice } Ar</p>
                                     </li>
-                                    <li className="formation-actions">
+                                    <li className="registration-actions">
                                         <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(registration._id);

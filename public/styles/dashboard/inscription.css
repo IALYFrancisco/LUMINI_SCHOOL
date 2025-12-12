@@ -58,7 +58,7 @@
 .registrations .end-date,
 .registrations .course-price,
 .registrations .course-price-payed,
-.registrations .formation-actions,
+.registrations .registration-actions,
 .registrations .course-place {
     width: 14%;
     padding-left: 10px;
@@ -67,9 +67,17 @@
     justify-content: center;
 }
 
-.registrations .formation-actions {
+.registrations .registration-actions {
     position: relative;
     text-align: start;
+}
+
+.registrations .registration-actions .custom-container {
+    cursor: pointer;
+}
+
+.registrations .registration-actions .pop-up li {
+    cursor: pointer;
 }
 
 .registrations .titles {
