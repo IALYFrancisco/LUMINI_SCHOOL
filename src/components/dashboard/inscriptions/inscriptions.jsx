@@ -75,27 +75,28 @@ export default function Inscriptions(){
                 </li>}
             </ul> }
             {/* List for user, simple user */}
-            { user.status === "user" && <ul className="inscriptions">
+            { user.status === "user" && <ul className="registrations">
                 <li className="titles">
                     <ul>
-                        <li className="title">Formations</li>
-                        <li className="description">Lieu du formation</li>
-                        <li className="formation-actions">Droit déjà payé ?</li>
-                        <li className="addDate">Date de début</li>
-                        <li className="addDate">Date de fin</li>
-                        <li className="addDate">Actions</li>
+                        <li className="formation-title">Formations</li>
+                        <li className="course-place">Lieu du formation</li>
+                        <li className="course-price-payed">Droit déjà payé ?</li>
+                        <li className="begin-date">Date de début</li>
+                        <li className="end-date">Date de fin</li>
+                        <li className="course-price">Droit à payer</li>
+                        <li className="formation-actions">Actions</li>
                     </ul>
                 </li>
                 { registrations && <li ref={popUpRef}>
                             { registrations.map( registration => (
-                                <ul className="formation" key={registration._id}>
-                                    <li className="title">
+                                <ul className="registration" key={registration._id}>
+                                    <li className="formation-title">
                                         <h5>{registration.formation.title}</h5>
                                     </li>
-                                    <li  className="description">
-                                        <p>{registration.formation.coursePlace}</p>
+                                    <li  className="course-place">
+                                        <p>{registration.formation.coursePlace} Lorem</p>
                                     </li>
-                                    <li  className="formation-actions">
+                                    <li  className="course-price-payed">
                                         { registration.coursePricePayed && <div className="badge yes">
                                             <p>oui</p>
                                         </div> }
@@ -103,11 +104,14 @@ export default function Inscriptions(){
                                             <p>non</p>
                                         </div> }
                                     </li>
-                                    <li  className="description">
+                                    <li  className="begin-date">
                                         <p>{ new Date(registration.formation.beginDate).toLocaleString("fr-FR") }</p>
                                     </li>
-                                    <li  className="addDate">
+                                    <li  className="end-date">
                                         <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
+                                    </li>
+                                    <li  className="course-price">
+                                        <p>{ registration.formation.coursePrice } Ar</p>
                                     </li>
                                     <li className="formation-actions">
                                         <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>

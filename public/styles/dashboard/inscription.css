@@ -1,9 +1,15 @@
-.inscriptions {
+.registrations {
     height: calc(100vh - 250px);
     overflow-y: auto;
 }
 
-.inscriptions > li {
+.registrations .titles ul {
+    display: flex;
+    column-gap: 20px;
+    font-size: 14px;
+}
+
+.registrations > li {
     position: relative;
     padding: 15px 0;
     display: flex;
@@ -11,21 +17,65 @@
     row-gap: 20px;
 }
 
-.inscriptions .title,
-.inscriptions .description,
-.inscriptions .addDate,
-.inscriptions .publicationDate {
-    width: 20%;
+.registrations .formation-title,
+.registrations .addDate,
+.registrations .begin-date,
+.registrations .end-date,
+.registrations .course-price,
+.registrations .course-price-payed,
+.registrations .formation-actions,
+.registrations .course-place {
+    width: 14%;
     padding-left: 10px;
 }
 
-.inscriptions .formation-actions {
-    width: 20%;
-    padding-left: 10px;
+.registrations .formation-actions {
     position: relative;
 }
 
-.inscriptions .titles {
+.registrations .titles {
     background-color: var(--primary);
     color: var(--secondary);
+}
+
+.registration {
+    display: flex;
+    column-gap: 20px;
+    color: var(--primary);
+    position: relative;
+    align-items: center;
+}
+
+.registration::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--fourth);
+}
+
+.registration li p {
+    font-size: 13px;
+}
+
+.registration .course-place {
+    overflow: hidden;
+}
+
+.registration .course-place p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.registration .formation-title {
+    overflow: hidden;
+}
+
+.registration .formation-title h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
