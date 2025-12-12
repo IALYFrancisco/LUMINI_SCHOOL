@@ -1,16 +1,34 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import '../../../../public/styles/dashboard/inscription.css'
 import { useAuth } from "../../../contexts/AuthContext"
 
 export default function Inscriptions(){
 
     var [registrations, setRegistrations] = useState([])
+    var [activePopUp, setActivePopUp] = useState(null)
+    const popUpRef = useRef(null)
     const { user } = useAuth()
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/registration/get`, { withCredentials: true })
         .then((response)=>setRegistrations(response.data))
+    }, [])
+
+    const togglePopUp = (formationId) => {
+        setActivePopUp((prev) => (prev === formationId ? null : formationId))
+    }
+
+    useEffect(()=>{
+        const handleClickOutside = (event) => {
+            if(popUpRef.current && !popUpRef.current.contains(event.target)) {
+                setActivePopUp(null)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return ()=>{
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
     }, [])
 
     return(
@@ -68,7 +86,7 @@ export default function Inscriptions(){
                         <li className="addDate">Actions</li>
                     </ul>
                 </li>
-                { registrations && <li>
+                { registrations && <li ref={popUpRef}>
                             { registrations.map( registration => (
                                 <ul className="formation" key={registration._id}>
                                     <li className="title">
@@ -91,11 +109,16 @@ export default function Inscriptions(){
                                     <li  className="addDate">
                                         <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
                                     </li>
-                                    {/* <li  className="addDate">
-                                        <p>{ registration.user.phoneNumber }</p>
-                                    </li> */}
                                     <li className="formation-actions">
-                                        <div className="custom-container">
+                                        <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
+                                            <li onClick={ () => {
+                                                togglePopUp(registration._id);
+                                            }} >Télécharger les détails</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(registration._id);
+                                            } }>Payer le droit</li>
+                                        </ul>
+                                        <div className="custom-container" onClick={ () => togglePopUp(registration._id) }>
                                             <img src="/images/kebab.png" alt=""/>
                                         </div>
                                     </li>
