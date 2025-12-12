@@ -33,7 +33,6 @@
 }
 
 /* Style de la liste pour les utilisateurs simples */
-
 .registrations {
     height: calc(100vh - 250px);
     overflow-y: auto;
