@@ -24,7 +24,7 @@ export default function Sidebar(){
                 <li>
                     <div className="border">
                         <div className="profile-container">
-                            <img src="/images/ialy (5).jfif" alt="" />
+                            <img src={ (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}` } alt="" />
                         </div>
                     </div>
                     <div className="user-infos">
@@ -34,30 +34,30 @@ export default function Sidebar(){
                 </li>
                 <li>
                     <ul>
-                        <li>
+                        { user && (user.status === "superuser" || user.status === "admin") && <li>
                             <Link to="/dashboard">
                                 <img src="/images/formations.png" alt="" />
                                 Formations
                             </Link>
-                        </li>
+                        </li> }
                         <li>
                             <Link to="/dashboard/inscriptions">
                                 <img src="/images/inscription.png" alt="" />
                                 Inscriptions
                             </Link>
                         </li>
-                        <li>
+                        { user && (user.status === "superuser" || user.status === "admin") && <li>
                             <Link to="/dashboard/articles">
                                 <img src="/images/article.png" alt="" />
                                 Articles
                             </Link>
-                        </li>
-                        <li>
+                        </li> }
+                        { user && user.status === "superuser" && <li>
                             <Link to="/dashboard/users">
                                 <img src="/images/group.png" alt="" />
                                 Utilisateurs
                             </Link>
-                        </li>
+                        </li> }
                         <li>
                             <Link to="/dashboard/settings">
                                 <img src="/images/settings.png" alt="" />

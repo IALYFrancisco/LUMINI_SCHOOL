@@ -11,8 +11,10 @@ export function FormationsPage(){
     var [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`)
-            .then((response)=>setFormations(response.data))
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+            .then((response)=>{
+                setFormations(response.data.filter( f => f.published === true ))
+            })
             .catch(()=>setFormations([]))
             .finally(()=>setLoading(false))
     }, [])
@@ -35,7 +37,7 @@ export function FormationsPage(){
                             <div className="card-container" key={formation._id}>
                                 <div className="card">
                                     <div className="formation-image">
-                                        <img src={`${import.meta.env.VITE_API_BASE_URL}/${formation.image}`} alt="" />
+                                        <img src={ (formation.image.includes('https') || formation.image.includes('http')) ? formation.image : `${import.meta.env.VITE_API_BASE_URL}/${formation.image}` } alt="" />
                                     </div>
                                     <div className="formation-infos">
                                         <h4>{formation.title}</h4>

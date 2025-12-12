@@ -34,12 +34,21 @@ body, html {
 }
 
 .ql-document::before {
-  content: "📎"; /* icône trombone pour le bouton document */
+  content: "📎";
 }
 
 .loader {
     width: 100%;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary)
+}
+
+.article-slider-loader {
+    width: 100%;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;

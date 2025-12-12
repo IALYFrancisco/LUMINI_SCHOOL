@@ -1,4 +1,5 @@
 import { ArticlesSlider } from "./articles-slider"
+import { Link } from "react-router-dom"
 
 export function Articles(){
     return(
@@ -12,7 +13,9 @@ export function Articles(){
                 <div className="right">
                     <h2>Mettez-vous à nos places juste un instant</h2>
                     <p>On partage aussi au monde entier notre point de vue vis à vis d'un sujet. On parle à travers nos articles des événements passés 🌿, nos perceptions du présent 🍃 et nos visions du futur 🍂.</p>
-                    <button>Voir touts les articles</button>
+                    <Link to="/articles">
+                        <button>Voir touts les articles</button>
+                    </Link>
                 </div>
             </section>
         </section>

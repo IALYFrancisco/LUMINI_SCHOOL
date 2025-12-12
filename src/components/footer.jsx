@@ -37,7 +37,11 @@ export function Footer(){
                                 Formations
                             </Link>
                         </li>
-                        <li>Articles</li>
+                        <li>
+                            <Link to="/articles">
+                                Articles
+                            </Link>
+                        </li>
                     </ul>
                 </section>
                 <section>

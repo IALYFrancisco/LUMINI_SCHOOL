@@ -738,7 +738,7 @@ footer .actions button {
     text-overflow: ellipsis;
 }
 
-.blog-container .card .blog-infos p {
+.blog-container .card .blog-infos > p {
     font-size: 11px;
     margin-top: 10px;
     width: 100%;

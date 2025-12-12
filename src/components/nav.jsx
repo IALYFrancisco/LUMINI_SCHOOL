@@ -1,23 +1,13 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
-import axios from 'axios'
 
 function Nav(){
 
-    const { user, setUser } = useAuth()
+    const { user } = useAuth()
 
     const handleClick = () => {
         const element = document.querySelector('.mobile-menu')
         element.classList.toggle('opened')
-    }
-
-    const Logout = () => {
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
-        .then(()=>{
-            setUser(null)
-        }).catch(()=>{
-            window.alert('Erreur de déconnexion')
-        })
     }
 
     return(
@@ -35,7 +25,9 @@ function Nav(){
                             <li>
                                 <Link to="/formations">Formations</Link>
                             </li>
-                            <li>Articles</li>
+                            <li>
+                                <Link to="/articles">Articles</Link>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -53,19 +45,12 @@ function Nav(){
                                 </li> 
                             </ul>
                         }{
-                            user && (user.status === 'superuser' || user.status === 'admin') &&
+                            user &&
                             <ul>
                                 <li>
                                     <Link to="/dashboard">
                                         <button>Dashboard</button>
                                     </Link>
-                                </li> 
-                            </ul>
-                        }{
-                            (user && user.status === 'user') &&
-                            <ul>
-                                <li>
-                                    <button onClick={Logout}>Se déconnecter</button>    
                                 </li> 
                             </ul>
                         }
@@ -83,7 +68,9 @@ function Nav(){
                     <li onClick={handleClick}>
                         <Link  onClick={handleClick} to="/formations">Formations</Link>
                     </li>
-                    <li>Articles</li>
+                    <li onClick={handleClick}>
+                        <Link to="/articles">Articles</Link>
+                    </li>
                     { !user && <>
                         <li onClick={handleClick}>
                             <Link  onClick={handleClick} to="/authentication/login">Se connecter</Link>
@@ -92,12 +79,7 @@ function Nav(){
                             <Link  onClick={handleClick} to="/authentication/register">Créer un compte</Link>
                         </li>
                     </> }
-                    { (user && user.status === 'user') && <>
-                        <li onClick={Logout}>
-                            Se déconnecter
-                        </li>
-                    </> }
-                    { user && (user.status === 'superuser' || user.status === 'admin') && <>
+                    { user && <>
                         <li onClick={handleClick}>
                             <Link  onClick={handleClick} to="/dashboard">Dashboard</Link>
                         </li>
