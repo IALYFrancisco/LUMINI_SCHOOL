@@ -1,3 +1,39 @@
+
+/* Style de la liste pour les administrateures et le superutilisateur */
+.inscriptions {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.inscriptions > li {
+    position: relative;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.inscriptions .title,
+.inscriptions .description,
+.inscriptions .addDate,
+.inscriptions .publicationDate {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.inscriptions .formation-actions {
+    width: 20%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.inscriptions .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+/* Style de la liste pour les utilisateurs simples */
+
 .registrations {
     height: calc(100vh - 250px);
     overflow-y: auto;
