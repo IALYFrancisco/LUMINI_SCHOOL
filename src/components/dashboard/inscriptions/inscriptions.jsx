@@ -120,6 +120,9 @@ export default function Inscriptions(){
                                             }} >Télécharger les détails</li>
                                             <li onClick={ () => {
                                                 togglePopUp(registration._id);
+                                            }} >Reçevoir par email les détails</li>
+                                            <li onClick={ () => {
+                                                togglePopUp(registration._id);
                                             } }>Payer le droit</li>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(registration._id) }>

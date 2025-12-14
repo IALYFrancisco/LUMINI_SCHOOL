@@ -126,3 +126,38 @@
     text-overflow: ellipsis;
     width: 100%;
 }
+
+.registrations .registration .pop-up {
+    background-color: var(--thirdly);
+    padding: 5px;
+    row-gap: 15px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    left: -100px;
+    z-index: 5;
+    width: max-content;
+}
+
+.registrations .registration .pop-up.show {
+    display: block;
+}
+
+.registrations .registration .pop-up.hide {
+    display: none;
+}
+
+.registrations .registration .pop-up li {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.registrations .registration .pop-up li:hover {
+    background-color: rgba(0, 0, 0, 0.163);
+}
+
+.registrations .registration .pop-up li a {
+    color: var(--primary);
+}
