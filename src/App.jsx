@@ -24,6 +24,7 @@ import Users from './components/dashboard/users'
 import IsSuperuser from './components/isSuperuser'
 import Settings from './components/dashboard/settings'
 import ArticleView from './views/articleView'
+import Payments from './components/dashboard/paiements'
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path='' element={<UsersList/>} />
           </Route>
           <Route path='settings' element={<Settings/>}/>
+          <Route path='payements/:user/:formation' element={<Payments/>}/>
         </Route>
       </Routes>
     </Router>

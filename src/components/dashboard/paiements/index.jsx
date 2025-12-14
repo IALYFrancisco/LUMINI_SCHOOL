@@ -1,3 +1,7 @@
 export default function Payments(){
-    return(<h1>This is payment page.</h1>)
+    return(
+        <>
+            <h2>Paiements</h2>
+        </>
+    )
 }
