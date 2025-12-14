@@ -3,6 +3,7 @@ import '../../../../public/styles/dashboard/payment.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Loading from '../../loading'
+import { useForm } from 'react-hook-form'
 
 
 export default function Payments(){
@@ -10,12 +11,22 @@ export default function Payments(){
     const { formationId } = useParams()
     let [ formation, setFormation ] = useState(null)
 
+    const { reset, register } = useForm()
+
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
         .then((response)=>{
             setFormation(response.data[0])
+            reset({
+                title: response.data[0].title,
+                prerequisites: response.data[0].prerequisites,
+                beginDate: response.data[0].beginDate,
+                coursePlace: response.data[0].coursePlace,
+                coursePrice: response.data[0].coursePrice,
+                description: response.data[0].description,
+            })
         })
-    }, [formationId])
+    }, [formationId, reset])
     
     if(!formation) return <Loading/>
     return(
@@ -29,6 +40,40 @@ export default function Payments(){
                     <form>
                         <fieldset>
                             <h3>Informations sur la formation :</h3>
+                            <fieldset className="payment-sections-container">
+                                <section className="left">
+                                    <div className="element">
+                                        <label htmlFor="title">Nom du formation :</label>
+                                        <input type="text" id="title" disabled readOnly { ...register('title') }/>
+                                    </div>
+                                    <div className="element">
+                                        <label htmlFor="prerequisites">Les prérequis du formation :</label>
+                                        <input type="text" id="prerequisites" disabled readOnly { ...register('prerequisites') }/>
+                                    </div>
+                                    <div className="element">
+                                        <label htmlFor="beginDate">Date et heure de début du formation :</label>
+                                        <input type="datetime-local" id="beginDate" disabled readOnly { ...register('beginDate') }/>
+                                    </div>
+                                    <div className="element">
+                                        <label htmlFor="endDate">Date et heure de fin du formation :</label>
+                                        <input type="datetime-local" id="endDate" disabled readOnly { ...register('endDate') }/>
+                                    </div>
+                                </section>
+                                <section className="right">
+                                    <div className="element">
+                                        <label htmlFor="coursePlace">Lieu du formation :</label>
+                                        <input type="text" id="coursePlace" disabled readOnly { ...register('coursePlace') }/>
+                                    </div>
+                                    <div className="element">
+                                        <label htmlFor="coursePrice">Coût de la formation (en Ar) :</label>
+                                        <input type="text" id="coursePrice" disabled readOnly { ...register('coursePrice') }/>
+                                    </div>
+                                    <div className="element">
+                                        <label htmlFor="description">Description la formation :</label>
+                                        <textarea id="description" disabled readOnly { ...register('description') }/>
+                                    </div>
+                                </section>
+                            </fieldset>
                         </fieldset>
                     </form>
                 </div>

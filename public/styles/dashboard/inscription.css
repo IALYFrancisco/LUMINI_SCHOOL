@@ -161,3 +161,7 @@
 .registrations .registration .pop-up li a {
     color: var(--primary);
 }
+
+#dashboard-view > section > ul > li:nth-child(2) > ul > li.registration-actions > ul > a {
+    color: var(--primary);
+}
