@@ -94,7 +94,7 @@ export default function Inscriptions(){
                                         <h5>{registration.formation.title}</h5>
                                     </li>
                                     <li  className="course-place">
-                                        <p>{registration.formation.coursePlace} Lorem</p>
+                                        <p>{registration.formation.coursePlace}</p>
                                     </li>
                                     <li  className="course-price-payed">
                                         { registration.coursePricePayed && <div className="badge yes">
