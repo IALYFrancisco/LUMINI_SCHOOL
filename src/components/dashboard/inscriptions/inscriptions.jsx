@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import '../../../../public/styles/dashboard/inscription.css'
 import { useAuth } from "../../../contexts/AuthContext"
+import { Link } from "react-router-dom"
 
 export default function Inscriptions(){
 
@@ -121,9 +122,11 @@ export default function Inscriptions(){
                                             <li onClick={ () => {
                                                 togglePopUp(registration._id);
                                             }} >Reçevoir par email les détails</li>
-                                            <li onClick={ () => {
-                                                togglePopUp(registration._id);
-                                            } }>Payer le droit</li>
+                                            <Link to={`/dashboard/payments/${user._id}/${registration.formation._id}`}>
+                                                <li onClick={ () => {
+                                                    togglePopUp(registration._id);
+                                                } }>Payer le droit</li>
+                                            </Link>
                                         </ul>
                                         <div className="custom-container" onClick={ () => togglePopUp(registration._id) }>
                                             <img src="/images/kebab.png" alt=""/>
