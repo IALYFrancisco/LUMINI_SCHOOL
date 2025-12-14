@@ -1,3 +1,7 @@
+.title-for-payment {
+    color: var(--fourth)
+}
+
 .payment-container {
     color: var(--primary);
 }
