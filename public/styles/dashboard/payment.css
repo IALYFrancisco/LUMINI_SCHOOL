@@ -1,4 +1,16 @@
+.payment-container {
+    color: var(--primary);
+}
+
 .payment-container .head p {
     font-size: 14px;
     margin-top: 20px;
+}
+
+.payment-container fieldset {
+    border: none;
+}
+
+.payment-container .forms-container {
+    margin-top: 30px;
 }

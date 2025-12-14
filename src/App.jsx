@@ -53,7 +53,7 @@ function App() {
             <Route path='' element={<UsersList/>} />
           </Route>
           <Route path='settings' element={<Settings/>}/>
-          <Route path='payments/:user/:formation' element={<Payments/>}/>
+          <Route path='payments/:userId/:formationId' element={<Payments/>}/>
         </Route>
       </Routes>
     </Router>
