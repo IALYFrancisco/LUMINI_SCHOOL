@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
+import DateRefactoring from '../../../contexts/DateRefacotring'
 
 
 export default function Payments(){
@@ -20,7 +21,8 @@ export default function Payments(){
             reset({
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites,
-                beginDate: response.data[0].beginDate,
+                beginDate: DateRefactoring(response.data[0].beginDate),
+                endDate: DateRefactoring(response.data[0].endDate),
                 coursePlace: response.data[0].coursePlace,
                 coursePrice: response.data[0].coursePrice,
                 description: response.data[0].description,
