@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import DateRefactoring from "../../../contexts/DateRefacotring"
 
 export default function UpdateFormation(){
 
@@ -26,8 +27,8 @@ export default function UpdateFormation(){
                 prerequisites: response.data[0].prerequisites[0],
                 description: response.data[0].description,
                 url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
-                beginDate: new Date(response.data[0].beginDate).toISOString("fr-FR"),
-                endDate: response.data[0].endDate,
+                beginDate: DateRefactoring(response.data[0].beginDate),
+                endDate: DateRefactoring(response.data[0].endDate),
                 coursePlace: response.data[0].coursePlace,
                 coursePrice: response.data[0].coursePrice,
             })
@@ -70,18 +71,20 @@ export default function UpdateFormation(){
                 if(`${import.meta.env.VITE_API_BASE_URL}/${formation.image}` !== data.url && data.url !== ""){
                     _formation.append("image", data.url)
                 }
-                if(formation.beginDate !== watchAll.beginDate && data.beginDate !== "" || data.beginDate !== null ){
+                if(DateRefactoring(formation.beginDate) !== watchAll.beginDate && data.beginDate !== "" || data.beginDate !== null ){
                     _formation.append("beginDate", data.beginDate)
                 }
-                if(formation.endDate !== watchAll.endDate && data.endDate !== "" || data.endDate !== null ){
+                if(DateRefactoring(formation.endDate) !== watchAll.endDate && data.endDate !== "" || data.endDate !== null ){
                     _formation.append("endDate", data.endDate)
                 }
                 if(formation.coursePlace !== watchAll.coursePlace && data.coursePlace !== ""){
                     _formation.append("coursePlace", data.coursePlace)
                 }
-                if(formation.coursePrice !== watchAll.coursePrice && data.coursePrice !== ""){
-                    _formation.append("coursePrice", data.coursePrice)
+                if(formation.coursePrice !== JSON.parse(watchAll.coursePrice) && data.coursePrice !== ""){
+                    _formation.append("coursePrice", JSON.parse(data.coursePrice))
                 }
+
+                console.log(typeof(watchAll.beginDate))
 
                 await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update?_id=${id}`, _formation,
                     { 
@@ -97,8 +100,8 @@ export default function UpdateFormation(){
                             prerequisites: response.data[0].prerequisites[0],
                             description: response.data[0].description,
                             url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
-                            beginDate: response.data[0].beginDate,
-                            endDate: new Date(response.data[0].endDate),
+                            beginDate: DateRefactoring(response.data[0].beginDate),
+                            endDate: DateRefactoring(response.data[0].endDate),
                             coursePlace: response.data[0].coursePlace,
                             coursePrice: response.data[0].coursePrice,
                         })
