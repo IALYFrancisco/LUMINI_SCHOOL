@@ -19,6 +19,11 @@ export default function CreateArticle() {
   var watchAll = watch()
 
   const modules = {
+    history:{
+      delay: 1000,
+      maxStack: 100,
+      userOnly: true
+    },
     toolbar: {
       container: [
         [{ header: [ 2, 3, 4, 5, 6, false] }],
@@ -102,6 +107,9 @@ const handleDocumentUpload = async () => {
   };
 
 const _handleSubmit = (data) => {
+
+  if(content == "<p><br></p>") return
+
   const cleanHTML = DOMPurify.sanitize(content);
   const article = new FormData()
   
@@ -152,8 +160,8 @@ const _handleSubmit = (data) => {
             <div className="element">
               <label htmlFor="">Image de mis en avant pour l'article :</label>
               <div className="inputs-container">
-                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } />
-                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" />
+                <input disabled={imageIsDefined} type="url" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required />
+                <input disabled={urlIsDefined} type="file" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required />
               </div>
             </div>
           </fieldset>

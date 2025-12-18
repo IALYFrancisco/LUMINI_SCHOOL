@@ -37,6 +37,11 @@ export default function UpdateArticle() {
   const isModified = isDirty || image || (article !== null && content !== article.contents)
 
   const modules = {
+    history:{
+      delay: 1000,
+      maxStack: 100,
+      userOnly: true
+    },
     toolbar: {
       container: [
         [{ header: [ 2, 3, 4, 5, 6, false] }],
