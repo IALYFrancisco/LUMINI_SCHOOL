@@ -21,6 +21,7 @@ export default function UpdateFormation(){
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>{
+            response.data[0].coursePrice = JSON.stringify(response.data[0].coursePrice)
             setFormation(response.data[0])
             reset({
                 title: response.data[0].title,
@@ -46,8 +47,6 @@ export default function UpdateFormation(){
     }, [image, watchAll])
 
     const isModified = isDirty || image
-
-    console.log(isModified)
 
     const onSubmit = async (data) => {
         
@@ -81,8 +80,8 @@ export default function UpdateFormation(){
                 if(formation.coursePlace !== watchAll.coursePlace && data.coursePlace !== ""){
                     _formation.append("coursePlace", data.coursePlace)
                 }
-                if(formation.coursePrice !== JSON.parse(watchAll.coursePrice)){
-                    _formation.append("coursePrice", JSON.parse(data.coursePrice))
+                if(formation.coursePrice !== watchAll.coursePrice){
+                    _formation.append("coursePrice", data.coursePrice)
                 }
 
                 await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update?_id=${id}`, _formation,
@@ -93,6 +92,7 @@ export default function UpdateFormation(){
                 ).then(()=>{
                     axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
                     .then((response)=>{
+                        response.data[0].coursePrice = JSON.stringify(response.data[0].coursePrice)
                         setFormation(response.data[0])
                         reset({
                             title: response.data[0].title,
