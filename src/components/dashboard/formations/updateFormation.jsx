@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useParams } from "react-router-dom"
-import DateRefactoring from "../../../contexts/DateRefacotring"
+import DateRefactoring from "../../../contexts/DateRefactoring"
 
 export default function UpdateFormation(){
 
@@ -47,11 +47,12 @@ export default function UpdateFormation(){
 
     const isModified = isDirty || image
 
+    console.log(isModified)
+
     const onSubmit = async (data) => {
         
         if(!isModified) return;
         else {
-
             try {
 
                 let _formation = new FormData()
@@ -71,20 +72,18 @@ export default function UpdateFormation(){
                 if(`${import.meta.env.VITE_API_BASE_URL}/${formation.image}` !== data.url && data.url !== ""){
                     _formation.append("image", data.url)
                 }
-                if(DateRefactoring(formation.beginDate) !== watchAll.beginDate && data.beginDate !== "" || data.beginDate !== null ){
+                if(DateRefactoring(formation.beginDate) !== DateRefactoring(watchAll.beginDate)){
                     _formation.append("beginDate", data.beginDate)
                 }
-                if(DateRefactoring(formation.endDate) !== watchAll.endDate && data.endDate !== "" || data.endDate !== null ){
+                if(DateRefactoring(formation.endDate) !== DateRefactoring(watchAll.endDate)){
                     _formation.append("endDate", data.endDate)
                 }
                 if(formation.coursePlace !== watchAll.coursePlace && data.coursePlace !== ""){
                     _formation.append("coursePlace", data.coursePlace)
                 }
-                if(formation.coursePrice !== JSON.parse(watchAll.coursePrice) && data.coursePrice !== ""){
+                if(formation.coursePrice !== JSON.parse(watchAll.coursePrice)){
                     _formation.append("coursePrice", JSON.parse(data.coursePrice))
                 }
-
-                console.log(typeof(watchAll.beginDate))
 
                 await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update?_id=${id}`, _formation,
                     { 
@@ -127,22 +126,22 @@ export default function UpdateFormation(){
                         <fieldset>
                             <div className="element">
                                 <label>Titre de la formation :</label>
-                                <input type="text" required name="titre" placeholder="Ajoutez un titre pour la formation" { ...register("title", { required: true })}/>
+                                <input type="text" required placeholder="Ajoutez un titre pour la formation" { ...register("title", { required: true })}/>
                             </div>
                             <div className="element">
                                 <label>Image de mis en avant pour la formation :</label>
-                                <input disabled={ urlIsDefined } type="file" name="image" id="" accept="image/jpeg, image/png" onChange={(e) => {setImage(e.target.files[0])}}/>
-                                <input disabled={ imageIsDefined } type="url" name="" id="" { ...register("url") } />
+                                <input disabled={ urlIsDefined } type="file" id="" accept="image/jpeg, image/png" onChange={(e) => {setImage(e.target.files[0])}}/>
+                                <input disabled={ imageIsDefined } type="url" id="" { ...register("url") } />
                             </div>
                             <div className="element">
                                 <label>Les prérequis du formation :</label>
-                                <input type="text" name="prerequis" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
+                                <input type="text" id="" placeholder="Doivent être séparés par un point-virgule" { ...register("prerequisites", {required: true }) } required />
                             </div>
                         </fieldset>
                         <fieldset>
                             <div className="element">
                                 <label>Descriptions de la formation : <p>nombre de mots : {wordCount} / 150</p></label>
-                                <textarea cols="30" rows="10" required name="descriptions" placeholder="Redigez ici les descriptions ..." { ...register("description", { required: "La description est obligatoire.", validate: {
+                                <textarea cols="30" rows="10" required placeholder="Redigez ici les descriptions ..." { ...register("description", { required: "La description est obligatoire.", validate: {
                                     minWords: (value) => 
                                         value.trim().split(/\s+/).length >= 50 ||
                                         "La description doit contenir au moins 50 mots.",
@@ -160,21 +159,21 @@ export default function UpdateFormation(){
                         <fieldset>
                             <div className="element">
                                 <label>Date et heure de début du formation :</label>
-                                <input type="datetime-local" required name="beginDate" { ...register("beginDate", { required: true })}/>
+                                <input type="datetime-local" required { ...register("beginDate", { required: true })}/>
                             </div>
                             <div className="element">
                                 <label>Date et heure de fin du formation :</label>
-                                <input type="datetime-local" required name="endDate" { ...register("endDate", { required: true }) }/>
+                                <input type="datetime-local" required { ...register("endDate", { required: true }) }/>
                             </div>
                         </fieldset>
                         <fieldset>
                             <div className="element">
                                 <label>Lieu du formation :</label>
-                                <input type="text" required name="coursePlace" { ...register("coursePlace", { required: true })} placeholder="L'endroit où se déroule la formation"/>
+                                <input type="text" required { ...register("coursePlace", { required: true })} placeholder="L'endroit où se déroule la formation"/>
                             </div>
                             <div className="element">
                                 <label>Coût de la formation (en Ar) :</label>
-                                <input type="number" min="1" required name="endDate" { ...register("coursePrice", { required: true }) } placeholder="Entrez un montant en ariary"/>
+                                <input type="number" min="1" required { ...register("coursePrice", { required: true }) } placeholder="Entrez un montant en ariary"/>
                             </div>
                         </fieldset>
                         <fieldset>

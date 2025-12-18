@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
-import DateRefactoring from '../../../contexts/DateRefacotring'
+import DateRefactoring from '../../../contexts/DateRefactoring'
 
 
 export default function Payments(){
