@@ -36,7 +36,7 @@ function App() {
         <Route path='/formations' element={<FormationsPage/>}></Route>
         <Route path='/registrations/formation/:id' element={<IsAuthenticated><Registrations/></IsAuthenticated>}></Route>
         <Route path='/articles' element={ <ArticlesPage/> }></Route>
-        <Route path='/article/:id' element={<ArticleView/>}></Route>
+        <Route path='/article/:slug' element={<ArticleView/>}></Route>
         <Route path='/dashboard' element={<IsAuthenticated><Dashboard/></IsAuthenticated>}>
           <Route path='' element={ <IsAdminOrSuperuser><Formations/></IsAdminOrSuperuser>}>
             <Route path='' element={<FormationsList/>} />

@@ -8,16 +8,16 @@ import DOMPurify from 'dompurify'
 
 export default function ArticleView(){
 
-    const { id } = useParams()
+    const { slug } = useParams()
     var [ article, setArticle ] = useState(null)
     var [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
         .then((response)=>{
             setArticle(response.data)
         }).finally(()=>setLoading(false))
-    }, [id])
+    }, [slug])
 
     if (loading) return <Loading/>
     return (
