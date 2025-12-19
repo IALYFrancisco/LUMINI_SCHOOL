@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 export function Register(){
     var { reset, register, handleSubmit } = useForm()
@@ -18,14 +18,14 @@ export function Register(){
             }
 
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
-                .then((res)=>{
+                .then(()=>{
+                    toast.success("Félicitation ✨ , votre compte a été bien créé.")
                     navigate('/authentication/login')
                     reset()
                 })
-                .catch((err)=> console.log(err))
         }
-        catch(err){
-            console.log(err)
+        catch{
+            toast.error("Erreur de création de votre compte, veuillez réessayer plus tard.")
         }
     }
 
