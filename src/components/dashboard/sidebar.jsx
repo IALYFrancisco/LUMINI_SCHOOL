@@ -1,6 +1,7 @@
 import axios from "axios"
 import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
+import { toast } from "sonner"
 
 export default function Sidebar(){
 
@@ -11,7 +12,7 @@ export default function Sidebar(){
         .then(()=>{
             setUser(null)
         }).catch(()=>{
-            window.alert('Erreur de déconnexion')
+            toast.error("Erreur de déconnexion, veuillez réessayer plus tard.")
         })
     }
 
