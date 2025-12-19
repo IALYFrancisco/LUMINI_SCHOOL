@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export function Footer(){
     return (
@@ -28,19 +28,19 @@ export function Footer(){
                     <h3>Menus</h3>
                     <ul>
                         <li>
-                            <Link to="/">
+                            <NavLink to="/" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>
                                 Accueil
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/formations">
+                            <NavLink to="/formations">
                                 Formations
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/articles">
+                            <NavLink to="/articles">
                                 Articles
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </section>

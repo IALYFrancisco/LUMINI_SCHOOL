@@ -472,6 +472,11 @@ footer > section:nth-child(1) {
     width: 25%;
 }
 
+footer > section:nth-child(2) ul li {
+    position: relative;
+    width: max-content;
+}
+
 footer > section:nth-child(3) {
     width: 25%;
 }
