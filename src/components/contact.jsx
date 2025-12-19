@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 export function Contact(){
 
@@ -15,7 +16,12 @@ export function Contact(){
         }
 
         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/email/send`, clientMessage)
-            .then(()=>reset())
+            .then(()=>{
+                reset()
+                toast.success("Votre message a été bien envoyé, vous auriez une réponse le plutôt possible.")
+            }).catch(()=>{
+                toast.error("Erreur d'envoie de votre message, veuillez reéssayer plus tard.")
+            })
 
     }
 
