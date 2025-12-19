@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useAuth } from "../contexts/AuthContext"
+import { toast } from "react-toastify"
 
 export function Login(){
 
@@ -30,12 +31,10 @@ export function Login(){
                     })
                     .catch(()=>setUser(null))
                     .finally(()=> setLoading(false))
-            }).catch((err)=>{
-                console.log(err)
             })
         }
-        catch(err){
-            console.log(err)
+        catch{
+            toast.error("Email ou mot de passe incorrecte.")
         }
     }
 
