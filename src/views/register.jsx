@@ -24,8 +24,13 @@ export function Register(){
                     reset()
                 })
         }
-        catch{
-            toast.error("Erreur de création de votre compte, veuillez réessayer plus tard.")
+        catch(err){
+            if(err.status === 409){
+                toast.warning("Un utilisateur avec cet email existe déjà.")
+            }
+            if(err.status === 500){
+                toast.error("Erreur de création de votre compte, veuillez réessayer plus tard.")
+            }
         }
     }
 
