@@ -33,12 +33,12 @@ export function Footer(){
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/formations">
+                            <NavLink to="/formations" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>
                                 Formations
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/articles">
+                            <NavLink to="/articles" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>
                                 Articles
                             </NavLink>
                         </li>
