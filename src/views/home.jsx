@@ -7,6 +7,7 @@ import { Articles } from "../components/articles"
 import '../../public/styles/home.css'
 
 function Home(){
+
     return (
         <>
             <Header></Header>

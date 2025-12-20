@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 import Nav from "../components/nav"
 import '../../public/styles/login.css'
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 export function Register(){
     var { reset, register, handleSubmit } = useForm()
@@ -18,14 +18,19 @@ export function Register(){
             }
 
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
-                .then((res)=>{
+                .then(()=>{
+                    toast.success("Félicitation ✨ , votre compte a été bien créé.")
                     navigate('/authentication/login')
                     reset()
                 })
-                .catch((err)=> console.log(err))
         }
         catch(err){
-            console.log(err)
+            if(err.status === 409){
+                toast.warning("Un utilisateur avec cet email existe déjà.")
+            }
+            if(err.status === 500){
+                toast.error("Erreur de création de votre compte, veuillez réessayer plus tard.")
+            }
         }
     }
 
@@ -40,15 +45,15 @@ export function Register(){
                     <img src="/images/clavier (2).png" alt="" className="mouse" />
                     <div className="element">
                         <label>Votre nom complet :</label>
-                        <input type="text" name="name" placeholder="Ex: John Doe" { ...register('name', { required: true }) } required />
+                        <input type="text" placeholder="Ex: John Doe" { ...register('name', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label>Votre adresse email :</label>
-                        <input type="email" name="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
+                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label>Votre mot de passe :</label>
-                        <input type="password" name="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) } required />
+                        <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button>Soumettre</button>

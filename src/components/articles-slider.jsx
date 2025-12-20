@@ -55,7 +55,7 @@ export function ArticlesSlider() {
                         <div className="blog-infos">
                             <h4>{article.title}</h4>
                             <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
-                            <Link to={`/article/${article._id}`}>
+                            <Link to={`/article/${article.slug}`}>
                                 <button>Lire plus</button>
                             </Link>
                         </div>

@@ -1,6 +1,7 @@
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
+import { toast } from "sonner"
 
 export default function Sidebar(){
 
@@ -11,7 +12,7 @@ export default function Sidebar(){
         .then(()=>{
             setUser(null)
         }).catch(()=>{
-            window.alert('Erreur de déconnexion')
+            toast.error("Erreur de déconnexion, veuillez réessayer plus tard.")
         })
     }
 
@@ -35,34 +36,34 @@ export default function Sidebar(){
                 <li>
                     <ul>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
-                            <Link to="/dashboard">
+                            <NavLink to="/dashboard" end className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
                                 <img src="/images/formations.png" alt="" />
                                 Formations
-                            </Link>
+                            </NavLink>
                         </li> }
                         <li>
-                            <Link to="/dashboard/inscriptions">
+                            <NavLink to="/dashboard/inscriptions" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
                                 <img src="/images/inscription.png" alt="" />
                                 Inscriptions
-                            </Link>
+                            </NavLink>
                         </li>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
-                            <Link to="/dashboard/articles">
+                            <NavLink to="/dashboard/articles"  className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
                                 <img src="/images/article.png" alt="" />
                                 Articles
-                            </Link>
+                            </NavLink>
                         </li> }
                         { user && user.status === "superuser" && <li>
-                            <Link to="/dashboard/users">
+                            <NavLink to="/dashboard/users" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
                                 <img src="/images/group.png" alt="" />
                                 Utilisateurs
-                            </Link>
+                            </NavLink>
                         </li> }
                         <li>
-                            <Link to="/dashboard/settings">
+                            <NavLink to="/dashboard/settings" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
                                 <img src="/images/settings.png" alt="" />
                                 Paramètres
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </li>
