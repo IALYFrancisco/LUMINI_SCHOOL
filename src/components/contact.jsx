@@ -34,23 +34,23 @@ export function Contact(){
                     <form onSubmit={handleSubmit(_handleSubmit)}>
                         <div className="element">
                             <label htmlFor="">Entrez votre nom complet :</label>
-                            <input type="text" name="name" id="" placeholder="Ex: John Doe" required { ...register("name") }/>
+                            <input type="text" id="" placeholder="Ex: John Doe" required { ...register("name") }/>
                         </div>
                         <div className="element">
                             <label htmlFor="">Objet de votre contact :</label>
-                            <input type="text" name="object" id="" placeholder="Ex: Demande de partenariat avec LUMINI School" required { ...register("object") } />
+                            <input type="text" id="" placeholder="Ex: Demande de partenariat avec LUMINI School" required { ...register("object") } />
                         </div>
                         <div className="element">
                             <label htmlFor="">Votre email :</label>
-                            <input type="email" name="email" id="" placeholder="Ex: johndoe@example.com" required { ...register("email") } />
+                            <input type="email" id="" placeholder="Ex: johndoe@example.com" required { ...register("email") } />
                         </div>
                         <div className="element">
                             <label htmlFor="">Votre numéro téléphone :</label>
-                            <input type="tel" name="telephone" id="" placeholder="Ex: +261 30 00 000 00" required { ...register("telephone") } />
+                            <input type="tel" id="" placeholder="Ex: +261 30 00 000 00" required { ...register("telephone") } />
                         </div>
                         <div className="element">
                             <label htmlFor="">Saisissez vos messages :</label>
-                            <textarea name="message" id="" placeholder="J'ai l'honneur de vous écrire ..." required { ...register("message") } ></textarea>
+                            <textarea id="" placeholder="J'ai l'honneur de vous écrire ..." required { ...register("message") } ></textarea>
                         </div>
                         <div className="element">
                             <button>
