@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
+import { toast } from "sonner"
 
 export default function AddFormation(){
     
@@ -25,39 +26,25 @@ export default function AddFormation(){
     const onSubmit = async (data) => {
         try{
             const formation = new FormData()
-
-            
+            formation.append("title", data.title)
+            formation.append("prerequisites", data.prerequisites)
+            formation.append("description", data.description)
+            if(image){
+                formation.append("poster", image)
+            }
+            if(watchAll.url){
+                formation.append("image", data.url)
+            }
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
+                { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true }
+            ).then(()=>{
+                setImage(null)
+                reset()
+                toast.info(`La formation ${data.title} vient d'être ajoutée.`)
+            })
+            .catch(()=> toast.error(`Erreur d'ajout du formation ${data.title}, veuillez réessayer plus tard.`))
         }
-        catch{}
-        // try{
-        //     if(image){
-        //         const formation = new FormData()
-        //         formation.append("title", data.title)
-        //         formation.append("poster", image)
-        //         formation.append("prerequisites", data.prerequisites)
-        //         formation.append("description", data.description)
-        //         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
-        //             { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
-        //         ).then(()=>{
-        //             setImage(null)
-        //             reset()
-        //         })
-        //         .catch((err)=> console.log(err))
-        //     }else{
-        //         const formation = {
-        //             title: data.title,
-        //             image: data.url,
-        //             prerequisites: data.prerequisites,
-        //             description: data.description,
-        //         }
-        //         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation, { headers: { "Content-Type": "application/json" }, withCredentials: true })
-        //         .then(()=> reset())
-        //         .catch((err) => console.log(err))
-        //     }
-        // }
-        // catch(err){
-        //     console.log(err)
-        // }
+        catch{toast.error(`Erreur d'ajout du formation ${data.title}, veuillez réessayer plus tard.`)}
     }
 
     return(
