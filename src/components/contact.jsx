@@ -62,7 +62,7 @@ export function Contact(){
                             <button disabled={sendClientMessageLoading}>
                                 Envoyer le message
                                 { sendClientMessageLoading && <img src="/images/spinner (2).png" alt="" className='loader' /> }
-                                { !sendClientMessageLoading && <img src="images/send.png" alt="" />}
+                                { !sendClientMessageLoading && <img src="/images/send.png" alt="" />}
                             </button>
                         </div>
                     </form>
