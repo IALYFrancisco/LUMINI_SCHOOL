@@ -207,8 +207,8 @@ export default function Settings(){
             <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); reset(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
             <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(changePassword)}>
-                <span className='close-password-overlay'>
-                    
+                <span className='close-password-overlay' onClick={()=>setTogglePasswordOverlay(false)}>
+                    <img src="/images/close.png" alt="" />
                 </span>
                 <h3>Changement de mot de passe :</h3>
                 <div className="message">
