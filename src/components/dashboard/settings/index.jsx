@@ -43,7 +43,7 @@ export default function Settings(){
             axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
-                toast.success("Votre compte et vos données sur LUMINI School a été bien supprimé par vous même.")
+                toast.info("Votre compte et vos données sur LUMINI School a été bien supprimé par vous même.")
             }).catch((err)=>{
                 if(err.status === 401){
                     toast.error("Mot de passe incorrect.")
