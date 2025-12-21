@@ -186,8 +186,8 @@ export default function Settings(){
             <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
             <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
-                <span className='close-infos-overlay'>
-                    
+                <span className='close-infos-overlay' onClick={()=>setToggleInfosOverlay(false)}>
+                    <img src="/images/close.png" alt="" />
                 </span>
                 <h3>Suppression de compte</h3>
                 <div className="message">
