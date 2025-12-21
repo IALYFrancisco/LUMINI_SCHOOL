@@ -3,6 +3,7 @@ import '../../../../public/styles/dashboard/setting.css'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { toast } from 'sonner'
 
 export default function Settings(){
 
@@ -42,6 +43,13 @@ export default function Settings(){
             axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
+                toast.success("Votre compte et vos données sur LUMINI School a été bien supprimé par vous même.")
+            }).catch((err)=>{
+                if(err.status === 401){
+                    toast.error("Mot de passe incorrect.")
+                }else{
+                    toast.error("Erreur de suppression de compte, veuillez réessayer plus tard.")
+                }
             })
         }
     }
