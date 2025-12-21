@@ -45,6 +45,27 @@
 .login-form button {
     background-color: var(--fourth);
     color: var(--secondary);
+    column-gap: 10px;
+}
+
+.login-form button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.login-form button img {
+    width: 18px;
+    animation: spinner infinite 3s linear;
+}
+
+@keyframes spinner {
+    0%{
+        transform: rotateZ(-360deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
 }
 
 .login-form form label {

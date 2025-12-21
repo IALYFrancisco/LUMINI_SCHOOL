@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useAuth } from "../contexts/AuthContext"
 import { toast } from "sonner"
+import { useState } from "react"
 
 export function Login(){
 
@@ -12,8 +13,13 @@ export function Login(){
 
     var { reset, register, handleSubmit } = useForm()
 
+    var [ loginLoading, setLoginLoading ] = useState(false)
+
     var _handleSubmit = async (data) => {
         try{
+
+            setLoginLoading(true)
+
             const user = {
                 email: data.email,
                 password: data.password
@@ -30,7 +36,7 @@ export function Login(){
                         reset()
                     })
                     .catch(()=>setUser(null))
-                    .finally(()=> setLoading(false))
+                    .finally(()=> {setLoading(false); setLoginLoading(false)})
             })
         }
         catch(err){
@@ -61,7 +67,10 @@ export function Login(){
                         <input type="password" name="password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
-                        <button>Soumettre</button>
+                        <button disabled={loginLoading}>
+                            Soumettre
+                            { loginLoading && <img src="/images/spinner.png" alt="" />}
+                        </button>
                     </div>
                 </form>
                 <span>
