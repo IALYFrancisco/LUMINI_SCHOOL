@@ -18,12 +18,17 @@ export default function Registrations(){
     var [loading, setLoading] = useState(true)
     var { id } = useParams()
 
+    var [ registrationLoading, setRegistrationLoading ] = useState(false)
+
     var _formation = {
         _id: id
     }
 
     var _handleSubmit = async (data) => {
         try{
+
+            setRegistrationLoading(true)
+
             var dataToSend = {
                 formation: _formation,
                 userPhoneNumber: data.phoneNumber
@@ -51,7 +56,7 @@ export default function Registrations(){
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>setFormation(response.data))
         .catch(()=>setFormation(null))
-        .finally(()=>setLoading(false))
+        .finally(()=>{ setRegistrationLoading(false); setLoading(false)})
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
         .then((response)=> {
             setUser(response.data)
