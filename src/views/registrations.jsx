@@ -108,9 +108,10 @@ export default function Registrations(){
                                     </fieldset>
                                 </div>
                                 <div className="element">
-                                    <button id="submition">
+                                    <button id="submition" disabled={registrationLoading}>
                                         Soumettre l'inscription
-                                        <img src="/images/send (2).png" />    
+                                        { registrationLoading && <img src="/images/spinner.png" alt="" className='loader' /> }
+                                        { !registrationLoading && <img src="/images/send (2).png" alt="" />}
                                     </button>
                                 </div>
                             </form>
