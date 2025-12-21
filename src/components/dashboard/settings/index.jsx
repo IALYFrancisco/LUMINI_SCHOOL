@@ -64,7 +64,17 @@ export default function Settings(){
                 newPassword: _data.newChangePassword
             }
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
-            .then(()=>setUser(null))
+            .then(()=>{
+                setUser(null)
+                toast.success("Votre mot de passe a été bien changé.")
+            }).catch((err)=>{
+                if(err.status === 400 || err.status === 401){
+                    toast.error("Mot de passe incorrect.")
+                }
+                if(err.status === 500){
+                    toast.error("Erreur de changement de mot de passe, veuillez réessayer plus tard.")
+                }
+            })
         }
     }
 
