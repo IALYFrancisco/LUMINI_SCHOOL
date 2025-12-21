@@ -12,7 +12,6 @@ export default function AddFormation(){
     const descriptionValue = watchAll.description || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
-
     useEffect(()=>{
 
         if (watchAll.url) setUrlIsDefined(true)
@@ -25,34 +24,40 @@ export default function AddFormation(){
 
     const onSubmit = async (data) => {
         try{
-            if(image){
-                const formation = new FormData()
-                formation.append("title", data.title)
-                formation.append("poster", image)
-                formation.append("prerequisites", data.prerequisites)
-                formation.append("description", data.description)
-                await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
-                    { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
-                ).then(()=>{
-                    setImage(null)
-                    reset()
-                })
-                .catch((err)=> console.log(err))
-            }else{
-                const formation = {
-                    title: data.title,
-                    image: data.url,
-                    prerequisites: data.prerequisites,
-                    description: data.description,
-                }
-                await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation, { headers: { "Content-Type": "application/json" }, withCredentials: true })
-                .then(()=> reset())
-                .catch((err) => console.log(err))
-            }
+            const formation = new FormData()
+
+            
         }
-        catch(err){
-            console.log(err)
-        }
+        catch{}
+        // try{
+        //     if(image){
+        //         const formation = new FormData()
+        //         formation.append("title", data.title)
+        //         formation.append("poster", image)
+        //         formation.append("prerequisites", data.prerequisites)
+        //         formation.append("description", data.description)
+        //         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
+        //             { headers: {"Content-Type": "multipart/form-data"}, withCredentials: true }
+        //         ).then(()=>{
+        //             setImage(null)
+        //             reset()
+        //         })
+        //         .catch((err)=> console.log(err))
+        //     }else{
+        //         const formation = {
+        //             title: data.title,
+        //             image: data.url,
+        //             prerequisites: data.prerequisites,
+        //             description: data.description,
+        //         }
+        //         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation, { headers: { "Content-Type": "application/json" }, withCredentials: true })
+        //         .then(()=> reset())
+        //         .catch((err) => console.log(err))
+        //     }
+        // }
+        // catch(err){
+        //     console.log(err)
+        // }
     }
 
     return(
