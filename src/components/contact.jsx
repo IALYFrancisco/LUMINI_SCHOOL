@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
@@ -6,7 +7,12 @@ export function Contact(){
 
     const { reset, register, handleSubmit } = useForm()
 
+    var [ sendClientMessageLoading, setSendClientMessageLoading ] = useState(false)
+
     const _handleSubmit = async (data)=> {
+
+        setSendClientMessageLoading(true)
+
         let clientMessage = {
             name: data.name,
             object: data.object,
@@ -21,7 +27,7 @@ export function Contact(){
                 toast.success("Votre message a été bien envoyé, vous auriez une réponse le plutôt possible.")
             }).catch(()=>{
                 toast.error("Erreur d'envoie de votre message, veuillez reéssayer plus tard.")
-            })
+            }).finally(()=>setSendClientMessageLoading(false))
 
     }
 
@@ -53,9 +59,10 @@ export function Contact(){
                             <textarea id="" placeholder="J'ai l'honneur de vous écrire ..." required { ...register("message") } ></textarea>
                         </div>
                         <div className="element">
-                            <button>
+                            <button disabled={sendClientMessageLoading}>
                                 Envoyer le message
-                                <img src="images/send.png" alt="" />
+                                { sendClientMessageLoading && <img src="/images/spinner (2).png" alt="" className='loader' /> }
+                                { !sendClientMessageLoading && <img src="images/send.png" alt="" />}
                             </button>
                         </div>
                     </form>

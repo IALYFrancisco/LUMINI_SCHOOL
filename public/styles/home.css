@@ -459,6 +459,18 @@ em {
     width: 30px;
 }
 
+.contact button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.contact button .loader {
+    animation: spinner infinite 3s linear;
+    width: 25px;
+    height: 25px;
+}
+
 footer {
     max-width: 1440px;
     margin: auto;
