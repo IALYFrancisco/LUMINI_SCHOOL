@@ -76,6 +76,12 @@ export default function Payments(){
                                     </div>
                                 </section>
                             </fieldset>
+                            <fieldset className='payment-details-container'>
+                                <h3>Informations sur le paiement :</h3>
+                                <div className="element">
+                                    
+                                </div>
+                            </fieldset>
                         </fieldset>
                     </form>
                 </div>
