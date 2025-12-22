@@ -13,7 +13,8 @@ export default function Settings(){
         register: registerInfo,
         handleSubmit: handleSubmitInfo,
         reset: resetInfo,
-        formState: { dirtyFields: dirtyFieldsInfo }
+        formState: { dirtyFields: dirtyFieldsInfo },
+        watch: watchInfos
     } = useForm({
         defaultValues: {
             name: user.name,
@@ -23,8 +24,9 @@ export default function Settings(){
         }
     })
 
+    var watchAllInfo = watchInfos()
     
-    var { reset, register, watch, handleSubmit, formState: { dirtyFields } } = useForm()
+    var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
@@ -35,13 +37,13 @@ export default function Settings(){
 
     var watchAll = watch()
 
-    var toogleInfoForm = ()=>{
+    var toggleInfoForm = ()=>{
         infoFormActive ? setInfoFormActive(false) : setInfoFormActive(true)
         if(infoFormActive){
-            reset({
+            resetInfo({
                 name: user.name,
                 email: user.email,
-                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
+                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
                 phoneNumber: user.phoneNumber
             })
         }
@@ -94,45 +96,47 @@ export default function Settings(){
     }
 
     const updateUser = (data) => {
-        if(!isModified){ return; }
+        if(!isInfoModified){ return; }
         else{
             let __user = new FormData()
 
-            if(watchAll.name !== user.name && watchAll.name !== ""){
+            if(watchAllInfo.name !== user.name && watchAllInfo.name !== ""){
                 __user.append("name", data.name)
             }
-            if(watchAll.email !== user.email && watchAll.email !== ""){
+            if(watchAllInfo.email !== user.email && watchAllInfo.email !== ""){
                 __user.append("email", data.email)
             }
-            if(watchAll.profile !== `${import.meta.env.VITE_API_BASE_URL}${user.profile}` && watchAll.profile !== ""){
+            if(watchAllInfo.profile !== `${import.meta.env.VITE_API_BASE_URL}/${user.profile}` && watchAllInfo.profile !== ""){
+                console.log(watchAllInfo.profile)
+                console.log(`${import.meta.env.VITE_API_BASE_URL}/${user.profile}`)
                 __user.append("profile", data.profile)
             }
             if(image){
                 __user.append("profile", image)
             }
-            if(watchAll.phoneNumber !== user.phoneNumber && watchAll.phoneNumber !== ""){
+            if(watchAllInfo.phoneNumber !== user.phoneNumber && watchAllInfo.phoneNumber !== ""){
                 __user.append("phoneNumber", data.phoneNumber)
             }
 
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
             .then(()=>{
                 setImage(null)
-                reset()
+                resetInfo()
                 axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
-                .then((response)=>setUser(response.data))
+                .then((response)=>{
+                    setUser(response.data)
+                    resetInfo({
+                        name: response.data.name,
+                        email: response.data.email,
+                        profile: (response.data.profile.includes('https') || response.data.profile.includes('http')) ? response.data.profile : `${import.meta.env.VITE_API_BASE_URL}/${response.data.profile}`,
+                        phoneNumber: response.data.phoneNumber
+                    })
+                    setInfoFormActive(false)
+                })
             })
 
         }
     }
-
-    // useEffect(()=>{
-    //     reset({
-    //         name: user.name,
-    //         email: user.email,
-    //         profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
-    //         phoneNumber: user.phoneNumber
-    //     })
-    // }, [reset, user])
 
     useEffect(()=>{
 
@@ -143,8 +147,6 @@ export default function Settings(){
         else{setImageIsDefined(false)}
         
     }, [image, watchAll.profile])
-
-    var isModified = dirtyFields.name || dirtyFields.email || dirtyFields.profile || dirtyFields.phoneNumber || image
 
     var isInfoModified = Object.keys(dirtyFieldsInfo).length > 0 || image
 
@@ -157,11 +159,11 @@ export default function Settings(){
                 </div>
                 <div className="forms-container">
                     <div className="left">
-                        <form onSubmit={handleSubmit(updateUser)}>
+                        <form onSubmit={handleSubmitInfo(updateUser)}>
                             <fieldset disabled={!infoFormActive}>
                                 <div className="form-title">
                                     <h3>Informations personnelles :</h3>
-                                    <span className={ infoFormActive ? "action-badge active" : "action-badge" } onClick={toogleInfoForm}> { infoFormActive ? "Annuler" : "Modifier mon infromation"}</span>
+                                    <span className={ infoFormActive ? "action-badge active" : "action-badge" } onClick={toggleInfoForm}> { infoFormActive ? "Annuler" : "Modifier mon infromation"}</span>
                                 </div>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
