@@ -9,7 +9,8 @@ export default function AddFormation(){
     const watchAll = watch()
     var [ image, setImage ] = useState('')
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)  
-    var [ imageIsDefined, setImageIsDefined ] = useState(false)  
+    var [ imageIsDefined, setImageIsDefined ] = useState(false)
+    var [ addFormationLoading, setAddFormationLoading ] = useState(false)
     const descriptionValue = watchAll.description || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
@@ -25,6 +26,7 @@ export default function AddFormation(){
 
     const onSubmit = async (data) => {
         try{
+            setAddFormationLoading(true)
             const formation = new FormData()
             formation.append("title", data.title)
             formation.append("prerequisites", data.prerequisites)
@@ -43,6 +45,7 @@ export default function AddFormation(){
                 toast.info(`La formation ${data.title} vient d'être ajoutée.`)
             })
             .catch(()=> toast.error(`Erreur d'ajout du formation ${data.title}, veuillez réessayer plus tard.`))
+            .finally(()=>setAddFormationLoading(false))
         }
         catch{toast.error(`Erreur d'ajout du formation ${data.title}, veuillez réessayer plus tard.`)}
     }
@@ -108,7 +111,10 @@ export default function AddFormation(){
                         </fieldset>
                         <fieldset>
                             <div className="element">
-                                <button>Soumettre</button>
+                                <button disabled={addFormationLoading}>
+                                    Soumettre
+                                    { addFormationLoading && <img src="/images/spinner.png" alt="" />}    
+                                </button>
                             </div>
                         </fieldset>
                     </div>
