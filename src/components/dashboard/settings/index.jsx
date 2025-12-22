@@ -6,8 +6,23 @@ import axios from 'axios'
 import { toast } from 'sonner'
 
 export default function Settings(){
-
+    
     var { user, setUser } = useAuth()
+
+    const { 
+        register: registerInfo,
+        handleSubmit: handleSubmitInfo,
+        reset: resetInfo,
+        formState: { dirtyFields: dirtyFieldsInfo }
+    } = useForm({
+        defaultValues: {
+            name: user.name,
+            email: user.email,
+            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
+            phoneNumber: user.phoneNumber
+        }
+    })
+
     
     var { reset, register, watch, handleSubmit, formState: { dirtyFields } } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
@@ -110,14 +125,14 @@ export default function Settings(){
         }
     }
 
-    useEffect(()=>{
-        reset({
-            name: user.name,
-            email: user.email,
-            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
-            phoneNumber: user.phoneNumber
-        })
-    }, [reset, user])
+    // useEffect(()=>{
+    //     reset({
+    //         name: user.name,
+    //         email: user.email,
+    //         profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
+    //         phoneNumber: user.phoneNumber
+    //     })
+    // }, [reset, user])
 
     useEffect(()=>{
 
@@ -130,6 +145,8 @@ export default function Settings(){
     }, [image, watchAll.profile])
 
     var isModified = dirtyFields.name || dirtyFields.email || dirtyFields.profile || dirtyFields.phoneNumber || image
+
+    var isInfoModified = Object.keys(dirtyFieldsInfo).length > 0 || image
 
     return(
         <>
@@ -148,23 +165,23 @@ export default function Settings(){
                                 </div>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
-                                    <input type="text" id="name" placeholder="Votre nom complet" { ...register("name") }/>
+                                    <input type="text" id="name" placeholder="Votre nom complet" { ...registerInfo("name") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre email :</label>
-                                    <input type="email" id="email" placeholder="Ex: johndoe@example.com" { ...register("email") }/>
+                                    <input type="email" id="email" placeholder="Ex: johndoe@example.com" { ...registerInfo("email") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre image de profile :</label>
-                                    <input disabled={imageIsDefined} type="url" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register("profile") }/>
+                                    <input disabled={imageIsDefined} type="url" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...registerInfo("profile") }/>
                                     <input disabled={urlIsDefined} type="file" id="profile_file" accept="image/jpeg, image/png" onChange={ (e)=>setImage(e.target.files[0]) }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre numéro téléphone :</label>
-                                    <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
+                                    <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...registerInfo("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button disabled={!isModified}>Soumettre</button>
+                                    <button disabled={!isInfoModified}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
