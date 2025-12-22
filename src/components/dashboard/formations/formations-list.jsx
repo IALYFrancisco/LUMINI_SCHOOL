@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import '../../../../public/styles/dashboard/formation.css'
+import { toast } from "sonner"
 
 export default function FormationsList(){
 
@@ -36,12 +37,10 @@ export default function FormationsList(){
         setActivePopUp((prev) => (prev === formationId ? null : formationId))
     }
 
-    const deleteFormation = (formationId) => {
-        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: formationId }, withCredentials: true })
-            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== formationId ) ) })
-            .catch((err)=>{
-                console.log(err)
-            })
+    const deleteFormation = (_f) => {
+        axios.delete(`${import.meta.env.VITE_API_BASE_URL}/formation/delete`, { data: { _id: _f._id }, withCredentials: true })
+            .then(()=>{ setFormations( (prev) => prev.filter( f => f._id !== _f._id ) ); toast.info(`La formation intitulée ${_f.title} est supprimée.`) })
+            .catch(()=>toast.error("Erreur de suppression de formation, veuillez réessayer plus tard."))
     }
 
     const publishFormation = async (formation) => {
@@ -104,7 +103,7 @@ export default function FormationsList(){
                                         <ul className={ activePopUp === formation._id ? 'pop-up show' : 'pop-up hide'}>
                                             <li onClick={ () => {
                                                 togglePopUp(formation._id);
-                                                deleteFormation(formation._id);
+                                                deleteFormation(formation);
                                             }} >Supprimer</li>
                                             <li onClick={ () => {
                                                 togglePopUp(formation._id);
