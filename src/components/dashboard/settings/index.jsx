@@ -140,7 +140,7 @@ export default function Settings(){
                     resetInfo({
                         name: response.data.name,
                         email: response.data.email,
-                        profile: (response.data.profile.includes('https') || response.data.profile.includes('http')) ? response.data.profile : `${import.meta.env.VITE_API_BASE_URL}/${response.data.profile}`,
+                        profile: (response.data.profile.includes('https') || response.data.profile.includes('http')) ? response.data.profile : `${import.meta.env.VITE_API_BASE_URL}${response.data.profile}`,
                         phoneNumber: response.data.phoneNumber
                     })
                     setInfoFormActive(false)
