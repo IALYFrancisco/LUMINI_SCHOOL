@@ -31,10 +31,17 @@ export default function Settings(){
         watch: watchChangePassword
     } = useForm()
 
+    const {
+        register: registerDeleteAccount,
+        handleSubmit: handleSubmitDeleteAccount,
+        reset: resetDeleteAccount,
+        watch: watchDeleteAccount
+    } = useForm()
+
     var watchAllInfo = watchInfos()
     var watchAllChangePassword = watchChangePassword()
+    var watchAllDeleteAccount = watchDeleteAccount()
     
-    var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
@@ -42,8 +49,6 @@ export default function Settings(){
     var [ toggleInfosOverlay, setToggleInfosOverlay ] = useState(false)
     var [ togglePasswordOverlay, setTogglePasswordOverlay ] = useState(false)
     var [ userIsSure, setUserIsSure ] = useState(false) 
-
-    var watchAll = watch()
 
     var toggleInfoForm = ()=>{
         infoFormActive ? setInfoFormActive(false) : setInfoFormActive(true)
@@ -64,7 +69,7 @@ export default function Settings(){
             password: data.deleteAccountPassword
         }
 
-        if(watchAll.deleteAccountPassword){
+        if(watchAllDeleteAccount.deleteAccountPassword){
             axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
@@ -218,10 +223,10 @@ export default function Settings(){
                 </div>
             </section>
             
-            {/* overlay et modal pour le formulaire des infos personnelles */}
-            <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
+            {/* overlay et modal pour le formulaire de suppression de compte */}
+            <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); resetInfo(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
-            <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
+            <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmitDeleteAccount(deleteAccount)}>
                 <span className='close-infos-overlay' onClick={()=>setToggleInfosOverlay(false)}>
                     <img src="/images/close.png" alt="" />
                 </span>
@@ -231,10 +236,10 @@ export default function Settings(){
                 </div>
                 { userIsSure && <div className="element">
                     <label>Votre mot de passe :</label>
-                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('deleteAccountPassword') } required/>
+                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...registerDeleteAccount('deleteAccountPassword') } required/>
                 </div> }
                 <div className="infos-modal-actions">
-                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset({ password: null })}}>Non, annuler</button>
+                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); resetDeleteAccount({ password: null })}}>Non, annuler</button>
                     <button type={ userIsSure ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
@@ -263,7 +268,7 @@ export default function Settings(){
                     <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...registerChangePassword('confirmNewChangePassword') } required/>
                 </div>
                 <div className="password-modal-actions">
-                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
+                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); resetChangePassword({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
                     <button>Soumettre</button>
                 </div>
             </form>
