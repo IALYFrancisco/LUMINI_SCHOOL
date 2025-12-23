@@ -19,7 +19,7 @@ export default function Settings(){
         defaultValues: {
             name: user.name,
             email: user.email,
-            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
+            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
             phoneNumber: user.phoneNumber
         }
     })
@@ -56,7 +56,7 @@ export default function Settings(){
             resetInfo({
                 name: user.name,
                 email: user.email,
-                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
+                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
                 phoneNumber: user.phoneNumber
             })
         }
@@ -119,9 +119,7 @@ export default function Settings(){
             if(watchAllInfo.email !== user.email && watchAllInfo.email !== ""){
                 __user.append("email", data.email)
             }
-            if(watchAllInfo.profile !== `${import.meta.env.VITE_API_BASE_URL}/${user.profile}` && watchAllInfo.profile !== ""){
-                console.log(watchAllInfo.profile)
-                console.log(`${import.meta.env.VITE_API_BASE_URL}/${user.profile}`)
+            if(watchAllInfo.profile !== ((user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`) && watchAllInfo.profile !== ""){
                 __user.append("profile", data.profile)
             }
             if(image){
@@ -134,6 +132,7 @@ export default function Settings(){
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
             .then(()=>{
                 setImage(null)
+                resetInfo()
                 axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
                 .then((response)=>{
                     setUser(response.data)
