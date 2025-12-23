@@ -24,7 +24,15 @@ export default function Settings(){
         }
     })
 
+    const {
+        register: registerChangePassword,
+        handleSubmit: handleSubmitChangePassword,
+        reset: resetChangePassword,
+        watch: watchChangePassword
+    } = useForm()
+
     var watchAllInfo = watchInfos()
+    var watchAllChangePassword = watchChangePassword()
     
     var { reset, register, watch, handleSubmit } = useForm()
     var [ infoFormActive, setInfoFormActive ] = useState(false)
@@ -72,8 +80,8 @@ export default function Settings(){
     }
 
     const changePassword = (_data) => {
-        if( watchAll.newChangePassword !== watchAll.confirmNewChangePassword ){
-            return
+        if( watchAllChangePassword.newChangePassword !== watchAllChangePassword.confirmNewChangePassword ){
+            toast.warning("Le mot de passe confirmé ne correspond pas au nouveau mot de passe.")
         }else{
             let data = {
                 _id: user._id,
@@ -139,13 +147,13 @@ export default function Settings(){
 
     useEffect(()=>{
 
-        if(watchAll.profile){setUrlIsDefined(true)}
+        if(watchAllInfo.profile){setUrlIsDefined(true)}
         else{setUrlIsDefined(false)}
 
         if(image){setImageIsDefined(true)}
         else{setImageIsDefined(false)}
         
-    }, [image, watchAll.profile])
+    }, [image, watchAllInfo.profile])
 
     var isInfoModified = Object.keys(dirtyFieldsInfo).length > 0 || image
 
@@ -232,9 +240,9 @@ export default function Settings(){
             </form>
             
             {/* overlay et modal pour le formulaire de changement de mot de passe */}
-            <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); reset(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
+            <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); resetChangePassword(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
-            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(changePassword)}>
+            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmitChangePassword(changePassword)}>
                 <span className='close-password-overlay' onClick={()=>setTogglePasswordOverlay(false)}>
                     <img src="/images/close.png" alt="" />
                 </span>
@@ -244,15 +252,15 @@ export default function Settings(){
                 </div>
                 <div className="element">
                     <label>Votre mot de passe actuel :</label>
-                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
+                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...registerChangePassword('currentChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Votre nouveau mot de passe :</label>
-                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...registerChangePassword('newChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Confirmer le nouveau mot de passe :</label>
-                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...registerChangePassword('confirmNewChangePassword') } required/>
                 </div>
                 <div className="password-modal-actions">
                     <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
