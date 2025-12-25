@@ -3,12 +3,45 @@ import '../../../../public/styles/dashboard/setting.css'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { toast } from 'sonner'
 
 export default function Settings(){
-
-    var { user, setUser } = useAuth()
     
-    var { reset, register, watch, handleSubmit, formState: { dirtyFields } } = useForm()
+    var { user, setUser } = useAuth()
+
+    const { 
+        register: registerInfo,
+        handleSubmit: handleSubmitInfo,
+        reset: resetInfo,
+        formState: { dirtyFields: dirtyFieldsInfo },
+        watch: watchInfos
+    } = useForm({
+        defaultValues: {
+            name: user.name,
+            email: user.email,
+            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
+            phoneNumber: user.phoneNumber
+        }
+    })
+
+    const {
+        register: registerChangePassword,
+        handleSubmit: handleSubmitChangePassword,
+        reset: resetChangePassword,
+        watch: watchChangePassword
+    } = useForm()
+
+    const {
+        register: registerDeleteAccount,
+        handleSubmit: handleSubmitDeleteAccount,
+        reset: resetDeleteAccount,
+        watch: watchDeleteAccount
+    } = useForm()
+
+    var watchAllInfo = watchInfos()
+    var watchAllChangePassword = watchChangePassword()
+    var watchAllDeleteAccount = watchDeleteAccount()
+    
     var [ infoFormActive, setInfoFormActive ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
@@ -17,12 +50,10 @@ export default function Settings(){
     var [ togglePasswordOverlay, setTogglePasswordOverlay ] = useState(false)
     var [ userIsSure, setUserIsSure ] = useState(false) 
 
-    var watchAll = watch()
-
-    var toogleInfoForm = ()=>{
+    var toggleInfoForm = ()=>{
         infoFormActive ? setInfoFormActive(false) : setInfoFormActive(true)
         if(infoFormActive){
-            reset({
+            resetInfo({
                 name: user.name,
                 email: user.email,
                 profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
@@ -38,17 +69,24 @@ export default function Settings(){
             password: data.deleteAccountPassword
         }
 
-        if(watchAll.deleteAccountPassword){
+        if(watchAllDeleteAccount.deleteAccountPassword){
             axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
+                toast.info("Votre compte et vos données sur LUMINI School a été bien supprimé par vous même.")
+            }).catch((err)=>{
+                if(err.status === 401){
+                    toast.error("Mot de passe incorrect.")
+                }else{
+                    toast.error("Erreur de suppression de compte, veuillez réessayer plus tard.")
+                }
             })
         }
     }
 
     const changePassword = (_data) => {
-        if( watchAll.newChangePassword !== watchAll.confirmNewChangePassword ){
-            return
+        if( watchAllChangePassword.newChangePassword !== watchAllChangePassword.confirmNewChangePassword ){
+            toast.warning("Le mot de passe confirmé ne correspond pas au nouveau mot de passe.")
         }else{
             let data = {
                 _id: user._id,
@@ -56,62 +94,72 @@ export default function Settings(){
                 newPassword: _data.newChangePassword
             }
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
-            .then(()=>setUser(null))
+            .then(()=>{
+                setUser(null)
+                toast.success("Votre mot de passe a été bien changé.")
+            }).catch((err)=>{
+                if(err.status === 400 || err.status === 401){
+                    toast.error("Mot de passe incorrect.")
+                }
+                if(err.status === 500){
+                    toast.error("Erreur de changement de mot de passe, veuillez réessayer plus tard.")
+                }
+            })
         }
     }
 
     const updateUser = (data) => {
-        if(!isModified){ return; }
+        if(!isInfoModified){ return; }
         else{
             let __user = new FormData()
 
-            if(watchAll.name !== user.name && watchAll.name !== ""){
+            if(watchAllInfo.name !== user.name && watchAllInfo.name !== ""){
                 __user.append("name", data.name)
             }
-            if(watchAll.email !== user.email && watchAll.email !== ""){
+            if(watchAllInfo.email !== user.email && watchAllInfo.email !== ""){
                 __user.append("email", data.email)
             }
-            if(watchAll.profile !== `${import.meta.env.VITE_API_BASE_URL}${user.profile}` && watchAll.profile !== ""){
+            if(watchAllInfo.profile !== ((user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`) && watchAllInfo.profile !== ""){
                 __user.append("profile", data.profile)
             }
             if(image){
                 __user.append("profile", image)
             }
-            if(watchAll.phoneNumber !== user.phoneNumber && watchAll.phoneNumber !== ""){
+            if(watchAllInfo.phoneNumber !== user.phoneNumber && watchAllInfo.phoneNumber !== ""){
                 __user.append("phoneNumber", data.phoneNumber)
             }
 
             axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
             .then(()=>{
                 setImage(null)
-                reset()
+                resetInfo()
                 axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
-                .then((response)=>setUser(response.data))
+                .then((response)=>{
+                    setUser(response.data)
+                    resetInfo({
+                        name: response.data.name,
+                        email: response.data.email,
+                        profile: (response.data.profile.includes('https') || response.data.profile.includes('http')) ? response.data.profile : `${import.meta.env.VITE_API_BASE_URL}${response.data.profile}`,
+                        phoneNumber: response.data.phoneNumber
+                    })
+                    setInfoFormActive(false)
+                })
             })
 
         }
     }
 
     useEffect(()=>{
-        reset({
-            name: user.name,
-            email: user.email,
-            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}`,
-            phoneNumber: user.phoneNumber
-        })
-    }, [reset, user])
 
-    useEffect(()=>{
-
-        if(watchAll.profile){setUrlIsDefined(true)}
+        if(watchAllInfo.profile){setUrlIsDefined(true)}
         else{setUrlIsDefined(false)}
 
         if(image){setImageIsDefined(true)}
         else{setImageIsDefined(false)}
         
-    }, [image, watchAll.profile])
+    }, [image, watchAllInfo.profile])
 
-    var isModified = dirtyFields.name || dirtyFields.email || dirtyFields.profile || dirtyFields.phoneNumber || image
+    var isInfoModified = Object.keys(dirtyFieldsInfo).length > 0 || image
 
     return(
         <>
@@ -122,31 +170,31 @@ export default function Settings(){
                 </div>
                 <div className="forms-container">
                     <div className="left">
-                        <form onSubmit={handleSubmit(updateUser)}>
+                        <form onSubmit={handleSubmitInfo(updateUser)}>
                             <fieldset disabled={!infoFormActive}>
                                 <div className="form-title">
                                     <h3>Informations personnelles :</h3>
-                                    <span className={ infoFormActive ? "action-badge active" : "action-badge" } onClick={toogleInfoForm}> { infoFormActive ? "Annuler" : "Modifier mon infromation"}</span>
+                                    <span className={ infoFormActive ? "action-badge active" : "action-badge" } onClick={toggleInfoForm}> { infoFormActive ? "Annuler" : "Modifier mon infromation"}</span>
                                 </div>
                                 <div className="element">
                                     <label>Nom d'utilisateur :</label>
-                                    <input type="text" id="name" placeholder="Votre nom complet" { ...register("name") }/>
+                                    <input type="text" id="name" placeholder="Votre nom complet" { ...registerInfo("name") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre email :</label>
-                                    <input type="email" id="email" placeholder="Ex: johndoe@example.com" { ...register("email") }/>
+                                    <input type="email" id="email" placeholder="Ex: johndoe@example.com" { ...registerInfo("email") }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre image de profile :</label>
-                                    <input disabled={imageIsDefined} type="url" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...register("profile") }/>
+                                    <input disabled={imageIsDefined} type="url" id="profile_url" placeholder="Utilisez cet champ pour une image déjà en ligne" { ...registerInfo("profile") }/>
                                     <input disabled={urlIsDefined} type="file" id="profile_file" accept="image/jpeg, image/png" onChange={ (e)=>setImage(e.target.files[0]) }/>
                                 </div>
                                 <div className="element">
                                     <label>Votre numéro téléphone :</label>
-                                    <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...register("phoneNumber") }/>
+                                    <input type="tel" id="telephone" placeholder='Ex: 030 00 000 00' { ...registerInfo("phoneNumber") }/>
                                 </div>
                                 <div className="element">
-                                    <button disabled={!isModified}>Soumettre</button>
+                                    <button disabled={!isInfoModified}>Soumettre</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -174,12 +222,12 @@ export default function Settings(){
                 </div>
             </section>
             
-            {/* overlay et modal pour le formulaire des infos personnelles */}
-            <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); reset(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
+            {/* overlay et modal pour le formulaire de suppression de compte */}
+            <div onClick={ () => { toggleInfosOverlay ? setToggleInfosOverlay(false) : setToggleInfosOverlay(true); resetInfo(); setUserIsSure(false)} } className={ toggleInfosOverlay ? "infos-overlay active" : "infos-overlay" }>
             </div>
-            <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmit(deleteAccount)}>
-                <span className='close-infos-overlay'>
-                    
+            <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmitDeleteAccount(deleteAccount)}>
+                <span className='close-infos-overlay' onClick={()=>{setToggleInfosOverlay(false);setUserIsSure(false)}}>
+                    <img src="/images/close.png" alt="" />
                 </span>
                 <h3>Suppression de compte</h3>
                 <div className="message">
@@ -187,20 +235,20 @@ export default function Settings(){
                 </div>
                 { userIsSure && <div className="element">
                     <label>Votre mot de passe :</label>
-                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...register('deleteAccountPassword') } required/>
+                    <input type="password" id="" placeholder='Saisissez votre mot de passe' { ...registerDeleteAccount('deleteAccountPassword') } required/>
                 </div> }
                 <div className="infos-modal-actions">
-                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); reset({ password: null })}}>Non, annuler</button>
+                    <button type='button' onClick={()=> {setToggleInfosOverlay(false); setUserIsSure(false); resetDeleteAccount({ password: null })}}>Non, annuler</button>
                     <button type={ userIsSure ? "submit" : "button"} onClick={()=>setUserIsSure(true)}>{ userIsSure ? "Soumettre" : "Oui, j'en suis sûr" }</button>
                 </div>
             </form>
             
             {/* overlay et modal pour le formulaire de changement de mot de passe */}
-            <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); reset(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
+            <div onClick={ () => { togglePasswordOverlay ? setTogglePasswordOverlay(false) : setTogglePasswordOverlay(true); resetChangePassword(); setUserIsSure(false)} } className={ togglePasswordOverlay ? "password-overlay active" : "password-overlay" }>
             </div>
-            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmit(changePassword)}>
-                <span className='close-password-overlay'>
-                    
+            <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmitChangePassword(changePassword)}>
+                <span className='close-password-overlay' onClick={()=>setTogglePasswordOverlay(false)}>
+                    <img src="/images/close.png" alt="" />
                 </span>
                 <h3>Changement de mot de passe :</h3>
                 <div className="message">
@@ -208,18 +256,18 @@ export default function Settings(){
                 </div>
                 <div className="element">
                     <label>Votre mot de passe actuel :</label>
-                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...register('currentChangePassword') } required/>
+                    <input type="password" id="currentPassword" placeholder='Mot de passe actuel' { ...registerChangePassword('currentChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Votre nouveau mot de passe :</label>
-                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...register('newChangePassword') } required/>
+                    <input type="password" id="newChangePassword" placeholder='Nouveau mot de passe' { ...registerChangePassword('newChangePassword') } required/>
                 </div>
                 <div className="element">
                     <label>Confirmer le nouveau mot de passe :</label>
-                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...register('confirmNewChangePassword') } required/>
+                    <input type="password" id="confirmNewChangePassword" placeholder='Confirmation nouveau mot de passe' { ...registerChangePassword('confirmNewChangePassword') } required/>
                 </div>
                 <div className="password-modal-actions">
-                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); reset({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
+                    <button type='button' onClick={()=> {setTogglePasswordOverlay(false); resetChangePassword({currentChangePassword: null, newChangePassword: null, confirmNewChangePassword: null});}}>Annuler</button>
                     <button>Soumettre</button>
                 </div>
             </form>

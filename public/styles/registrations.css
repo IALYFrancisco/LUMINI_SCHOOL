@@ -80,8 +80,20 @@
     outline: none;
 }
 
+.registrations-container form button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
 .registrations-container form button img {
     width: 30px;
+}
+
+.registrations-container button .loader {
+    animation: spinner infinite 3s linear;
+    width: 25px;
+    height: 25px;
 }
 
 @media only screen and (max-width: 1024px) {

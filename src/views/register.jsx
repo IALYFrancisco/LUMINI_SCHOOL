@@ -4,13 +4,19 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { useState } from "react"
 
 export function Register(){
     var { reset, register, handleSubmit } = useForm()
     const navigate = useNavigate()
 
+    var [ registerLoading, setRegisterLoading ] = useState(false)
+
     const _handleSubmit = async (data) => {
         try{
+
+            setRegisterLoading(true)
+
             const user = {
                 name: data.name,
                 email: data.email,
@@ -19,10 +25,10 @@ export function Register(){
 
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
                 .then(()=>{
-                    toast.success("Félicitation ✨ , votre compte a été bien créé.")
+                    toast.success("Félicitation ✨, votre compte a été bien créé.")
                     navigate('/authentication/login')
                     reset()
-                })
+                }).finally(()=>{setRegisterLoading(false)})
         }
         catch(err){
             if(err.status === 409){
@@ -56,7 +62,10 @@ export function Register(){
                         <input type="password" placeholder="Choisissez un mot de passe sécurisé" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
-                        <button>Soumettre</button>
+                        <button disabled={registerLoading}>
+                            Soumettre
+                            { registerLoading && <img src="/images/spinner.png" alt="" />}
+                        </button>
                     </div>
                 </form>
                 <span>

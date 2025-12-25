@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import '../../../../public/styles/dashboard/user.css'
+import { toast } from "sonner"
 
 export default function UsersList(){
 
@@ -36,13 +37,14 @@ export default function UsersList(){
     const changeUserStatus = async (user) => {
         await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-status`, { userId: user._id , update: { status: user.status === "user" ? "admin" : "user" }}, { withCredentials: true })
         .then( async ()=>{
+            toast.info(`${user.name} est désormais un ${user.status === "user" ? "administrateur" : "utilisateur simple"}`)
             await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
                 setUsers(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
-        }).catch((err)=>console.log(err))
+        }).catch(()=>toast.error("Erreur de changement de statut d'utilisateur, veuillez réessayer plus tard."))
     }
 
     return(

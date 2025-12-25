@@ -192,4 +192,10 @@
 .add-formation-form .fieldsets-bottom button:disabled {
     background-color: grey;
     transform: none;
+    column-gap: 10px;
+}
+
+.add-formation-form .fieldsets-bottom button img {
+    animation: spinner infinite 3s linear;
+    width: 20px;
 }

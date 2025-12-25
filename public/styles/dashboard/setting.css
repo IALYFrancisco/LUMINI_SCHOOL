@@ -221,3 +221,31 @@
     font-weight: 900;
     display: block;
 }
+
+.close-password-overlay,
+.close-infos-overlay {
+    background-color: grey;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 2px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.close-password-overlay:active,
+.close-infos-overlay:active {
+    transform: scale(.9);
+    transition: .25s;
+}
+
+.close-password-overlay img,
+.close-infos-overlay img {
+    width: 18px;
+}
