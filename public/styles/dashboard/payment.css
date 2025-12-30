@@ -112,3 +112,13 @@
     width: 100px;
     transform: greyscale(10px);
 }
+
+.payment-container .section-container {
+    display: flex;
+    column-gap: 50px;
+}
+
+.payment-container button {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+}

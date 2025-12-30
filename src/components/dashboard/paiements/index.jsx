@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom'
 import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
+import { useAuth } from '../../../contexts/AuthContext'
 
 
 export default function Payments(){
     
     const { formationId } = useParams()
     let [ formation, setFormation ] = useState(null)
+
+    const { user } = useAuth()
 
     const { reset, register } = useForm()
 
@@ -31,7 +34,6 @@ export default function Payments(){
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
         .then((response)=>{
             setFormation(response.data[0])
-            console.log(response.data[0])
             reset({
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites,
@@ -40,9 +42,10 @@ export default function Payments(){
                 coursePlace: response.data[0].coursePlace,
                 coursePrice: response.data[0].coursePrice,
                 description: response.data[0].description,
+                phoneNumber: user.phoneNumber
             })
         })
-    }, [formationId, reset])
+    }, [formationId, reset, user.phoneNumber])
     
     if(!formation) return <Loading/>
     return(
@@ -92,16 +95,33 @@ export default function Payments(){
                             </fieldset>
                             <fieldset className='payment-details-container'>
                                 <h3>Informations sur le paiement :</h3>
-                                <div className="element">
-                                    <label htmlFor="">Mode de paiement :</label>
-                                    <section className="payment-mode-container">
-                                        <div className="mode mvola" title='Paiment par mvola.' ref={mvolaRef} onClick={SelectMvolaMode}>
-                                            <img src="/images/logo-de-mvola.png" alt="" />
+                                <div className="section-container">
+                                    <div className="left">
+                                        <div className="element">
+                                            <label htmlFor="">Mode de paiement :</label>
+                                            <section className="payment-mode-container">
+                                                <div className="mode mvola" title='Paiment par mvola.' ref={mvolaRef} onClick={SelectMvolaMode}>
+                                                    <img src="/images/logo-de-mvola.png" alt="" />
+                                                </div>
+                                                <div className="mode paypal" title='Paiment par PayPal' ref={paypalRef} onClick={SelectPayPalMode}>
+                                                    <img src="/images/logo-de-paypal.webp" alt="" />    
+                                                </div>
+                                            </section>
                                         </div>
-                                        <div className="mode paypal" title='Paiment par PayPal' ref={paypalRef} onClick={SelectPayPalMode}>
-                                            <img src="/images/logo-de-paypal.webp" alt="" />    
+                                        <div className="element">
+                                            <label htmlFor="">Numéro téléphone de paiement :</label>
+                                            <input type="tel" id="" { ...register('phoneNumber') } />
                                         </div>
-                                    </section>
+                                        <div className="element">
+                                            <button>Faire la transaction</button>
+                                        </div>
+                                    </div>
+                                    <div className="right">
+                                        <div className="element">
+                                            <label htmlFor="">Montant totale à payer (en Ar) :</label>
+                                            <input type="number" id="" readOnly disabled { ...register("coursePrice") } required/>
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
                         </fieldset>
