@@ -12,6 +12,9 @@ export default function Payments(){
     
     const { formationId } = useParams()
     let [ formation, setFormation ] = useState(null)
+    
+    var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
+    var [ paypalIsSelected, setPayPalIsSelected ] = useState(false)
 
     const { user } = useAuth()
 
@@ -108,10 +111,10 @@ export default function Payments(){
                                                 </div>
                                             </section>
                                         </div>
-                                        <div className="element">
+                                        { mvolaIsSelected && <div className="element">
                                             <label htmlFor="">Numéro téléphone de paiement :</label>
                                             <input type="tel" id="" { ...register('phoneNumber') } />
-                                        </div>
+                                        </div> }
                                         <div className="element">
                                             <button>Faire la transaction</button>
                                         </div>
