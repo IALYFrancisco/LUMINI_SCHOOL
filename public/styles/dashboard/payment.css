@@ -88,10 +88,19 @@
     border-radius: 5px;
     cursor: pointer;
     overflow: hidden;
+    transition: border-color background-color .25s;
 }
 
-.payment-container .mode.mvola {
+.payment-container .mode.mvola.selected {
     border-color: green;
+    transition: border-color background-color .25s;
+    background-color: var(--thirdly);
+}
+
+.payment-container .mode.paypal.selected {
+    border-color: blue;
+    transition: border-color background-color .25s;
+    background-color: var(--thirdly);
 }
 
 .payment-container .mode:active {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../../../../public/styles/dashboard/payment.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
@@ -13,6 +13,19 @@ export default function Payments(){
     let [ formation, setFormation ] = useState(null)
 
     const { reset, register } = useForm()
+
+    const mvolaRef = useRef()
+    const paypalRef = useRef()
+
+    const SelectMvolaMode = ()=>{
+        mvolaRef.current.classList.toggle("selected")
+        paypalRef.current.classList.remove("selected")
+    }
+    
+    const SelectPayPalMode = ()=>{
+        paypalRef.current.classList.toggle("selected")
+        mvolaRef.current.classList.remove("selected")
+    }
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
@@ -81,10 +94,10 @@ export default function Payments(){
                                 <div className="element">
                                     <label htmlFor="">Mode de paiment :</label>
                                     <section className="payment-mode-container">
-                                        <div className="mode mvola" title='Paiment par mvola.'>
+                                        <div className="mode mvola" title='Paiment par mvola.' ref={mvolaRef} onClick={SelectMvolaMode}>
                                             <img src="/images/logo-de-mvola.png" alt="" />
                                         </div>
-                                        <div className="mode paypal" title='Paiment par PayPal'>
+                                        <div className="mode paypal" title='Paiment par PayPal' ref={paypalRef} onClick={SelectPayPalMode}>
                                             <img src="/images/logo-de-paypal.webp" alt="" />    
                                         </div>
                                     </section>
