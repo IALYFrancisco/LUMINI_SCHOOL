@@ -79,7 +79,15 @@ export default function Payments(){
                             <fieldset className='payment-details-container'>
                                 <h3>Informations sur le paiement :</h3>
                                 <div className="element">
-                                    
+                                    <label htmlFor="">Mode de paiment :</label>
+                                    <section className="payment-mode-container">
+                                        <div className="mode" title='Paiment par mvola.'>
+                                            <img src="/images/logo-de-mvola.png" alt="" />
+                                        </div>
+                                        <div className="mode" title='Paiment par PayPal'>
+                                            <img src="/images/logo-de-paypal.webp" alt="" />    
+                                        </div>
+                                    </section>
                                 </div>
                             </fieldset>
                         </fieldset>
