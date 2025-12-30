@@ -4,6 +4,12 @@
 
 .payment-container {
     color: var(--primary);
+    height: calc(100vh - 110px);
+    overflow: auto;
+}
+
+.payment-container::-webkit-scrollbar {
+    width: 0px;
 }
 
 .payment-container .head p {
@@ -81,6 +87,7 @@
     border: 2px solid grey;
     border-radius: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .payment-container .mode.mvola {
