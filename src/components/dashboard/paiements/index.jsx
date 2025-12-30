@@ -31,6 +31,7 @@ export default function Payments(){
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
         .then((response)=>{
             setFormation(response.data[0])
+            console.log(response.data[0])
             reset({
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites,
