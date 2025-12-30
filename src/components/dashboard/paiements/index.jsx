@@ -81,10 +81,10 @@ export default function Payments(){
                                 <div className="element">
                                     <label htmlFor="">Mode de paiment :</label>
                                     <section className="payment-mode-container">
-                                        <div className="mode" title='Paiment par mvola.'>
+                                        <div className="mode mvola" title='Paiment par mvola.'>
                                             <img src="/images/logo-de-mvola.png" alt="" />
                                         </div>
-                                        <div className="mode" title='Paiment par PayPal'>
+                                        <div className="mode paypal" title='Paiment par PayPal'>
                                             <img src="/images/logo-de-paypal.webp" alt="" />    
                                         </div>
                                     </section>

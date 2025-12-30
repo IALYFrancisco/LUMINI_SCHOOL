@@ -70,7 +70,7 @@
 .payment-mode-container {
     display: flex;
     align-items: center;
-    column-gap: 30px;
+    column-gap: 20px;
     margin-top: 15px;
 }
 
@@ -83,6 +83,16 @@
     cursor: pointer;
 }
 
+.payment-container .mode.mvola {
+    border-color: green;
+}
+
+.payment-container .mode:active {
+    transform: scale(0.9);
+    transition: .25s;
+}
+
 .payment-mode-container .mode img {
     width: 100px;
+    transform: greyscale(10px);
 }
