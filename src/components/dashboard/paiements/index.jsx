@@ -92,7 +92,7 @@ export default function Payments(){
                             <fieldset className='payment-details-container'>
                                 <h3>Informations sur le paiement :</h3>
                                 <div className="element">
-                                    <label htmlFor="">Mode de paiment :</label>
+                                    <label htmlFor="">Mode de paiement :</label>
                                     <section className="payment-mode-container">
                                         <div className="mode mvola" title='Paiment par mvola.' ref={mvolaRef} onClick={SelectMvolaMode}>
                                             <img src="/images/logo-de-mvola.png" alt="" />

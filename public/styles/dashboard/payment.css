@@ -92,13 +92,13 @@
 }
 
 .payment-container .mode.mvola.selected {
-    border-color: green;
+    border-color: #006935;
     transition: border-color background-color .25s;
-    background-color: var(--thirdly);
+    background-color: #ffdd00;
 }
 
 .payment-container .mode.paypal.selected {
-    border-color: blue;
+    border-color: midnightblue;
     transition: border-color background-color .25s;
     background-color: var(--thirdly);
 }
