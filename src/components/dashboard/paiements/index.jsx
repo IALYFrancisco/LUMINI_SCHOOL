@@ -24,11 +24,22 @@ export default function Payments(){
     const paypalRef = useRef()
 
     const SelectMvolaMode = ()=>{
+        if(!mvolaRef.current.classList.value.includes("selected")){
+            setMvolaIsSelected(true)
+            setPayPalIsSelected(false)
+        }else{
+            setMvolaIsSelected(false)
+            setPayPalIsSelected(true)
+        }
         mvolaRef.current.classList.toggle("selected")
         paypalRef.current.classList.remove("selected")
     }
     
     const SelectPayPalMode = ()=>{
+        if(!paypalRef.current.classList.value.includes("selected")){
+            setMvolaIsSelected(false)
+            setPayPalIsSelected(true)
+        }
         paypalRef.current.classList.toggle("selected")
         mvolaRef.current.classList.remove("selected")
     }
