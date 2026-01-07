@@ -128,7 +128,7 @@ export default function Payments(){
                                         </div>
                                         { mvolaIsSelected && <div className="element">
                                             <label htmlFor="">Numéro téléphone de paiement :</label>
-                                            <input type="tel" id="" { ...register('phoneNumber') } />
+                                            <input type="tel" id="" { ...register('phoneNumber', {required: true}) } required />
                                         </div> }
                                         <div className="element">
                                             <button>Faire la transaction</button>
