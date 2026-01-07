@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../../../../public/styles/dashboard/payment.css'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
@@ -11,6 +11,7 @@ import { useAuth } from '../../../contexts/AuthContext'
 export default function Payments(){
     
     const { formationId } = useParams()
+    const [ searchParams ] = useSearchParams()
     let [ formation, setFormation ] = useState(null)
     
     var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
@@ -45,9 +46,19 @@ export default function Payments(){
         })
     }, [formationId, reset, user.phoneNumber])
 
+    const MvolaInitiateTransaction = (d)=>{
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
+    }
+
     const _handleSubmit = (data) =>{
         if(mvolaIsSelected){
-            console.log("Mode paiement: mvola")
+
+            let _data = {
+                clientMsisdn: data.phoneNumber,
+                registration: searchParams.get('registration'),
+            }
+
+            MvolaInitiateTransaction(_data)
         }
         if(paypalIsSelected){
             console.log("Mode paiement: paypal")
