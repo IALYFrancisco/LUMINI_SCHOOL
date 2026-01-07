@@ -122,7 +122,7 @@ export default function Inscriptions(){
                                             <li onClick={ () => {
                                                 togglePopUp(registration._id);
                                             }} >Reçevoir par email les détails</li>
-                                            <Link to={`/dashboard/payments/${user._id}/${registration.formation._id}`}>
+                                            <Link to={`/dashboard/payments/${user._id}/${registration.formation._id}?registration=${registration._id}`}>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
                                                 } }>Payer le droit</li>
