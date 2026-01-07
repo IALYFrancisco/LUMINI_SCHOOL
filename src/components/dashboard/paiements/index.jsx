@@ -18,7 +18,7 @@ export default function Payments(){
 
     const { user } = useAuth()
 
-    const { reset, register } = useForm()
+    const { reset, register, handleSubmit } = useForm()
 
     const mvolaRef = useRef()
     const paypalRef = useRef()
@@ -26,10 +26,8 @@ export default function Payments(){
     const SelectMvolaMode = ()=>{
         if(!mvolaRef.current.classList.value.includes("selected")){
             setMvolaIsSelected(true)
-            setPayPalIsSelected(false)
         }else{
             setMvolaIsSelected(false)
-            setPayPalIsSelected(true)
         }
         mvolaRef.current.classList.toggle("selected")
         paypalRef.current.classList.remove("selected")
@@ -37,8 +35,9 @@ export default function Payments(){
     
     const SelectPayPalMode = ()=>{
         if(!paypalRef.current.classList.value.includes("selected")){
-            setMvolaIsSelected(false)
             setPayPalIsSelected(true)
+        }else{
+            setPayPalIsSelected(false)
         }
         paypalRef.current.classList.toggle("selected")
         mvolaRef.current.classList.remove("selected")
@@ -60,6 +59,15 @@ export default function Payments(){
             })
         })
     }, [formationId, reset, user.phoneNumber])
+
+    const _handleSubmit = (data) =>{
+        if(mvolaIsSelected){
+            console.log("Mode paiement: mvola")
+        }
+        if(paypalIsSelected){
+            console.log("Mode paiement: paypal")
+        }
+    } 
     
     if(!formation) return <Loading/>
     return(
@@ -70,7 +78,7 @@ export default function Payments(){
                     <p>Veuillez vérifier la formation auquel vous allez payer le droit 💳.</p>
                 </div>
                 <div className="forms-container">
-                    <form>
+                    <form onSubmit={handleSubmit(_handleSubmit)}>
                         <fieldset>
                             <h3>Informations sur la formation :</h3>
                             <fieldset className="payment-sections-container">
