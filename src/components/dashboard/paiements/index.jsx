@@ -6,7 +6,7 @@ import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
 import { useAuth } from '../../../contexts/AuthContext'
-
+import { toast } from 'sonner'
 
 export default function Payments(){
     
@@ -48,6 +48,9 @@ export default function Payments(){
 
     const MvolaInitiateTransaction = (d)=>{
         axios.post(`${import.meta.env.VITE_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
+        .catch(()=>{
+            toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
+        })
     }
 
     const _handleSubmit = (data) =>{
