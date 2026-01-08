@@ -1,18 +1,33 @@
 import { useEffect, useState } from 'react'
 import '../../../../public/styles/dashboard/payment.css'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import Loading from '../../loading'
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
-
+import { useAuth } from '../../../contexts/AuthContext'
+import { toast } from 'sonner'
 
 export default function Payments(){
     
     const { formationId } = useParams()
+    const [ searchParams ] = useSearchParams()
     let [ formation, setFormation ] = useState(null)
+    
+    var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
+    var [ paypalIsSelected, setPayPalIsSelected ] = useState(false)
 
-    const { reset, register } = useForm()
+    const { user } = useAuth()
+
+    const { reset, register, handleSubmit } = useForm()
+
+    const SelectMvolaModeToggle = ()=>{
+        mvolaIsSelected ? setMvolaIsSelected(false) : setMvolaIsSelected(true);setPayPalIsSelected(false)
+    }
+    
+    const SelectPayPalModeToggle = ()=>{
+        paypalIsSelected ? setPayPalIsSelected(false) : setPayPalIsSelected(true);setMvolaIsSelected(false)
+    }
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
@@ -26,9 +41,35 @@ export default function Payments(){
                 coursePlace: response.data[0].coursePlace,
                 coursePrice: response.data[0].coursePrice,
                 description: response.data[0].description,
+                phoneNumber: user.phoneNumber
             })
         })
-    }, [formationId, reset])
+    }, [formationId, reset, user.phoneNumber])
+
+    const MvolaInitiateTransaction = (d)=>{
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
+        .then(()=>{
+            toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
+        })
+        .catch(()=>{
+            toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
+        })
+    }
+
+    const _handleSubmit = (data) =>{
+        if(mvolaIsSelected){
+
+            let _data = {
+                clientMsisdn: data.phoneNumber,
+                registration: searchParams.get('registration'),
+            }
+
+            MvolaInitiateTransaction(_data)
+        }
+        if(paypalIsSelected){
+            console.log("Mode paiement: paypal")
+        }
+    } 
     
     if(!formation) return <Loading/>
     return(
@@ -39,7 +80,7 @@ export default function Payments(){
                     <p>Veuillez vérifier la formation auquel vous allez payer le droit 💳.</p>
                 </div>
                 <div className="forms-container">
-                    <form>
+                    <form onSubmit={handleSubmit(_handleSubmit)}>
                         <fieldset>
                             <h3>Informations sur la formation :</h3>
                             <fieldset className="payment-sections-container">
@@ -78,8 +119,33 @@ export default function Payments(){
                             </fieldset>
                             <fieldset className='payment-details-container'>
                                 <h3>Informations sur le paiement :</h3>
-                                <div className="element">
-                                    
+                                <div className="section-container">
+                                    <div className="left">
+                                        <div className="element">
+                                            <label htmlFor="">Mode de paiement :</label>
+                                            <section className="payment-mode-container">
+                                                <div className={ mvolaIsSelected ? "mode mvola selected" : "mode mvola"} title='Paiment par mvola.' onClick={SelectMvolaModeToggle}>
+                                                    <img src="/images/logo-de-mvola.png" alt="" />
+                                                </div>
+                                                <div className={paypalIsSelected ? "mode paypal selected":"mode paypal"} title='Paiment par PayPal' onClick={SelectPayPalModeToggle}>
+                                                    <img src="/images/logo-de-paypal.webp" alt="" />    
+                                                </div>
+                                            </section>
+                                        </div>
+                                        { mvolaIsSelected && <div className="element">
+                                            <label htmlFor="">Numéro téléphone de paiement :</label>
+                                            <input type="tel" id="" { ...register('phoneNumber', {required: true}) } required />
+                                        </div> }
+                                        <div className="element">
+                                            <button>Faire la transaction</button>
+                                        </div>
+                                    </div>
+                                    <div className="right">
+                                        <div className="element">
+                                            <label htmlFor="">Montant totale à payer (en Ar) :</label>
+                                            <input type="number" id="" readOnly disabled { ...register("coursePrice") } required/>
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
                         </fieldset>

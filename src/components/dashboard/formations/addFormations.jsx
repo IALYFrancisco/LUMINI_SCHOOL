@@ -31,6 +31,10 @@ export default function AddFormation(){
             formation.append("title", data.title)
             formation.append("prerequisites", data.prerequisites)
             formation.append("description", data.description)
+            formation.append("beginDate", data.beginDate)
+            formation.append("endDate", data.endDate)
+            formation.append("coursePlace", data.coursePlace)
+            formation.append("coursePrice", data.coursePrice)
             if(image){
                 formation.append("poster", image)
             }

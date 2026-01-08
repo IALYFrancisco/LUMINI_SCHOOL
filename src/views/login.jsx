@@ -40,6 +40,8 @@ export function Login(){
             })
         }
         catch(err){
+            setLoading(false)
+            setLoginLoading(false)
             if(err.status === 401){
                 toast.error("Email ou mot de passe incorrecte.")
             }

@@ -49,6 +49,12 @@ export default function FormationsList(){
             await axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data)
+                if(!formation.published){
+                    toast.info(`La formation ${formation.title} est désormais public.`)
+                }
+                if(formation.published){
+                    toast.info(`Vous avez dépublié la formation ${formation.title}.`)
+                }
             }).catch((err)=>{
                 console.log(err)
             })
