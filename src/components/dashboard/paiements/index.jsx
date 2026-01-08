@@ -48,6 +48,9 @@ export default function Payments(){
 
     const MvolaInitiateTransaction = (d)=>{
         axios.post(`${import.meta.env.VITE_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
+        .then(()=>{
+            toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
+        })
         .catch(()=>{
             toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
         })
