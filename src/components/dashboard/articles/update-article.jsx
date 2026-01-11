@@ -226,9 +226,9 @@ const _handleSubmit = (data) => {
           </fieldset>
         </form>
 
-          <div className="previsualisation">
+          <div className="previsualisation ql-container ql-snow">
               <h3>Prévisualisation :</h3>
-              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
           </div>
       </div>
     </>

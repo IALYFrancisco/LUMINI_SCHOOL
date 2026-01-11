@@ -46,6 +46,11 @@
     margin-top: 30px;
 }
 
+.add-article .previsualisation .ql-editor {
+    padding: 0;
+    overflow: initial;
+}
+
 .add-article .previsualisation p {
     font-size: 14px;
 }
