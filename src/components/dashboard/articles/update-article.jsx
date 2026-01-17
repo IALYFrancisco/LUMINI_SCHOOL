@@ -23,7 +23,7 @@ export default function UpdateArticle() {
   var watchAll = watch()
 
   useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
     .then((response)=>{
         setArticle(response.data)
         reset({
