@@ -1,6 +1,6 @@
 article {
     max-width: 1024px;
-    padding: 100px 100px 0 100px;
+    padding: 100px;
     margin: auto;
     color: var(--primary);
 }
