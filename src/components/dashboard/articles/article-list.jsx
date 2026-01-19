@@ -10,15 +10,24 @@ export default function ArticlesList(){
     var [articles, setArticles] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
+    var [ prompt, setPrompt ] = useState("")
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
                 setArticles(response.data)
-            }).catch((err)=>{
-                console.log(err)
-            })
+            }).catch(()=>setArticles([]))
     }, [])
+    
+    useEffect(()=>{
+        let timer = setTimeout(()=>{
+            axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?title=${prompt}`, { withCredentials: true })
+            .then((response)=>{
+                setArticles(response.data)
+            }).catch(()=>setArticles([]))
+        }, 400)
+        return ()=> clearTimeout(timer)
+    }, [prompt])
 
     useEffect(()=>{
         const handleClickOutside = (event) => {
@@ -60,7 +69,7 @@ export default function ArticlesList(){
     return(
         <>
             <div className="actions">
-                <input type="text" name="" id="" placeholder="Recherche d'un article"/>
+                <input type="text" name="" id="" value={prompt} onChange={(e)=>setPrompt(e.target.value)} placeholder="Recherche d'un article"/>
                     <Link to="/dashboard/articles/create">
                         <button>
                             Créer un article
