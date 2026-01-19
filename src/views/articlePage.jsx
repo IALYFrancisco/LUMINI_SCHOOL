@@ -46,7 +46,7 @@ export function ArticlesPage(){
                 <div className="body">
                     { articles && <>
                         { articles.map( article => (
-                            <div className="card-container" key={article._id}>
+                            <article className="card-container" key={article._id}>
                                 <div className="card">
                                     <div className="formation-image">
                                         <img src={ (article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt="" />
@@ -59,7 +59,7 @@ export function ArticlesPage(){
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
+                            </article>
                         ))}
                     </> }
                 </div>
