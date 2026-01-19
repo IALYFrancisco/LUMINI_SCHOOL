@@ -11,6 +11,7 @@ export default function FormationsList(){
     var [formations, setFormations] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
     const popUpRef = useRef(null)
+    var [ prompt, setPrompt ] = useState("")
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
@@ -32,6 +33,14 @@ export default function FormationsList(){
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
+
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?title=${prompt}`, { withCredentials: true })
+        .then((response)=>{
+            setFormations(response.data.filter( f => f.published === true ))
+        })
+        .catch(()=>setFormations([]))
+    },[prompt])
 
     const togglePopUp = (formationId) => {
         setActivePopUp((prev) => (prev === formationId ? null : formationId))
@@ -64,7 +73,7 @@ export default function FormationsList(){
     return(
         <>
             <div className="actions">
-                <input type="text" name="" id="" placeholder="Recherche de formation"/>
+                <input type="text" name="" id="" value={prompt} onChange={(e)=>setPrompt(e.target.value)} placeholder="Recherche de formation"/>
                     <Link to="/dashboard/formation/create">
                         <button>
                             Ajouter une formation
