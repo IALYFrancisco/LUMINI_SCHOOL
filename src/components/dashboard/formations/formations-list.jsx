@@ -35,11 +35,14 @@ export default function FormationsList(){
     }, [])
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?title=${prompt}`, { withCredentials: true })
-        .then((response)=>{
-            setFormations(response.data.filter( f => f.published === true ))
-        })
-        .catch(()=>setFormations([]))
+        let timer = setTimeout(()=>{
+            axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?title=${prompt}`, { withCredentials: true })
+            .then((response)=>{
+                setFormations(response.data.filter( f => f.published === true ))
+            })
+            .catch(()=>setFormations([]))
+        }, 400)
+        return ()=>clearTimeout(timer)
     },[prompt])
 
     const togglePopUp = (formationId) => {
