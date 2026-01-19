@@ -37,7 +37,7 @@ export function FormationsPage(){
                     <h2>Toute nos formations :</h2>
                     <p>Ci-dessous la liste de toute nos formations. Elles sont issues des branches existantes du secteur de l'informatique et ont été éléborées par nous-même afin de garantir leurs contenus ✨.</p>
                     <div className="actions">
-                        <input type="text" name="formation" id="" value={prompt} onChange={(e)=>{setPrompt(e.target.value); console.log(e.target.value)}} placeholder="Rehcrecher des formations"/>
+                        <input type="text" name="formation" id="" value={prompt} onChange={(e)=>setPrompt(e.target.value)} placeholder="Rehcrecher des formations"/>
                     </div>
                 </div>
                 <div className="body">
