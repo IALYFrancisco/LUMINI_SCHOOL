@@ -48,7 +48,7 @@ export function ArticlesSlider() {
                 }}
             >
                 { articles && articles.map( article => <SwiperSlide>
-                    <div className="card">
+                    <article className="card">
                         <div className="blog-image">
                             <img src={ (article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt="" />
                         </div>
@@ -59,7 +59,7 @@ export function ArticlesSlider() {
                                 <button>Lire plus</button>
                             </Link>
                         </div>
-                    </div>
+                    </article>
                 </SwiperSlide>) }
             </Swiper>
         </>

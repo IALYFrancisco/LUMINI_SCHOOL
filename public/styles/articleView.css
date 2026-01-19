@@ -1,4 +1,4 @@
-article {
+.article-container article {
     max-width: 1024px;
     padding: 100px;
     margin: auto;
