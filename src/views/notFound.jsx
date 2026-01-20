@@ -12,6 +12,8 @@ export function NotFound(){
                 <Link to="/">
                     <button>Retour à l'accueil</button>
                 </Link>
+                <img src="/images/fleur.png" alt="" className="laptop-mouse" />
+                <img src="/images/coffee-laptop.png" alt="" className="mouse" />
             </div>
         </section>
     </>)
