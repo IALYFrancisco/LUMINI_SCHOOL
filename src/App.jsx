@@ -25,6 +25,7 @@ import IsSuperuser from './components/isSuperuser'
 import Settings from './components/dashboard/settings'
 import ArticleView from './views/articleView'
 import Payments from './components/dashboard/paiements'
+import { NotFound } from './views/notFound'
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path='settings' element={<Settings/>}/>
           <Route path='payments/:userId/:formationId' element={<Payments/>}/>
         </Route>
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </Router>
   )
