@@ -23,7 +23,7 @@ export default function UpdateArticle() {
   var watchAll = watch()
 
   useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
     .then((response)=>{
         setArticle(response.data)
         reset({
@@ -226,9 +226,9 @@ const _handleSubmit = (data) => {
           </fieldset>
         </form>
 
-          <div className="previsualisation">
+          <div className="previsualisation ql-container ql-snow">
               <h3>Prévisualisation :</h3>
-              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
           </div>
       </div>
     </>

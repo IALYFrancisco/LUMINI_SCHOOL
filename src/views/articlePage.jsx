@@ -10,6 +10,7 @@ export function ArticlesPage(){
 
     var [ articles, setArticles ] = useState([])
     var [ loading, setLoading ] = useState(true)
+    var [ prompt, setPrompt ] = useState("")
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get`, { withCredentials: true })
@@ -20,6 +21,16 @@ export function ArticlesPage(){
             .finally(()=>setLoading(false))
     }, [])
 
+    useEffect(()=>{
+        let timer = axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?title=${prompt}`, { withCredentials: true })
+            .then((response)=>{
+                setArticles(response.data.filter( article => article.published === true ))
+            })
+            .catch(()=>setArticles([]))
+            .finally(()=>setLoading(false))
+        return ()=>clearTimeout(timer)
+    },[prompt])
+
     if(loading) return <Loading/>
     if(articles) return(
         <>
@@ -29,13 +40,13 @@ export function ArticlesPage(){
                     <h2>Tout nos articles :</h2>
                     <p>Former et informer les gens est une occupation de haut niveau. Non seulement un dévoir sacré mais aussi une manière d'éduquer. Ceci dit, nos pensées sont à la portée de tous à travers nos articles  📜.</p>
                     <div className="actions">
-                        <input type="text" name="formation" id="" placeholder="Rehcreche d'article"/>
+                        <input type="text" name="formation" id="" value={prompt} onChange={(e)=>setPrompt(e.target.value)} placeholder="Rehcreche d'article"/>
                     </div>
                 </div>
                 <div className="body">
                     { articles && <>
                         { articles.map( article => (
-                            <div className="card-container" key={article._id}>
+                            <article className="card-container" key={article._id}>
                                 <div className="card">
                                     <div className="formation-image">
                                         <img src={ (article.image.includes('https') || article.image.includes('http')) ? article.image : `${import.meta.env.VITE_API_BASE_URL}/${article.image}` } alt="" />
@@ -48,7 +59,7 @@ export function ArticlesPage(){
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
+                            </article>
                         ))}
                     </> }
                 </div>
