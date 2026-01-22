@@ -6,7 +6,7 @@ import axios from 'axios'
 async function GenerateArticleRoutes() {
   try{
     let articleRoutes = []
-    let response = await axios.get(`http://localhost:3000/article/get`)
+    let response = await axios.get(`https://lumini-school-api.onrender.com/article/get`)
     response.data.forEach(element => { articleRoutes.push(`/article/${element.slug}`) });
     return articleRoutes
   }
@@ -22,7 +22,7 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({ 
-      hostname: "http://localhost:5173",
+      hostname: "https://luminischool.onrender.com",
       generateRobotsTxt: true,
       robots: [ { disallow: "/dashboard", userAgent: '*' } ]
     }),
