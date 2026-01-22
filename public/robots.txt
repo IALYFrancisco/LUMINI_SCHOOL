@@ -1,5 +1,0 @@
-User-Agent: *
-
-Disallow: /dashboard
-
-Sitemap: https://luminischool.onrender.com/sitemap.xml
