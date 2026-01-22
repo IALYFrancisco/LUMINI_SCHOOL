@@ -23,7 +23,6 @@ export default defineConfig({
     react(),
     sitemap({ 
       hostname: "http://localhost:5173",
-      urls: [],
       generateRobotsTxt: true,
       robots: [ { disallow: "/dashboard", userAgent: '*' } ]
     }),
