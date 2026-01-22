@@ -22,6 +22,10 @@ export default defineConfig({
     react(),
     sitemap({ 
       hostname: "https://luminischool.onrender.com",
+      routes: [
+        { path: '/', changefreq: 'daily', priority: 1.0 },
+        { path: '/about', changefreq: 'weekly', priority: 0.8 }
+      ],
       generateRobotsTxt: true,
       robots: [ { disallow: "/dashboard", userAgent: '*' } ]
     }),
