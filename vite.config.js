@@ -22,6 +22,9 @@ export default defineConfig({
     react(),
     sitemap({ 
       hostname: "https://luminischool.onrender.com",
+      urls: [
+        { url: '/', changefreq: 'weekly', priority: 1.0 }
+      ],
       dynamicRoutes: await GenerateArticleRoutes()
     }),
   ],
