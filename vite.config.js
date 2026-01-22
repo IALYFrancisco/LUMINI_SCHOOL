@@ -6,12 +6,13 @@ import axios from 'axios'
 async function GenerateArticleRoutes() {
   try{
     let articleRoutes = []
-    let response = await axios.get(`https://lumini-school-api.onrender.com/article/get`)
+    let response = await axios.get(`http://localhost:3000/article/get`)
     response.data.forEach(element => { articleRoutes.push(`/article/${element.slug}`) });
     return articleRoutes
   }
-  catch{
+  catch(err){
     console.log('Error generating article routes for the sitemap file')
+    console.log(err)
     return
   }
 }
@@ -21,11 +22,10 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({ 
-      hostname: "https://luminischool.onrender.com",
-      urls: [
-        { url: '/', changefreq: 'weekly', priority: 1.0 }
-      ],
-      dynamicRoutes: await GenerateArticleRoutes()
+      hostname: "http://localhost:5173",
+      urls: [],
+      generateRobotsTxt: true,
+      robots: [ { disallow: "/dashboard", userAgent: '*' } ]
     }),
   ],
 })
