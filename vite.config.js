@@ -10,9 +10,8 @@ async function GenerateArticleRoutes() {
     response.data.forEach(element => { articleRoutes.push(`/article/${element.slug}`) });
     return articleRoutes
   }
-  catch(err){
+  catch{
     console.log('Error generating article routes for the sitemap file')
-    console.log(err)
     return
   }
 }
