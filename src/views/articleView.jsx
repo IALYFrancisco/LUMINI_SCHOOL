@@ -5,8 +5,16 @@ import axios from "axios"
 import Loading from "../components/loading"
 import '../../public/styles/articleView.css'
 import DOMPurify from 'dompurify'
+import { useHead } from "@unhead/react"
 
 export default function ArticleView(){
+
+    useHead({
+        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
+        meta: [
+            { name: 'description', content: 'Découvrez comment installer Windows 11, les configurations requises et les bonnes pratiques pour une installation sécurisée et professionnelle.' }
+        ]
+    })
 
     const { slug } = useParams()
     var [ article, setArticle ] = useState(null)

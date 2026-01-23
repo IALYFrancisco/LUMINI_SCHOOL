@@ -5,8 +5,13 @@ import { Footer } from "../components/footer"
 import { Formations } from "../components/formations"
 import { Articles } from "../components/articles"
 import '../../public/styles/home.css'
+import { useHead } from "@unhead/react"
 
 function Home(){
+
+    useHead({
+        title: 'Accueil | LUMINI School'
+    })
 
     return (
         <>

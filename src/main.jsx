@@ -4,12 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import { Toaster } from 'sonner'
+import { createHead, UnheadProvider } from '@unhead/react/client'
+
+const head = createHead()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <App />
-      <Toaster position='top-center' richColors/>
-    </AuthProvider>
+    <UnheadProvider head={head}>
+      <AuthProvider>
+        <App />
+        <Toaster position='top-center' richColors/>
+      </AuthProvider>
+    </UnheadProvider>
   </StrictMode>
 )
