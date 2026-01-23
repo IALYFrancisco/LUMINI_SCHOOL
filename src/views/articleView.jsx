@@ -24,8 +24,8 @@ export default function ArticleView(){
     return (
         <>
             <Helmet>
-                <title>Installer Windows 11 : configurations requises et bonnes pratiques</title>
                 <meta name="description" content="Découvrez comment installer Windows 11, les configurations requises et les bonnes pratiques pour une installation sécurisée et professionnelle." />
+                <title>Installer Windows 11 : configurations requises et bonnes pratiques</title>
             </Helmet>
             <Nav></Nav>
             <div className="article-container">
