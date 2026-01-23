@@ -5,6 +5,7 @@ import axios from "axios"
 import Loading from "../components/loading"
 import '../../public/styles/articleView.css'
 import DOMPurify from 'dompurify'
+import { Helmet } from "react-helmet-async"
 
 export default function ArticleView(){
 
@@ -22,6 +23,10 @@ export default function ArticleView(){
     if (loading) return <Loading/>
     return (
         <>
+            <Helmet>
+                <title>Installer Windows 11 : configurations requises et bonnes pratiques</title>
+                <meta name="description" content="Découvrez comment installer Windows 11, les configurations requises et les bonnes pratiques pour une installation sécurisée et professionnelle." />
+            </Helmet>
             <Nav></Nav>
             <div className="article-container">
                 <article>
