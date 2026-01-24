@@ -4,15 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import { Toaster } from 'sonner'
-import { HelmetProvider } from 'react-helmet-async'
+import { createHead, UnheadProvider } from '@unhead/react/client'
+
+const head = createHead()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <HelmetProvider>
+    <UnheadProvider head={head}>
+      <AuthProvider>
         <App />
         <Toaster position='top-center' richColors/>
-      </HelmetProvider>
-    </AuthProvider>
-  </StrictMode>,
+      </AuthProvider>
+    </UnheadProvider>
+  </StrictMode>
 )

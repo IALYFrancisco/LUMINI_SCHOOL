@@ -6,9 +6,9 @@ import sitemap from 'vite-sitemap'
 async function GenerateArticleRoutes() {
   try{
     let articleRoutes = []
-    let response = await axios.get(`http://localhost:3000/article/get`)
+    let response = await axios.get('https://lumini-school-api.onrender.com/article/get')
     response.data.forEach(element => { articleRoutes.push({
-      path: `/article/${element.slug}`,
+      path: `/article/${element.slug}/`,
       changefreq: 'weekly',
       priority: 0.8
     }) });
@@ -17,7 +17,7 @@ async function GenerateArticleRoutes() {
   catch(err){
     console.log(err)
     console.log('Error generating article routes for the sitemap file')
-    return
+    return []
   }
 }
 
@@ -27,14 +27,14 @@ export default defineConfig( async () => {
     plugins: [
       react(),
       sitemap({
-        base: 'http://localhost:5173',
+        base: 'https://luminischool.onrender.com',
         changefreq: 'weekly',
         priority: 1.0,
         urls: [
-          { path: '/', changefreq: 'weekly', priority: 1 },
+          { path: '/', changefreq: 'weekly', priority: 1.0 },
           ...await GenerateArticleRoutes()
         ],
-        robotsTxt: "User-agent: *\nDisallow: /dashboard\n\nSitemap: http://localhost:5173/sitemap.xml"
+        robotsTxt: "User-agent: *\nDisallow: /dashboard\n\nSitemap: https://luminischool.onrender.com/sitemap.xml"
       })
     ],
   }

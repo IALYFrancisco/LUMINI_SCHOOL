@@ -5,15 +5,16 @@ import { Footer } from "../components/footer"
 import { Formations } from "../components/formations"
 import { Articles } from "../components/articles"
 import '../../public/styles/home.css'
-import { Helmet } from "react-helmet-async"
+import { useHead } from "@unhead/react"
 
 function Home(){
 
+    useHead({
+        title: 'Accueil | LUMINI School'
+    })
+
     return (
         <>
-            <Helmet>
-                <title>Accueil | LUMINI School</title>
-            </Helmet>
             <Header></Header>
             <Formations></Formations>
             <Articles></Articles>
