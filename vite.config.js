@@ -17,7 +17,7 @@ async function GenerateArticleRoutes() {
   catch(err){
     console.log(err)
     console.log('Error generating article routes for the sitemap file')
-    return
+    return []
   }
 }
 
@@ -31,7 +31,7 @@ export default defineConfig( async () => {
         changefreq: 'weekly',
         priority: 1.0,
         urls: [
-          { path: '/', changefreq: 'weekly', priority: 1 },
+          { path: '/', changefreq: 'weekly', priority: 1.0 },
           ...await GenerateArticleRoutes()
         ],
         robotsTxt: "User-agent: *\nDisallow: /dashboard\n\nSitemap: http://localhost:5173/sitemap.xml"
