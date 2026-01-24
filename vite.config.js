@@ -8,7 +8,7 @@ async function GenerateArticleRoutes() {
     let articleRoutes = []
     let response = await axios.get(`http://localhost:3000/article/get`)
     response.data.forEach(element => { articleRoutes.push({
-      path: `/article/${element.slug}`,
+      path: `/article/${element.slug}/`,
       changefreq: 'weekly',
       priority: 0.8
     }) });
