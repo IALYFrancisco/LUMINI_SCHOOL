@@ -5,8 +5,12 @@ import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
+import { Quill } from "react-quill-new";
+import { ImageBlot } from "./CustomImageBlot";
 
 export default function CreateArticle() {
+
+  Quill.register(ImageBlot)
 
   const { register, handleSubmit, reset, watch } = useForm()
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
@@ -49,6 +53,22 @@ export default function CreateArticle() {
   ];
 
   const handleImageUpload = async () => {
+
+    let remoteURLImage = window.prompt("Utilisez cet champ pour une image déjà en ligne :")
+
+    if(remoteURLImage.includes("https://") || remoteURLImage.includes("http://")){
+      let altImage = window.prompt("Saisissez le texte  alternatif à cette image :")
+      if(altImage){
+        let quill = quillRef.current.getEditor()
+        let range = quill.getSelection(true)
+  
+        quill.insertEmbed(range.index, "image", {
+          src: remoteURLImage,
+          alt: altImage
+        })
+      }
+    }
+
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/jpeg, image/png");

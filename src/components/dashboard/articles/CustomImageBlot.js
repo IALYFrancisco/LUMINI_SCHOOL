@@ -2,7 +2,7 @@ import { Quill } from "react-quill-new";
 
 const BlockEmbed = Quill.import("blots/block/embed")
 
-class ImageBlot extends BlockEmbed {
+export class ImageBlot extends BlockEmbed {
     static create(value){
         const node = super.create()
         node.setAttribute("src", value.src)
