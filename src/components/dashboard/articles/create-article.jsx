@@ -5,12 +5,8 @@ import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
-import { Quill } from "react-quill-new";
-import { ImageBlot } from "./CustomImageBlot";
 
 export default function CreateArticle() {
-
-  Quill.register(ImageBlot)
 
   const { register, handleSubmit, reset, watch } = useForm()
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
