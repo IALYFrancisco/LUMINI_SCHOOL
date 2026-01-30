@@ -5,6 +5,7 @@ import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
+import './CustomImageBlot'
 
 export default function CreateArticle() {
 
@@ -49,6 +50,24 @@ export default function CreateArticle() {
   ];
 
   const handleImageUpload = async () => {
+
+    let remoteURLImage = window.prompt("Utilisez ce champ pour une image déjà en ligne :")
+
+    if(remoteURLImage && remoteURLImage.startsWith("https://") || remoteURLImage.startsWith("http://")){
+      let altImage = window.prompt("Saisissez le texte  alternatif de cette image :")
+      if(altImage){
+        let quill = quillRef.current.getEditor()
+        let range = quill.getSelection(true)
+  
+        quill.insertEmbed(range.index, "image", {
+          src: remoteURLImage,
+          alt: altImage || ""
+        })
+
+        return
+      }
+    }
+
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/jpeg, image/png");
@@ -68,7 +87,16 @@ export default function CreateArticle() {
 
         const quill = quillRef.current.getEditor();
         const range = quill.getSelection();
-        quill.insertEmbed(range.index, "image", `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`);
+
+        let altImage = window.prompt("Saisissez le texte  alternatif de cette image :")
+
+        if(altImage){
+          quill.insertEmbed(range.index, "image", {
+            src: `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`,
+            alt: altImage
+          })
+        }
+
       } catch (err) {
         console.error("Erreur upload image:", err);
       } finally {

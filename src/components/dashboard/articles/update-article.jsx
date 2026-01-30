@@ -6,6 +6,7 @@ import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import './CustomImageBlot'
 
 export default function UpdateArticle() {
 
@@ -66,34 +67,61 @@ export default function UpdateArticle() {
     "image", "color", "background", "code-block", "align",
   ];
 
-  const handleImageUpload = async () => {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/jpeg, image/png");
-    input.click();
-
-    input.onchange = async () => {
-      const file = input.files[0];
-      const formData = new FormData();
-      formData.append("image", file);
-
-      try {
-        setUploading(true);
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-illustration`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true
-        });
-
-        const quill = quillRef.current.getEditor();
-        const range = quill.getSelection();
-        quill.insertEmbed(range.index, "image", `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`);
-      } catch (err) {
-        console.error("Erreur upload image:", err);
-      } finally {
-        setUploading(false);
+    const handleImageUpload = async () => {
+  
+      let remoteURLImage = window.prompt("Utilisez ce champ pour une image déjà en ligne :")
+  
+      if(remoteURLImage && remoteURLImage.startsWith("https://") || remoteURLImage.startsWith("http://")){
+        let altImage = window.prompt("Saisissez le texte  alternatif de cette image :")
+        if(altImage){
+          let quill = quillRef.current.getEditor()
+          let range = quill.getSelection(true)
+    
+          quill.insertEmbed(range.index, "image", {
+            src: remoteURLImage,
+            alt: altImage || ""
+          })
+  
+          return
+        }
       }
+  
+      const input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.setAttribute("accept", "image/jpeg, image/png");
+      input.click();
+  
+      input.onchange = async () => {
+        const file = input.files[0];
+        const formData = new FormData();
+        formData.append("image", file);
+  
+        try {
+          setUploading(true);
+          const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-illustration`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true
+          });
+  
+          const quill = quillRef.current.getEditor();
+          const range = quill.getSelection();
+  
+          let altImage = window.prompt("Saisissez le texte  alternatif de cette image :")
+  
+          if(altImage){
+            quill.insertEmbed(range.index, "image", {
+              src: `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`,
+              alt: altImage
+            })
+          }
+  
+        } catch (err) {
+          console.error("Erreur upload image:", err);
+        } finally {
+          setUploading(false);
+        }
+      };
     };
-  };
 
 const handleDocumentUpload = async () => {
     const input = document.createElement("input");
