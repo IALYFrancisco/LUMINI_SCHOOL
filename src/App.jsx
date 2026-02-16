@@ -26,8 +26,15 @@ import Settings from './components/dashboard/settings'
 import ArticleView from './views/articleView'
 import Payments from './components/dashboard/paiements'
 import { NotFound } from './views/notFound'
+import { useSeoMeta } from '@unhead/react'
 
 function App() {
+
+  useSeoMeta({
+    ogSiteName: 'LUMINI School',
+    twitterCard: 'summary_large_image'
+  })
+
   return (
     <Router>
       <Routes>
