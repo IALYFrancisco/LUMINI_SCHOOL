@@ -1,10 +1,12 @@
-.add-article {
+.add-article,
+.update-article-seo {
     margin-top: 50px;
     height: calc(100vh - 160px);
     overflow-y: scroll;
 }
 
-.add-article::-webkit-scrollbar {
+.add-article::-webkit-scrollbar,
+.update-article-seo::-webkit-scrollbar {
     width: 2px;
 }
 
@@ -13,7 +15,16 @@
     margin-bottom: 30px;
     display:flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+}
+
+.update-article-seo h3 {
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+.update-article-seo h3 span {
+    color: var(--fourth);
 }
 
 .add-article h3 button {
