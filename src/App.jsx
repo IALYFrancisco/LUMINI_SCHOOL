@@ -27,6 +27,7 @@ import ArticleView from './views/articleView'
 import Payments from './components/dashboard/paiements'
 import { NotFound } from './views/notFound'
 import { useSeoMeta } from '@unhead/react'
+import SEOUpdate from './components/dashboard/articles/seo-update'
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
             <Route path='' element={<ArticlesList/>}/>
             <Route path='create' element={<CreateArticle/>}/>
             <Route path='update/:id' element={<UpdateArticle/>}/>
+            <Route path='update/:id/seo' element={<SEOUpdate/>}/>
           </Route>
           <Route path='inscriptions' element={<Inscriptions/>}/>
           <Route path='users' element={ <IsSuperuser><Users/></IsSuperuser>}>
