@@ -215,7 +215,7 @@ const _handleSubmit = (data) => {
   return (
     <>
       <div className="add-article">
-        <h3>Modification d'un article :</h3>
+        <h3>Modification d'un article : <button>Modifier le SEO</button></h3>
           {uploading && (
               <p className="upload-message">
                 🔄 Upload en cours...

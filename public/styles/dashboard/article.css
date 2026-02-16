@@ -11,6 +11,14 @@
 .add-article h3 {
     color: var(--primary);
     margin-bottom: 30px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-article h3 button {
+    color: var(--secondary);
+    background-color: var(--fourth);
 }
 
 .add-article form fieldset .element > button {
