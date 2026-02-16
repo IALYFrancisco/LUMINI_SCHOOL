@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import axios from 'axios'
-import sitemap from 'vite-sitemap'
+import sitemap from 'vite-sitemap-plugin'
 
 async function GenerateArticleRoutes() {
   try{
