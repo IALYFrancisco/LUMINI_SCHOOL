@@ -34,12 +34,33 @@ export default function SEOUpdate(){
             })
     }, [id])
 
+    const sumbmitForm = async (data)=>{
+        if(seo){
+            console.log("seo déjà défini")
+        }else{
+            try{
+                const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/seo/create`, {
+                    seo: {
+                        title: data.title,
+                        description: data.description
+                    },
+                    articleId: id
+                }, { withCredentials: true })
+                
+                toast.success("Seo créé avec succès.")
+            }catch{
+                toast.error("Erreur du création de SEO, veuillez réssayer plus tard.")
+            }
+        }
+        
+    }
+
     return(
         article &&
         <>
             <div className="update-article-seo">
                 <h3>Modification du SEO de l'article <span>"{article.title}"</span></h3>
-                <form>
+                <form onSubmit={handleSubmit(sumbmitForm)}>
                     <fieldset>
                         <div className="element">
                             <label htmlFor="page-title">Titre de page [ title, og:title, twitter:title ] :</label>
@@ -47,11 +68,11 @@ export default function SEOUpdate(){
                         </div>
                         <div className="element">
                             <label htmlFor="page-url">Url de page [ lien canonique, og:url, twitter:url ] :</label>
-                            <input type="url" id="page-url" placeholder="Ajoutez un url canonique à la page d'article (ce sera également utilisé par og:url et twitter:url)" { ...register('canonicUrl') } required/>
+                            <input type="url" id="page-url" placeholder="Url canonique à la page d'article pour link:canonical, og:url et twitter:url" { ...register('canonicUrl') } required disabled/>
                         </div>
                         <div className="element">
                             <label htmlFor="image">Image de mise en avant [ og:image, twitter:image ] :</label>
-                            <input type="url" id="image" placeholder="Ceci n'est pas modifiable d'ici" { ...register('image') } required/>
+                            <input type="url" id="image" placeholder="Image pour og:image, twitter:image" { ...register('image') } required disabled/>
                         </div>
                         <div className="element">
                             <button>Soumettre</button>
