@@ -16,23 +16,26 @@ export default function ArticleView(){
         ]
     })
 
-    useSeoMeta({
-        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
-        ogType: 'article',
-        ogLocale: 'fr_FR',
-        articleAuthor: 'LUMINI School'
-    })
-
+    
     const { slug } = useParams()
     var [ article, setArticle ] = useState(null)
     var [ loading, setLoading ] = useState(true)
-
+    
+    
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
         .then((response)=>{
             setArticle(response.data)
         }).finally(()=>setLoading(false))
     }, [slug])
+    
+    useSeoMeta({
+        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
+        ogType: 'article',
+        ogLocale: 'fr_FR',
+        articleAuthor: 'LUMINI School',
+        articlePublishedTime: article && `${article.publishedAt}`
+    })
 
     if (loading) return <Loading/>
     return (
