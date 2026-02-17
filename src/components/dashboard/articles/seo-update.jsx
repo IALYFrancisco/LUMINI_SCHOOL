@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 export default function SEOUpdate(){
     
@@ -19,14 +20,17 @@ export default function SEOUpdate(){
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
-        .then((response)=>{
-            if(response.status === 200){
-                setSeo(response.data)
-            }
-            if(response.status === 209){
+            .then((response)=>{
+                if(response.status === 200){
+                    setSeo(response.data)
+                }
+                if(response.status === 209){
+                    setSeo(null)
+                }
+            }).catch(()=>{
                 setSeo(null)
-            }
-        }).catch(()=>setSeo(null))
+                toast.error('Erreur de récupération du SEO de cet article')
+            })
     }, [id])
 
     return(
