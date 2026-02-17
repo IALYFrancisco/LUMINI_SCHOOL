@@ -9,7 +9,7 @@ export default function SEOUpdate(){
     var [article, setArticle] = useState(null)
     var [seo, setSeo] = useState(null)
     const {id} = useParams()
-    const { register, handleSubmit, reset } = useForm()
+    var { register, handleSubmit, reset } = useForm()
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
@@ -35,37 +35,7 @@ export default function SEOUpdate(){
     }, [id])
 
     const sumbmitForm = async (data)=>{
-        if(seo){
-            console.log("seo déjà défini")
-        }else{
-            try{
-                const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/seo/create`, {
-                    seo: {
-                        title: data.title,
-                        description: data.description
-                    },
-                    articleId: id
-                }, { withCredentials: true })
-                toast.success("Seo créé avec succès.")
-                axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
-                .then((response)=>{
-                    if(response.status === 200){
-                        setSeo(response.data)
-                    }
-                    if(response.status === 209){
-                        setSeo(null)
-                        toast.info("Cet article n'a pas encore de SEO.")
-                    }
-                }).catch(()=>{
-                    setSeo(null)
-                    toast.error('Erreur de récupération du SEO de cet article')
-                })
-            }catch(err){
-                console.log(err)
-                toast.error("Erreur du création de SEO, veuillez réssayer plus tard.")
-            }
-        }
-        
+        axios.post('http://localhost:3000/seo/create', data, { withCredentials: true })
     }
 
     return(
