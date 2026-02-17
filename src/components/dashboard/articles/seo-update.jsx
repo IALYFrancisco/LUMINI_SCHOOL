@@ -26,6 +26,7 @@ export default function SEOUpdate(){
                 }
                 if(response.status === 209){
                     setSeo(null)
+                    toast.info("Cet article n'a pas encore de SEO.")
                 }
             }).catch(()=>{
                 setSeo(null)
