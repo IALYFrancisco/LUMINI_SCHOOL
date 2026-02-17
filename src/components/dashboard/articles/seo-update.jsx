@@ -30,6 +30,15 @@ export default function SEOUpdate(){
                             <label htmlFor="image">Image de mise en avant [ og:image, twitter:image ] :</label>
                             <input type="url" id="image" placeholder="Ceci n'est pas modifiable d'ici"/>
                         </div>
+                        <div className="element">
+                            <button>Soumettre</button>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div className="element">
+                            <label htmlFor="page-description">Description de page :</label>
+                            <textarea id="page-description" placeholder="Rediger une description pour la page, ce sera utilisée par meta:description: , og:description et twitter:description"></textarea>
+                        </div>
                     </fieldset>
                 </form>
             </div>

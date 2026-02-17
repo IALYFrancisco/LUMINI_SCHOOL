@@ -36,7 +36,8 @@
     background-color: var(--fourth);
 }
 
-.add-article form fieldset .element > button {
+.add-article form fieldset .element > button,
+.update-article-seo form fieldset .element > button {
     margin-top: 30px;
     font-size: 13px;
     color: var(--secondary);
@@ -114,7 +115,9 @@
 .add-article form fieldset:nth-child(2) .element input[type="text"]:focus,
 .add-article form fieldset:nth-child(1) .element input[type="text"]:focus,
 .update-article-seo form fieldset:nth-child(1) .element input[type="text"]:focus,
-.add-article form fieldset:nth-child(2) .element input[type="url"]:focus {
+.update-article-seo form fieldset .element input[type="url"]:focus,
+.add-article form fieldset:nth-child(2) .element input[type="url"]:focus,
+.update-article-seo textarea:focus{
     transition: .25s;
     border-color: #1b2232;
 }
@@ -135,4 +138,27 @@
 .add-article form fieldset:nth-child(2) .inputs-container input[type="url"],
 .add-article form fieldset:nth-child(2) .inputs-container input[type="file"] {
     width: 50%;
+}
+
+.update-article-seo form {
+    display: flex;
+    column-gap: 50px;
+}
+
+.update-article-seo form fieldset {
+    width: 100%;
+}
+
+.update-article-seo textarea {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 300px;
+    margin-top: 10px;
+    outline: none;
+    width: 100%;
+    resize: none;
 }
