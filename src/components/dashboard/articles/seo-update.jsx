@@ -46,9 +46,22 @@ export default function SEOUpdate(){
                     },
                     articleId: id
                 }, { withCredentials: true })
-                
                 toast.success("Seo créé avec succès.")
-            }catch{
+                axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+                .then((response)=>{
+                    if(response.status === 200){
+                        setSeo(response.data)
+                    }
+                    if(response.status === 209){
+                        setSeo(null)
+                        toast.info("Cet article n'a pas encore de SEO.")
+                    }
+                }).catch(()=>{
+                    setSeo(null)
+                    toast.error('Erreur de récupération du SEO de cet article')
+                })
+            }catch(err){
+                console.log(err)
                 toast.error("Erreur du création de SEO, veuillez réssayer plus tard.")
             }
         }
