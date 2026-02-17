@@ -15,7 +15,14 @@ export default function ArticleView(){
             { name: 'robots', content: 'index, follow' }
         ]
     })
-
+    
+    useSeoMeta({
+        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
+        ogType: 'article',
+        ogLocale: 'fr_FR',
+        articleAuthor: 'LUMINI School',
+        articlePublishedTime: article && `${article.publishedAt}`
+    })
     
     const { slug } = useParams()
     var [ article, setArticle ] = useState(null)
@@ -29,13 +36,6 @@ export default function ArticleView(){
         }).finally(()=>setLoading(false))
     }, [slug])
     
-    useSeoMeta({
-        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
-        ogType: 'article',
-        ogLocale: 'fr_FR',
-        articleAuthor: 'LUMINI School',
-        articlePublishedTime: article && `${article.publishedAt}`
-    })
 
     if (loading) return <Loading/>
     return (
