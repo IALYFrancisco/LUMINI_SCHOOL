@@ -5,27 +5,54 @@ import axios from "axios"
 import Loading from "../components/loading"
 import '../../public/styles/articleView.css'
 import DOMPurify from 'dompurify'
-import { useHead } from "@unhead/react"
+import { useHead, useSeoMeta } from "@unhead/react"
 
 export default function ArticleView(){
-
-    useHead({
-        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
-        meta: [
-            { name: 'description', content: 'Découvrez comment installer Windows 11, les configurations requises et les bonnes pratiques pour une installation sécurisée et professionnelle.' }
-        ]
-    })
-
+    
     const { slug } = useParams()
     var [ article, setArticle ] = useState(null)
     var [ loading, setLoading ] = useState(true)
-
+    var [ seo, setSeo ] = useState(null)
+    
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
         .then((response)=>{
             setArticle(response.data)
+            axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
+                .then((response)=>{
+                    setSeo(response.data)
+                })
         }).finally(()=>setLoading(false))
     }, [slug])
+
+    useHead({
+        link: [
+            { rel: 'canonical', href: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined }
+        ],
+        meta: [
+            { name: 'description', content: (seo && seo.description) || undefined },
+            { name: 'robots', content: 'index, follow' }
+        ]
+    })
+    
+    useSeoMeta({
+
+        title: (seo && seo.title) || undefined,
+        
+        ogTitle: (seo && seo.title) || undefined,
+        ogType: 'article',
+        ogDescription: (seo && seo.description) || undefined,
+        ogUrl: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined,
+        ogImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
+        
+        twitterTitle: (seo && seo.title) || undefined,
+        twitterDescription: (seo && seo.description) || undefined,
+        twitterImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
+        
+        articleAuthor: 'LUMINI School',
+        articlePublishedTime: (article && `${article.publishedAt}`) || undefined
+    
+    })
 
     if (loading) return <Loading/>
     return (

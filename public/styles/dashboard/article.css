@@ -1,10 +1,12 @@
-.add-article {
+.add-article,
+.update-article-seo {
     margin-top: 50px;
     height: calc(100vh - 160px);
     overflow-y: scroll;
 }
 
-.add-article::-webkit-scrollbar {
+.add-article::-webkit-scrollbar,
+.update-article-seo::-webkit-scrollbar {
     width: 2px;
 }
 
@@ -13,7 +15,20 @@
     margin-bottom: 30px;
     display:flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+}
+
+.update-article-seo form fieldset .element {
+    margin-bottom: 30px;
+}
+
+.update-article-seo h3 {
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+.update-article-seo h3 span {
+    color: var(--fourth);
 }
 
 .add-article h3 button {
@@ -21,7 +36,8 @@
     background-color: var(--fourth);
 }
 
-.add-article form fieldset .element > button {
+.add-article form fieldset .element > button,
+.update-article-seo form fieldset .element > button {
     margin-top: 30px;
     font-size: 13px;
     color: var(--secondary);
@@ -31,13 +47,24 @@
     border: none;
 }
 
-.add-article form fieldset .element > button:disabled {
+.add-article form fieldset .element > button:disabled,
+.update-article-seo form fieldset .element > button:disabled {
     background-color: grey;
     transform: none;
 }
 
-.add-article form fieldset {
+.add-article form fieldset,
+.update-article-seo form fieldset {
     border: none;
+}
+
+.update-article-seo button img {
+    width: 18px;
+    animation: spinner infinite 3s linear;
+}
+
+.update-article-seo button:hover {
+    column-gap: 15px;
 }
 
 .add-article .upload-message {
@@ -65,7 +92,8 @@
     font-size: 14px;
 }
 
-.add-article form fieldset .element label {
+.add-article form fieldset .element label,
+.update-article-seo form fieldset .element label {
     font-weight: 900;
     display: block;
     color: var(--primary);
@@ -80,6 +108,8 @@
 }
 
 .add-article form fieldset:nth-child(1) .element input[type="text"],
+.update-article-seo form fieldset .element input[type="text"],
+.update-article-seo form fieldset .element input[type="url"],
 .add-article form fieldset:nth-child(2) .element input[type="url"] {
     padding: 10px;
     border-radius: 5px;
@@ -94,7 +124,10 @@
 
 .add-article form fieldset:nth-child(2) .element input[type="text"]:focus,
 .add-article form fieldset:nth-child(1) .element input[type="text"]:focus,
-.add-article form fieldset:nth-child(2) .element input[type="url"]:focus {
+.update-article-seo form fieldset:nth-child(1) .element input[type="text"]:focus,
+.update-article-seo form fieldset .element input[type="url"]:focus,
+.add-article form fieldset:nth-child(2) .element input[type="url"]:focus,
+.update-article-seo textarea:focus{
     transition: .25s;
     border-color: #1b2232;
 }
@@ -115,4 +148,27 @@
 .add-article form fieldset:nth-child(2) .inputs-container input[type="url"],
 .add-article form fieldset:nth-child(2) .inputs-container input[type="file"] {
     width: 50%;
+}
+
+.update-article-seo form {
+    display: flex;
+    column-gap: 50px;
+}
+
+.update-article-seo form fieldset {
+    width: 100%;
+}
+
+.update-article-seo textarea {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 300px;
+    margin-top: 10px;
+    outline: none;
+    width: 100%;
+    resize: none;
 }

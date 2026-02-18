@@ -5,7 +5,7 @@ import axios from "axios";
 import "react-quill-new/dist/quill.snow.css";
 import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import './CustomImageBlot'
 
 export default function UpdateArticle() {
@@ -215,7 +215,11 @@ const _handleSubmit = (data) => {
   return (
     <>
       <div className="add-article">
-        <h3>Modification d'un article : <button>Modifier le SEO</button></h3>
+        <h3>Modification d'un article :
+           <Link to={`/dashboard/articles/update/${id}/seo`}>
+            <button>Modifier le SEO</button>
+           </Link>
+        </h3>
           {uploading && (
               <p className="upload-message">
                 🔄 Upload en cours...
