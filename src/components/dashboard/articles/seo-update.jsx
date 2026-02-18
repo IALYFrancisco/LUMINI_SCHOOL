@@ -23,6 +23,10 @@ export default function SEOUpdate(){
             .then((response)=>{
                 if(response.status === 200){
                     setSeo(response.data)
+                    reset({
+                        title: response.data.title,
+                        description: response.data.description
+                    })
                 }
                 if(response.status === 209){
                     setSeo(null)
@@ -32,10 +36,40 @@ export default function SEOUpdate(){
                 setSeo(null)
                 toast.error('Erreur de récupération du SEO de cet article')
             })
-    }, [id])
+    }, [id, reset])
 
     const sumbmitForm = async (data)=>{
-        axios.post('http://localhost:3000/seo/create', data, { withCredentials: true })
+        if(seo){
+            console.log('SEO déjà défini.')
+        }else{
+            let _data = {
+                seo: {
+                    title: data.title,
+                    description: data.description
+                },
+                articleId: id
+            }
+            axios.post(`${import.meta.env.VITE_API_BASE_URL}/seo/create`, _data, { withCredentials: true })
+            .then(()=>{
+                axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+                .then((response)=>{
+                    if(response.status === 200){
+                        setSeo(response.data)
+                        reset({
+                            title: response.data.title,
+                            description: response.data.description
+                        })
+                    }
+                    if(response.status === 209){
+                        setSeo(null)
+                        toast.info("Cet article n'a pas encore de SEO.")
+                    }
+                }).catch(()=>{
+                    setSeo(null)
+                    toast.error('Erreur de récupération du SEO de cet article')
+                })
+            }).catch(()=>{ toast.error("Erreur de création de SEO pour cet article, veuillez réessayer plus tard.") })
+        }
     }
 
     return(
