@@ -27,7 +27,7 @@ export default function ArticleView(){
 
     useHead({
         link: [
-            { href:  }
+            { rel: 'canonical', href: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined }
         ],
         meta: [
             { name: 'description', content: (seo && seo.description) || undefined },
@@ -42,6 +42,7 @@ export default function ArticleView(){
         ogTitle: (seo && seo.title) || undefined,
         ogType: 'article',
         ogDescription: (seo && seo.description) || undefined,
+        ogUrl: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined,
         
         twitterTitle: (seo && seo.title) || undefined,
         twitterDescription: (seo && seo.description) || undefined,
