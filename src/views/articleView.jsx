@@ -33,7 +33,8 @@ export default function ArticleView(){
     })
     
     useSeoMeta({
-        title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
+        title: seo && seo.title,
+        ogTitle: seo && seo.title,
         ogType: 'article',
         articleAuthor: 'LUMINI School',
         articlePublishedTime: article && `${article.publishedAt}`
