@@ -26,18 +26,29 @@ export default function ArticleView(){
     }, [slug])
 
     useHead({
+        link: [
+            { href:  }
+        ],
         meta: [
-            { name: 'description', content: seo && seo.description },
+            { name: 'description', content: (seo && seo.description) || undefined },
             { name: 'robots', content: 'index, follow' }
         ]
     })
     
     useSeoMeta({
-        title: seo && seo.title,
-        ogTitle: seo && seo.title,
+
+        title: (seo && seo.title) || undefined,
+        
+        ogTitle: (seo && seo.title) || undefined,
         ogType: 'article',
+        ogDescription: (seo && seo.description) || undefined,
+        
+        twitterTitle: (seo && seo.title) || undefined,
+        twitterDescription: (seo && seo.description) || undefined,
+        
         articleAuthor: 'LUMINI School',
-        articlePublishedTime: article && `${article.publishedAt}`
+        articlePublishedTime: (article && `${article.publishedAt}`) || undefined
+    
     })
 
     if (loading) return <Loading/>
