@@ -58,6 +58,15 @@
     border: none;
 }
 
+.update-article-seo button img {
+    width: 18px;
+    animation: spinner infinite 3s linear;
+}
+
+.update-article-seo button:hover {
+    column-gap: 15px;
+}
+
 .add-article .upload-message {
     font-size: 14px;
     font-weight: 900;

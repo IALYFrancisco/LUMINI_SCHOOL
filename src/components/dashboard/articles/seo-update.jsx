@@ -44,8 +44,10 @@ export default function SEOUpdate(){
     const isModified = isDirty
 
     const sumbmitForm = async (data)=>{
+        setIsLoading(true)
         if(seo){
             console.log('SEO déjà défini.')
+            setIsLoading(false)
         }else{
             let _data = {
                 seo: {
@@ -76,6 +78,7 @@ export default function SEOUpdate(){
                     toast.error('Erreur de récupération du SEO de cet article')
                 })
             }).catch(()=>{ toast.error("Erreur de création de SEO pour cet article, veuillez réessayer plus tard.") })
+            .finally(()=>setIsLoading(false))
         }
     }
 
@@ -99,7 +102,10 @@ export default function SEOUpdate(){
                             <input type="url" id="image" placeholder="Image pour og:image, twitter:image" { ...register('image') } required disabled/>
                         </div>
                         <div className="element">
-                            <button disabled={!isModified}>Soumettre</button>
+                            <button disabled={!isModified || isLoading}>
+                                Soumettre
+                                { isLoading && <img src="/images/spinner.png" alt="" />}
+                            </button>
                         </div>
                     </fieldset>
                     <fieldset>
