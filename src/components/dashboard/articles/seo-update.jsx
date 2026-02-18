@@ -25,6 +25,8 @@ export default function SEOUpdate(){
                     setSeo(response.data)
                     reset({
                         title: response.data.title,
+                        canonicUrl: response.data.canonicUrl ? `${import.meta.env.VITE_API_BASE_URL}${response.data.canonicUrl}` : `${import.meta.env.VITE_API_BASE_URL}/article/${article.slug}`,
+                        image: response.data.image ? response.data.image : article.image,
                         description: response.data.description
                     })
                 }
@@ -36,7 +38,7 @@ export default function SEOUpdate(){
                 setSeo(null)
                 toast.error('Erreur de récupération du SEO de cet article')
             })
-    }, [id, reset])
+    }, [article, id, reset])
 
     const sumbmitForm = async (data)=>{
         if(seo){
