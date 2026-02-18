@@ -43,9 +43,11 @@ export default function ArticleView(){
         ogType: 'article',
         ogDescription: (seo && seo.description) || undefined,
         ogUrl: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined,
+        ogImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
         
         twitterTitle: (seo && seo.title) || undefined,
         twitterDescription: (seo && seo.description) || undefined,
+        twitterImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
         
         articleAuthor: 'LUMINI School',
         articlePublishedTime: (article && `${article.publishedAt}`) || undefined
