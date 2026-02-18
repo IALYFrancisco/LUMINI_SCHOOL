@@ -6,6 +6,7 @@ import axios from "axios"
 import { useAuth } from "../contexts/AuthContext"
 import { toast } from "sonner"
 import { useState } from "react"
+import { useHead, useSeoMeta } from "@unhead/react"
 
 export function Login(){
 
@@ -14,6 +15,16 @@ export function Login(){
     var { reset, register, handleSubmit } = useForm()
 
     var [ loginLoading, setLoginLoading ] = useState(false)
+
+    useHead({
+        meta: [
+            { name: 'description', content: 'Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.' }
+        ]
+    })
+
+    useSeoMeta({
+        title: 'Connexion | LUMINI School - Plateforme de formation en informatique'
+    })
 
     var _handleSubmit = async (data) => {
         try{
