@@ -46,8 +46,45 @@ export default function SEOUpdate(){
     const sumbmitForm = async (data)=>{
         setIsLoading(true)
         if(seo){
-            console.log('SEO déjà défini.')
-            setIsLoading(false)
+            try{
+                let update = {
+                    title: undefined,
+                    description: undefined
+                }
+                if(data.title != seo.title){
+                    update.title = data.title
+                }
+                if(data.description != seo.description){
+                    update.description = data.description
+                }
+                let response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/seo/update`, { seoId: seo._id, update }, {withCredentials: true})
+                if(response.status === 200){
+                    toast.success("Seo mis à jour avec succès.")
+                    axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+                    .then((response)=>{
+                        if(response.status === 200){
+                            setSeo(response.data)
+                            reset({
+                                title: response.data.title,
+                                canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
+                                image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                                description: response.data.description
+                            })
+                        }
+                        if(response.status === 209){
+                            setSeo(null)
+                            toast.info("Cet article n'a pas encore de SEO.")
+                        }
+                    }).catch(()=>{
+                        setSeo(null)
+                        toast.error('Erreur de récupération du SEO de cet article')
+                    })
+                }
+            }catch{
+                toast.error("Erreur de mis à jour du SEO, veuillez reéssayer plus tard.")
+            }finally{
+                setIsLoading(false)
+            }
         }else{
             let _data = {
                 seo: {
