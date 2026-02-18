@@ -9,7 +9,8 @@ export default function SEOUpdate(){
     var [article, setArticle] = useState(null)
     var [seo, setSeo] = useState(null)
     const {id} = useParams()
-    var { register, handleSubmit, reset } = useForm()
+    var { register, handleSubmit, reset, formState: { isDirty } } = useForm()
+    var [ isLoading, setIsLoading ] = useState(false)
     
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
@@ -39,6 +40,8 @@ export default function SEOUpdate(){
                 toast.error('Erreur de récupération du SEO de cet article')
             })
     }, [article, id, reset])
+
+    const isModified = isDirty
 
     const sumbmitForm = async (data)=>{
         if(seo){
@@ -96,7 +99,7 @@ export default function SEOUpdate(){
                             <input type="url" id="image" placeholder="Image pour og:image, twitter:image" { ...register('image') } required disabled/>
                         </div>
                         <div className="element">
-                            <button>Soumettre</button>
+                            <button disabled={!isModified}>Soumettre</button>
                         </div>
                     </fieldset>
                     <fieldset>

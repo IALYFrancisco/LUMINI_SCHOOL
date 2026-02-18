@@ -47,7 +47,8 @@
     border: none;
 }
 
-.add-article form fieldset .element > button:disabled {
+.add-article form fieldset .element > button:disabled,
+.update-article-seo form fieldset .element > button:disabled {
     background-color: grey;
     transform: none;
 }
