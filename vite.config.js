@@ -32,6 +32,7 @@ export default defineConfig( async () => {
         priority: 1.0,
         urls: [
           { path: '/', changefreq: 'weekly', priority: 1.0 },
+          { path: '/authentication/login', changefreq: 'weekly', priority: 0.9 },
           ...await GenerateArticleRoutes()
         ],
         robotsTxt: "User-agent: *\nDisallow: /dashboard\n\nSitemap: https://luminischool.onrender.com/sitemap.xml"
