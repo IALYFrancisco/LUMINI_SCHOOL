@@ -8,10 +8,26 @@ import DOMPurify from 'dompurify'
 import { useHead, useSeoMeta } from "@unhead/react"
 
 export default function ArticleView(){
+    
+    const { slug } = useParams()
+    var [ article, setArticle ] = useState(null)
+    var [ loading, setLoading ] = useState(true)
+    var [ seo, setSeo ] = useState(null)
+    
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
+        .then((response)=>{
+            setArticle(response.data)
+            axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
+                .then((response)=>{
+                    setSeo(response.data)
+                })
+        }).finally(()=>setLoading(false))
+    }, [slug])
 
     useHead({
         meta: [
-            { name: 'description', content: 'Découvrez comment installer Windows 11, les configurations requises et les bonnes pratiques pour une installation sécurisée et professionnelle.' },
+            { name: 'description', content: seo && seo.description },
             { name: 'robots', content: 'index, follow' }
         ]
     })
@@ -22,19 +38,6 @@ export default function ArticleView(){
         articleAuthor: 'LUMINI School',
         articlePublishedTime: article && `${article.publishedAt}`
     })
-    
-    const { slug } = useParams()
-    var [ article, setArticle ] = useState(null)
-    var [ loading, setLoading ] = useState(true)
-    
-    
-    useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
-        .then((response)=>{
-            setArticle(response.data)
-        }).finally(()=>setLoading(false))
-    }, [slug])
-    
 
     if (loading) return <Loading/>
     return (
