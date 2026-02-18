@@ -33,6 +33,7 @@ function App() {
 
   useSeoMeta({
     ogSiteName: 'LUMINI School',
+        ogLocale: 'fr_MG',
     twitterCard: 'summary_large_image'
   })
 

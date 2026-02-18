@@ -19,7 +19,6 @@ export default function ArticleView(){
     useSeoMeta({
         title: 'Installer Windows 11 : configurations requises et bonnes pratiques',
         ogType: 'article',
-        ogLocale: 'fr_FR',
         articleAuthor: 'LUMINI School',
         articlePublishedTime: article && `${article.publishedAt}`
     })
