@@ -132,7 +132,7 @@ export default function SEOUpdate(){
                         </div>
                         <div className="element">
                             <label htmlFor="page-url">Url de page [ lien canonique, og:url, twitter:url ] :</label>
-                            <input type="url" id="page-url" placeholder="Url canonique à la page d'article pour link:canonical, og:url et twitter:url" { ...register('canonicUrl') } required disabled/>
+                            <input type="url" id="page-url" placeholder="Url canonique à la page d'article pour link:canonical et og:url" { ...register('canonicUrl') } required disabled/>
                         </div>
                         <div className="element">
                             <label htmlFor="image">Image de mise en avant [ og:image, twitter:image ] :</label>
