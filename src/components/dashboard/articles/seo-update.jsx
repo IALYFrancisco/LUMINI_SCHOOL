@@ -25,8 +25,8 @@ export default function SEOUpdate(){
                     setSeo(response.data)
                     reset({
                         title: response.data.title,
-                        canonicUrl: response.data.canonicUrl ? `${import.meta.env.VITE_API_BASE_URL}${response.data.canonicUrl}` : `${import.meta.env.VITE_API_BASE_URL}/article/${article.slug}`,
-                        image: response.data.image ? response.data.image : article.image,
+                        canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
+                        image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
                         description: response.data.description
                     })
                 }
@@ -59,6 +59,8 @@ export default function SEOUpdate(){
                         setSeo(response.data)
                         reset({
                             title: response.data.title,
+                            canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
+                            image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
                             description: response.data.description
                         })
                     }
