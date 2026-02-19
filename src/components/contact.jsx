@@ -40,7 +40,7 @@ export function Contact(){
                     <form onSubmit={handleSubmit(_handleSubmit)}>
                         <div className="element">
                             <label htmlFor="user-name">Entrez votre nom complet :</label>
-                            <input type="text" id="user-name" placeholder="Ex: John Doe" required { ...register("name") }/>
+                            <input type="text" id="user-name" placeholder="Ex: John Doe" { ...register("name") } required/>
                         </div>
                         <div className="element">
                             <label htmlFor="contact-object">Objet de votre contact :</label>
