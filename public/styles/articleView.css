@@ -23,13 +23,13 @@
 }
 
 @media only screen and (max-width: 1024px){
-    article {
+    .article-container article {
         padding: 50px;
     }
 }
 
 @media only screen and (max-width: 768px){
-    article {
+    .article-container article {
         padding: 25px;
     }
 }

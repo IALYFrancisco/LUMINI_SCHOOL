@@ -6,6 +6,7 @@ import axios from "axios"
 import { useAuth } from "../contexts/AuthContext"
 import { toast } from "sonner"
 import { useState } from "react"
+import { useHead, useSeoMeta } from "@unhead/react"
 
 export function Login(){
 
@@ -14,6 +15,16 @@ export function Login(){
     var { reset, register, handleSubmit } = useForm()
 
     var [ loginLoading, setLoginLoading ] = useState(false)
+
+    useHead({
+        meta: [
+            { name: 'description', content: 'Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.' }
+        ]
+    })
+
+    useSeoMeta({
+        title: 'Connexion | LUMINI School - Plateforme de formation en informatique'
+    })
 
     var _handleSubmit = async (data) => {
         try{
@@ -61,12 +72,12 @@ export function Login(){
                     <img src="/images/fleur.png" alt="" className="laptop-mouse" />
                     <img src="/images/coffee-laptop.png" alt="" className="mouse" />
                     <div className="element">
-                        <label htmlFor="">Votre adresse email :</label>
-                        <input type="email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
+                        <label htmlFor="user-email">Votre adresse email :</label>
+                        <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
-                        <label htmlFor="">Votre mot de passe :</label>
-                        <input type="password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
+                        <label htmlFor="user-password">Votre mot de passe :</label>
+                        <input type="password" id="user-password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button disabled={loginLoading}>

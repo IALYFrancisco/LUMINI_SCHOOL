@@ -39,24 +39,24 @@ export function Contact(){
                     <p>Laissez-nous un message et on vous répondra après 🤞. Tout type de message est permit alors n'hésitez pas à écrire.</p>
                     <form onSubmit={handleSubmit(_handleSubmit)}>
                         <div className="element">
-                            <label htmlFor="">Entrez votre nom complet :</label>
-                            <input type="text" id="" placeholder="Ex: John Doe" required { ...register("name") }/>
+                            <label htmlFor="user-name">Entrez votre nom complet :</label>
+                            <input type="text" id="user-name" placeholder="Ex: John Doe" { ...register("name") } required/>
                         </div>
                         <div className="element">
-                            <label htmlFor="">Objet de votre contact :</label>
-                            <input type="text" id="" placeholder="Ex: Demande de partenariat avec LUMINI School" required { ...register("object") } />
+                            <label htmlFor="contact-object">Objet de votre contact :</label>
+                            <input type="text" id="contact-object" placeholder="Ex: Demande de partenariat avec LUMINI School" required { ...register("object") } />
                         </div>
                         <div className="element">
-                            <label htmlFor="">Votre email :</label>
-                            <input type="email" id="" placeholder="Ex: johndoe@example.com" required { ...register("email") } />
+                            <label htmlFor="user-email">Votre email :</label>
+                            <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" required { ...register("email") } />
                         </div>
                         <div className="element">
-                            <label htmlFor="">Votre numéro téléphone :</label>
-                            <input type="tel" id="" placeholder="Ex: +261 30 00 000 00" required { ...register("telephone") } />
+                            <label htmlFor="user-phone-number">Votre numéro téléphone :</label>
+                            <input type="tel" id="user-phone-number" placeholder="Ex: +261 30 00 000 00" required { ...register("telephone") } />
                         </div>
                         <div className="element">
-                            <label htmlFor="">Saisissez vos messages :</label>
-                            <textarea id="" placeholder="J'ai l'honneur de vous écrire ..." required { ...register("message") } ></textarea>
+                            <label htmlFor="user-message">Saisissez vos messages :</label>
+                            <textarea id="user-message" placeholder="J'ai l'honneur de vous écrire ..." required { ...register("message") } ></textarea>
                         </div>
                         <div className="element">
                             <button disabled={sendClientMessageLoading}>
