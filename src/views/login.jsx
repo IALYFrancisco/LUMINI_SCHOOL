@@ -23,7 +23,13 @@ export function Login(){
     })
 
     useSeoMeta({
-        title: 'Connexion | LUMINI School - Plateforme de formation en informatique'
+        title: 'Connexion | LUMINI School - Plateforme de formation en informatique',
+
+        ogTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
+        ogDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.",
+
+        twitterTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
+        twitterDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."
     })
 
     var _handleSubmit = async (data) => {
