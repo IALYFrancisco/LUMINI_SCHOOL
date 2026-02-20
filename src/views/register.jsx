@@ -5,8 +5,24 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { useState } from "react"
+import { useSeoMeta, useHead } from "@unhead/react"
 
 export function Register(){
+
+    useHead({
+        meta: [
+            { name: 'description', content: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité." }
+        ]
+    })
+
+    useSeoMeta({
+        title: 'Création de compte | LUMINI School - Plateforme de formation en informatique',
+
+        ogDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité.",
+
+        twitterDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."
+    })
+
     var { reset, register, handleSubmit } = useForm()
     const navigate = useNavigate()
 
