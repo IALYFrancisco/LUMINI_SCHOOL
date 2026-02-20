@@ -16,10 +16,13 @@ export function Register(){
     })
 
     useSeoMeta({
+
         title: 'Création de compte | LUMINI School - Plateforme de formation en informatique',
 
+        ogTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
         ogDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité.",
 
+        twitterTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
         twitterDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."
     })
 
