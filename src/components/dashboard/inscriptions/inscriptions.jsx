@@ -3,8 +3,13 @@ import { useEffect, useState, useRef } from "react"
 import '../../../../public/styles/dashboard/inscription.css'
 import { useAuth } from "../../../contexts/AuthContext"
 import { Link } from "react-router-dom"
+import { useHead } from "@unhead/react"
 
 export default function Inscriptions(){
+
+    useHead({
+        title: 'Inscriptions - Dashboard | LUMINI School'
+    })
 
     var [registrations, setRegistrations] = useState([])
     var [activePopUp, setActivePopUp] = useState(null)
