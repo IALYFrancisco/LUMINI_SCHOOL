@@ -5,8 +5,21 @@ import axios from "axios"
 import Loading from "../components/loading"
 import DOMPurify from "dompurify"
 import { Link } from "react-router-dom"
+import { useHead, useSeoMeta } from "@unhead/react"
 
 export function ArticlesPage(){
+
+    useHead({
+        link: [
+            { rel: 'canonical', href: 'https://luminischool.onrender.com/articles' }
+        ]
+    })
+
+    useSeoMeta({
+
+        ogUrl: 'https://luminischool.onrender.com/articles'
+
+    })
 
     var [ articles, setArticles ] = useState([])
     var [ loading, setLoading ] = useState(true)
