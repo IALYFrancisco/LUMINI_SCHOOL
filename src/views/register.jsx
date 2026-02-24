@@ -10,6 +10,9 @@ import { useSeoMeta, useHead } from "@unhead/react"
 export function Register(){
 
     useHead({
+        link: [
+            { rel: 'canonical', href: 'https://luminischool.onrender.com/authentication/register' }
+        ],
         meta: [
             { name: 'description', content: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité." }
         ]
@@ -21,6 +24,7 @@ export function Register(){
 
         ogTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
         ogDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité.",
+        ogUrl: 'https://luminischool.onrender.com/authentication/register',
 
         twitterTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
         twitterDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."
