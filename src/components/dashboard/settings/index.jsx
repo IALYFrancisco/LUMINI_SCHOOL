@@ -4,8 +4,13 @@ import { useAuth } from '../../../contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'sonner'
+import { useHead } from '@unhead/react'
 
 export default function Settings(){
+
+    useHead({
+        title: 'Paramètres - Dashboard | LUMINI School'
+    })
     
     var { user, setUser } = useAuth()
 
