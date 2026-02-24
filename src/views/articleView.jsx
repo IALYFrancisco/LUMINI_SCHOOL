@@ -30,8 +30,7 @@ export default function ArticleView(){
             { rel: 'canonical', href: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined }
         ],
         meta: [
-            { name: 'description', content: (seo && seo.description) || undefined },
-            { name: 'robots', content: 'index, follow' }
+            { name: 'description', content: (seo && seo.description) || undefined }
         ]
     })
     
