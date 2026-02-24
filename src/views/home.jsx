@@ -5,12 +5,18 @@ import { Footer } from "../components/footer"
 import { Formations } from "../components/formations"
 import { Articles } from "../components/articles"
 import '../../public/styles/home.css'
-import { useHead } from "@unhead/react"
+import { useSeoMeta } from "@unhead/react"
 
 function Home(){
 
-    useHead({
-        title: 'Accueil | LUMINI School'
+    useSeoMeta({
+
+        title: 'Accueil | LUMINI School - Plateforme de formation en informatique',
+
+        ogTitle: 'Accueil | LUMINI School - Plateforme de formation en informatique',
+
+        twitterTitle: 'Accueil | LUMINI School - Plateforme de formation en informatique'
+
     })
 
     return (
