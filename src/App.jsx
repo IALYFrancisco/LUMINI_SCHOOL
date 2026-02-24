@@ -35,9 +35,10 @@ function App() {
 
     ogSiteName: 'LUMINI School',
     ogLocale: 'fr_MG',
+    ogType: 'website',
     
     twitterCard: 'summary_large_image'
-    
+
   })
 
   return (
