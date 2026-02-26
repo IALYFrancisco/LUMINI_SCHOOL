@@ -17,13 +17,23 @@ export function Login(){
     var [ loginLoading, setLoginLoading ] = useState(false)
 
     useHead({
+        link: [
+            { rel: 'canonical', href: 'https://luminischool.onrender.com/authentication/login' }
+        ],
         meta: [
             { name: 'description', content: 'Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.' }
         ]
     })
 
     useSeoMeta({
-        title: 'Connexion | LUMINI School - Plateforme de formation en informatique'
+        title: 'Connexion | LUMINI School - Plateforme de formation en informatique',
+
+        ogTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
+        ogDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.",
+        ogUrl: 'https://luminischool.onrender.com/authentication/login',
+
+        twitterTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
+        twitterDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."
     })
 
     var _handleSubmit = async (data) => {

@@ -26,15 +26,25 @@ import Settings from './components/dashboard/settings'
 import ArticleView from './views/articleView'
 import Payments from './components/dashboard/paiements'
 import { NotFound } from './views/notFound'
-import { useSeoMeta } from '@unhead/react'
+import { useHead, useSeoMeta } from '@unhead/react'
 import SEOUpdate from './components/dashboard/articles/seo-update'
 
 function App() {
 
+  useHead({
+    meta: [
+      { name: 'robots', content: 'index, follow' }
+    ]
+  })
+
   useSeoMeta({
+
     ogSiteName: 'LUMINI School',
-        ogLocale: 'fr_MG',
+    ogLocale: 'fr_MG',
+    ogType: 'website',
+    
     twitterCard: 'summary_large_image'
+
   })
 
   return (

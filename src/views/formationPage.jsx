@@ -4,12 +4,25 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import Loading from "../components/loading"
+import { useHead, useSeoMeta } from "@unhead/react"
 
 export function FormationsPage(){
 
     var [ formations, setFormations ] = useState([])
     var [ loading, setLoading ] = useState(true)
     var [ prompt, setPrompt ] = useState("")
+
+    useHead({
+        link: [
+            { rel: 'canonical', href: 'https://luminischool.onrender.com/formations' }
+        ]
+    })
+
+    useSeoMeta({
+
+        ogUrl: 'https://luminischool.onrender.com/formations'
+
+    })
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })

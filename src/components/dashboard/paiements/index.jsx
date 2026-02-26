@@ -7,8 +7,13 @@ import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
 import { useAuth } from '../../../contexts/AuthContext'
 import { toast } from 'sonner'
+import { useHead } from '@unhead/react'
 
 export default function Payments(){
+
+    useHead({
+        title: 'Paiement - Dashboard | LUMINI School'
+    })
     
     const { formationId } = useParams()
     const [ searchParams ] = useSearchParams()
