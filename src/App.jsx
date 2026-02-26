@@ -42,8 +42,10 @@ function App() {
     ogSiteName: 'LUMINI School',
     ogLocale: 'fr_MG',
     ogType: 'website',
+    ogImage: 'https://raw.githubusercontent.com/IALYFrancisco/ASSETS/refs/heads/main/LUMINI%20School/IMAGES/lumini-school-logo.png',
     
-    twitterCard: 'summary_large_image'
+    twitterCard: 'summary_large_image',
+    twitterImage: 'https://raw.githubusercontent.com/IALYFrancisco/ASSETS/refs/heads/main/LUMINI%20School/IMAGES/lumini-school-logo.png'
 
   })
 
