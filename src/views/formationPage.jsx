@@ -15,12 +15,22 @@ export function FormationsPage(){
     useHead({
         link: [
             { rel: 'canonical', href: 'https://luminischool.onrender.com/formations' }
+        ],
+        meta: [
+            { name:'description', content: 'Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.' }
         ]
     })
 
     useSeoMeta({
 
-        ogUrl: 'https://luminischool.onrender.com/formations'
+        title: 'Formations | LUMINI School - Plateforme de formation en informatique',
+
+        ogTitle: 'Formations | LUMINI School - Plateforme de formation en informatique',
+        ogDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.",
+        ogUrl: 'https://luminischool.onrender.com/formations',
+
+        twitterTitle: 'Formations | LUMINI School - Plateforme de formation en informatique',
+        twitterDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours."
 
     })
 
